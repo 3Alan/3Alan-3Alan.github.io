@@ -131,13 +131,41 @@
           
             <li>
               <a class="nav home"
-                href="https://volantis.js.org/"
+                href="/categories"
                 
                 
-                  target="_blank"
+                id="categories">
+                <i class='fas fa-list-alt fa-fw'></i>分类
+              </a>
+            </li>
+          
+            <li>
+              <a class="nav home"
+                href="/tags"
                 
-                id="https:volantisjsorg">
-                <i class='fas fa-handshake fa-fw'></i>博客主题
+                
+                id="tags">
+                <i class='fas fa-tags fa-fw'></i>标签
+              </a>
+            </li>
+          
+            <li>
+              <a class="nav home"
+                href="/about"
+                
+                
+                id="about">
+                <i class='fas fa-basketball-ball fa-fw'></i>关于我
+              </a>
+            </li>
+          
+            <li>
+              <a class="nav home"
+                href="/friends"
+                
+                
+                id="friends">
+                <i class='fas fa-user-friends fa-fw'></i>友链
               </a>
             </li>
           
@@ -170,6 +198,8 @@
         <a class="title flat-box" target="_self" href='/'>
           
           
+            <i class='fas fa-basketball-ball'></i>
+          
           
             Alan
           
@@ -191,7 +221,23 @@
                   
                     id="home"
                   >
-                  <i class='fas fa-rss fa-fw'></i>博客
+                  <i class='fas fa-home fa-fw'></i>首页
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
                 </a>
                 
               </li>
@@ -278,7 +324,23 @@
                   
                     id="home"
                   >
-                  <i class='fas fa-rss fa-fw'></i>博客
+                  <i class='fas fa-home fa-fw'></i>首页
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
                 </a>
                 
               </li>
@@ -328,7 +390,7 @@
   
 
   
-    <article id="post" class="post white-box reveal shadow article-type-post" itemscope itemprop="blogPost">
+    <article id="post" class="post white-box reveal shadow blur article-type-post" itemscope itemprop="blogPost">
       
 
 
@@ -340,7 +402,7 @@
         
           
   <h1 class="title">
-    <a href="/2020/05/14/webpack%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/">
+    <a href="/2020/05/14/webpack%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%80%EF%BC%89/">
       webpack4.0学习总结（一）
     </a>
   </h1>
@@ -391,7 +453,7 @@
     <a class='notlink'>
       <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
       
-      <span id="/2020/05/14/webpack%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" class="leancloud_visitors" data-flag-title="webpack4.0学习总结（一）">
+      <span id="/2020/05/14/webpack%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%80%EF%BC%89/" class="leancloud_visitors" data-flag-title="webpack4.0学习总结（一）">
       <p>
         <span class="leancloud-visitors-count"></span>
       </p>
@@ -457,16 +519,16 @@
 
 
 
-<p>打包index.js**</p>
+<p>打包index.js</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx webpack index.js</span><br></pre></td></tr></table></figure>
 
 <div class="note idea green"><p>这里如果不使用npx的话node会默认在全局环境中找寻webpack，加上npx的话就会使用项目中安装的webpack来执行命令</p></div>
 
-<p>打包后可以看到根目录下多了一个dist文件夹（webpack默认设置好的，后面会将如何改变），里面有一个main.js文件，这个文件就是经过webpack处理后的index.js。</p>
+<p>打包后可以看到根目录下多了一个dist文件夹（webpack默认设置好的，后面会讲如何改变），里面有一个main.js文件，这个文件就是经过webpack处理后的index.js。</p>
 <p>然后我们修改一下<code>index.html</code>的代码</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./dist/main.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>这下浏览器就能正常识别html中的js文件了，到这里为止理解webpack是一个模块打包器应该不是很难了吧。</p>
+<p>这下浏览器就能正常识别html中的js文件了，到这里为止理解webpack是一个模块打包器应该不是很难了吧。webpack将模块<code>componentA</code>和<code>componentB</code>打包生成了最后的<code>main.js</code>。</p>
 <h2 id="webpack配置文件"><a href="#webpack配置文件" class="headerlink" title="webpack配置文件"></a>webpack配置文件</h2><p>webpack的配置文件名默认是<code>webpack.config.js</code>，当然我们也可以指定配置文件。</p>
 <p>开始之前我们先修改一下项目目录</p>
 <p>webpacktest<br> ├── index.html<br> ├── package-lock.json<br> ├── package.json<br> ├── src<br> │   ├── componentA.js<br> │   ├── componentB.js<br> │   └── index.js<br> └── webpack.config.js</p>
@@ -477,7 +539,7 @@
 <p><em>entry可以简写为entry: ‘./src/index.js’</em></p>
 <div class="note info"><p>mode中的development和production有什么区别呢</p></div>
 
-<p>我们看一下打包出来的文件bundle.js就知道了，production模式下的代码时一整行的，体积更小。而development模式下的代码不是一整行的有利于调试。</p>
+<p>我们看一下打包出来的文件bundle.js就知道了，production模式下的代码是一整行的，体积更小。而development模式下的代码不是一整行的有利于调试。</p>
 <div class="note link"><p>node path的 <a href="http://nodejs.cn/api/path.html#path_path_resolve_paths" target="_blank" rel="noopener">更多</a></p></div>
 
 <p>执行下面命令后即可完成打包，效果和上一节一样</p>
@@ -492,13 +554,13 @@
 <p>修改package.json文件中的script</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">"scripts": &#123;</span><br><span class="line">    "build": "webpack"</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
 
-<p>这样就可以通过<code>npm run build</code>来进行打包了，不过看过第一节的小伙伴肯定有疑问了，这样配置会不会使用全局的webpack去进行配置呢，其实并不会，这里<code>npm script</code>命令会在项目的<code>node_modules</code>文件中去寻找webpack并执行。</p>
+<p>这样就可以通过<code>npm run build</code>来进行打包了，不过看过第一节的小伙伴肯定有疑问了，这样配置会不会使用全局的webpack去进行打包呢🙄，其实并不会，这里<code>npm script</code>命令会在项目的<code>node_modules</code>文件中去寻找webpack并执行。</p>
 <p>打包好后我们打开index.html看看，发现是会报错的，这里注意：我们要手动把index.html移动到dist目录下并修改一下js路径，因为webpack并没有将index.html打包到dist目录下。</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./bundle.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>这下在运行index.html就没有任何问题了。🎉</p>
+<p>这下再运行index.html就没有任何问题了。🎉</p>
 <blockquote>
-<p>文章是看慕课网的课程后进行的笔记总结<a href="https://coding.imooc.com/class/chapter/316.html#Anchor" target="_blank" rel="noopener">课程链接</a></p>
+<p>文章是看过慕课网的课程后进行的总结<a href="https://coding.imooc.com/class/chapter/316.html#Anchor" target="_blank" rel="noopener">课程链接</a></p>
 </blockquote>
 
           
@@ -536,7 +598,7 @@
           
         
           
-            <p>本文永久链接是：<a href=https://alanwang.site/2020/05/14/webpack%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/>https://alanwang.site/2020/05/14/webpack%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/</a></p>
+            <p>本文永久链接是：<a href=https://alanwang.site/2020/05/14/webpack%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%80%EF%BC%89/>https://alanwang.site/2020/05/14/webpack%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%80%EF%BC%89/</a></p>
           
         
       </blockquote>
@@ -571,7 +633,7 @@
         
           
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/webpack4-0/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>webpack4.0</p></a></div>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/webpack4-0/" rel="nofollow"><i class="fas fa-tags fa-fw" aria-hidden="true"></i><p>webpack4.0</p></a></div>
 
 
         
@@ -589,7 +651,7 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
           
-          href="http://connect.qq.com/widget/shareqq/index.html?url=https://alanwang.site/2020/05/14/webpack%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/&title=webpack4.0学习总结（一） - Alan|前端博客&summary=这一篇文章主要简单介绍了webpack是什么以及webpack的一些简单配置，你只要跟着我敲完这些代码后一定会对webpack有一个基本的了解的。😎"
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://alanwang.site/2020/05/14/webpack%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%80%EF%BC%89/&title=webpack4.0学习总结（一） - Alan|前端博客&summary=这一篇文章主要简单介绍了webpack是什么以及webpack的一些简单配置，你只要跟着我敲完这些代码后一定会对webpack有一个基本的了解的。😎"
           
           >
           
@@ -601,7 +663,7 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer"
           
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://alanwang.site/2020/05/14/webpack%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/&title=webpack4.0学习总结（一） - Alan|前端博客&summary=这一篇文章主要简单介绍了webpack是什么以及webpack的一些简单配置，你只要跟着我敲完这些代码后一定会对webpack有一个基本的了解的。😎"
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://alanwang.site/2020/05/14/webpack%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%80%EF%BC%89/&title=webpack4.0学习总结（一） - Alan|前端博客&summary=这一篇文章主要简单介绍了webpack是什么以及webpack的一些简单配置，你只要跟着我敲完这些代码后一定会对webpack有一个基本的了解的。😎"
           
           >
           
@@ -613,7 +675,7 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
           
-          href="http://service.weibo.com/share/share.php?url=https://alanwang.site/2020/05/14/webpack%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/&title=webpack4.0学习总结（一） - Alan|前端博客&summary=这一篇文章主要简单介绍了webpack是什么以及webpack的一些简单配置，你只要跟着我敲完这些代码后一定会对webpack有一个基本的了解的。😎"
+          href="http://service.weibo.com/share/share.php?url=https://alanwang.site/2020/05/14/webpack%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%80%EF%BC%89/&title=webpack4.0学习总结（一） - Alan|前端博客&summary=这一篇文章主要简单介绍了webpack是什么以及webpack的一些简单配置，你只要跟着我敲完这些代码后一定会对webpack有一个基本的了解的。😎"
           
           >
           
@@ -661,7 +723,7 @@
 
 
 
-  <article class="post white-box reveal comments shadow">
+  <article class="post white-box reveal comments shadow blur">
     <section class="article typo">
       <p ct><i class='fas fa-comments'></i> 评论</p>
       
@@ -770,6 +832,14 @@
             
               <a href="https://github.com/3Alan"
                 class="social fab fa-github flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+            
+              <a href="tencent://message/?uin=1540703192"
+                class="social fab fa-qq flat-btn"
                 target="_blank"
                 rel="external nofollow noopener noreferrer">
               </a>

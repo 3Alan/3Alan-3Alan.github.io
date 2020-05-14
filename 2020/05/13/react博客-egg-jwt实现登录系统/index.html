@@ -18,6 +18,8 @@
   
     <title>react博客-egg-jwt实现登录系统 - Alan|前端博客</title>
   
+    <meta name="keywords" content="博客,React,ReactHook,jwt">
+  
   
     <meta name="description" content="react博客系列文章">
   
@@ -129,13 +131,41 @@
           
             <li>
               <a class="nav home"
-                href="https://volantis.js.org/"
+                href="/categories"
                 
                 
-                  target="_blank"
+                id="categories">
+                <i class='fas fa-list-alt fa-fw'></i>分类
+              </a>
+            </li>
+          
+            <li>
+              <a class="nav home"
+                href="/tags"
                 
-                id="https:volantisjsorg">
-                <i class='fas fa-handshake fa-fw'></i>博客主题
+                
+                id="tags">
+                <i class='fas fa-tags fa-fw'></i>标签
+              </a>
+            </li>
+          
+            <li>
+              <a class="nav home"
+                href="/about"
+                
+                
+                id="about">
+                <i class='fas fa-basketball-ball fa-fw'></i>关于我
+              </a>
+            </li>
+          
+            <li>
+              <a class="nav home"
+                href="/friends"
+                
+                
+                id="friends">
+                <i class='fas fa-user-friends fa-fw'></i>友链
               </a>
             </li>
           
@@ -168,6 +198,8 @@
         <a class="title flat-box" target="_self" href='/'>
           
           
+            <i class='fas fa-basketball-ball'></i>
+          
           
             Alan
           
@@ -189,7 +221,23 @@
                   
                     id="home"
                   >
-                  <i class='fas fa-rss fa-fw'></i>博客
+                  <i class='fas fa-home fa-fw'></i>首页
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
                 </a>
                 
               </li>
@@ -276,7 +324,23 @@
                   
                     id="home"
                   >
-                  <i class='fas fa-rss fa-fw'></i>博客
+                  <i class='fas fa-home fa-fw'></i>首页
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
                 </a>
                 
               </li>
@@ -326,7 +390,7 @@
   
 
   
-    <article id="post" class="post white-box reveal shadow article-type-post" itemscope itemprop="blogPost">
+    <article id="post" class="post white-box reveal shadow blur article-type-post" itemscope itemprop="blogPost">
       
 
 
@@ -372,6 +436,14 @@
           
             
               
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/%E5%89%8D%E7%AB%AF/React/' rel="nofollow">
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <p>前端/React</p>
+    </a>
+  </div>
+
 
             
           
@@ -539,6 +611,9 @@
       
         
           
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E5%8D%9A%E5%AE%A2/" rel="nofollow"><i class="fas fa-tags fa-fw" aria-hidden="true"></i><p>博客</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/React/" rel="nofollow"><i class="fas fa-tags fa-fw" aria-hidden="true"></i><p>React</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/ReactHook/" rel="nofollow"><i class="fas fa-tags fa-fw" aria-hidden="true"></i><p>ReactHook</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/jwt/" rel="nofollow"><i class="fas fa-tags fa-fw" aria-hidden="true"></i><p>jwt</p></a></div>
+
 
         
       
@@ -603,7 +678,7 @@
         
           <div class="prev-next">
             
-              <a class='prev' href='/2020/05/14/webpack%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/'>
+              <a class='prev' href='/2020/05/14/webpack%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%80%EF%BC%89/'>
                 <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>webpack4.0学习总结（一）</p>
                 <p class='content'>这一篇文章主要简单介绍了webpack是什么以及webpack的一些简单配置，你只要跟着我敲完这些代码后一定会对webpack有一个基本的了解的。😎
 
@@ -633,7 +708,7 @@ webpack是一个模块打包器
 
 
 
-  <article class="post white-box reveal comments shadow">
+  <article class="post white-box reveal comments shadow blur">
     <section class="article typo">
       <p ct><i class='fas fa-comments'></i> 评论</p>
       
@@ -690,7 +765,7 @@ webpack是一个模块打包器
 
 
     <div class="content">
-      <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2020\05\13\react博客-项目部署\" title="react博客-项目部署" rel="bookmark">react博客-项目部署</a></h3></div></li></ul>
+      <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2020\05\13\react博客-项目部署\" title="react博客-项目部署" rel="bookmark">react博客-项目部署</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2020\05\12\Typora-PicGo-Gitee（书写博客神器）\" title="Typora+PicGo+Gitee（书写博客神器）" rel="bookmark">Typora+PicGo+Gitee（书写博客神器）</a></h3></div></li></ul>
     </div>
   </section>
 
@@ -742,6 +817,14 @@ webpack是一个模块打包器
             
               <a href="https://github.com/3Alan"
                 class="social fab fa-github flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+            
+              <a href="tencent://message/?uin=1540703192"
+                class="social fab fa-qq flat-btn"
                 target="_blank"
                 rel="external nofollow noopener noreferrer">
               </a>
