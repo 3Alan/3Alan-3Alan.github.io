@@ -3151,7 +3151,7 @@ footer {
   position: relative;
   padding: 40px 10px 120px 10px;
   width: 100%;
-  color: rgba(102,102,102,0.5);
+  color: rgba(255,255,255,0.5);
   margin: 0px auto;
   overflow: hidden;
   text-align: center;
@@ -3175,7 +3175,7 @@ footer .social-wrapper {
   font-size: 16px;
 }
 footer a {
-  color: rgba(102,102,102,0.75);
+  color: rgba(255,255,255,0.75);
   padding: 0;
   transition: all 0.28s ease;
   -moz-transition: all 0.28s ease;
@@ -3183,7 +3183,7 @@ footer a {
   -o-transition: all 0.28s ease;
 }
 footer a:hover {
-  color: #666;
+  color: #fff;
 }
 footer a.social {
   position: relative;
@@ -3196,11 +3196,11 @@ footer a.social {
   height: 36px;
   margin: 4px;
   border-radius: 100px;
-  color: rgba(102,102,102,0.75);
+  color: rgba(255,255,255,0.75);
 }
 footer a.social:hover {
-  background: rgba(102,102,102,0.1);
-  color: #666;
+  background: rgba(255,255,255,0.1);
+  color: #fff;
 }
 footer .copyright {
   margin-top: 16px;
