@@ -16,12 +16,12 @@
 
   <!-- 页面元数据 -->
   
-    <title>记录生活2020/5 - Alan|前端博客</title>
+    <title>webpack4.0进阶（一） - Alan|前端博客</title>
   
-    <meta name="keywords" content="记录生活">
+    <meta name="keywords" content="webpack4.0">
   
   
-    <meta name="description" content="这是一篇记录5月生活的个人随记。📝">
+    <meta name="description" content="webpack4.0进阶学习">
   
 
   <!-- feed -->
@@ -463,8 +463,8 @@
         
           
   <h1 class="title">
-    <a href="/2020/05/22/%E8%AE%B0%E5%BD%95%E7%94%9F%E6%B4%BB2020-5/">
-      记录生活2020/5
+    <a href="/2020/05/25/webpack4.0%E8%BF%9B%E9%98%B6%EF%BC%88%E4%B8%80%EF%BC%89/">
+      webpack4.0进阶（一）
     </a>
   </h1>
 
@@ -475,10 +475,10 @@
             
           
             
-              <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-05-22T22:50:26+08:00">
+              <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-05-25T14:43:46+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2020年5月22日 22:50</p>
+    <p>更新于：2020年5月25日 14:43</p>
   </a>
 </div>
 
@@ -488,9 +488,9 @@
               
   
   <div class='new-meta-item category'>
-    <a href='/categories/%E8%AE%B0%E5%BD%95%E7%94%9F%E6%B4%BB/2020/' rel="nofollow">
+    <a href='/categories/%E5%89%8D%E7%AB%AF/webpack4-0%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/' rel="nofollow">
       <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <p>记录生活/2020</p>
+      <p>前端/webpack4.0学习总结</p>
     </a>
   </div>
 
@@ -503,7 +503,7 @@
     <a class='notlink'>
       <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
       
-      <span id="/2020/05/22/%E8%AE%B0%E5%BD%95%E7%94%9F%E6%B4%BB2020-5/" class="leancloud_visitors" data-flag-title="记录生活2020/5">
+      <span id="/2020/05/25/webpack4.0%E8%BF%9B%E9%98%B6%EF%BC%88%E4%B8%80%EF%BC%89/" class="leancloud_visitors" data-flag-title="webpack4.0进阶（一）">
       <p>
         <span class="leancloud-visitors-count"></span>
       </p>
@@ -519,13 +519,13 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>字数：53字</p>
+      <p>字数：591字</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>时长：1分钟</p>
+      <p>时长：2分钟</p>
     </a>
   </div>
 
@@ -544,11 +544,28 @@
       <section class="article typo">
         <div class="article-entry" itemprop="articleBody">
           
-          <p>这是一篇记录5月生活的个人随记。📝</p>
+          <p>webpack4.0进阶学习</p>
 <a id="more"></a>
 
-<h3 id="2020-05-22"><a href="#2020-05-22" class="headerlink" title="2020-05-22"></a>2020-05-22</h3><p>现在是22:53，我的论文初稿终于上传审核了🎈，查重率4.8%。记录一下，后天就要线上答辩了。</p>
-<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://gitee.com/alannum3/MyImages/raw/master/img/image-20200522225458201.png" alt="image-20200522225458201"></p>
+<h3 id="Tree-Shaking按需打包文件"><a href="#Tree-Shaking按需打包文件" class="headerlink" title="Tree Shaking按需打包文件"></a>Tree Shaking按需打包文件</h3><div class="tabs" id="1"><ul class="nav-tabs"><li class="tab active"><a href="#1-1">index.js</a></li><li class="tab"><a href="#1-2">moment.js</a></li></ul><div class="tab-content"><div class="tab-pane active" id="1-1"><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; used &#125; <span class="keyword">from</span> <span class="string">'./moment'</span>;</span><br><span class="line"></span><br><span class="line">used();</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="1-2"><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">used</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'used function'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">notUsed</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'notUsed funtion'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></div></div>
+
+<p>上面这个例子中我们只使用到了moment中的<code>used</code>，但是打包后连同<code>notUsed</code>一起被打包进了main.js文件中</p>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://gitee.com/alannum3/MyImages/raw/master/img/image-20200525151309388.png" alt="image-20200525151309388"></p>
+<p>Tree Shaking可以帮我们解决这个问题。</p>
+<div class="note warning"><p>注意：1.Tree Shaking只在production模式下生效。2.只支持ES Module 语法（import），不支持CommonJs</p></div>
+
+<div class="tabs" id="2"><ul class="nav-tabs"><li class="tab active"><a href="#2-1">package.json</a></li><li class="tab"><a href="#2-2">webpack.config.js</a></li></ul><div class="tab-content"><div class="tab-pane active" id="2-1"><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">"sideEffects": false,</span><br><span class="line">或者</span><br><span class="line">"sideEffects": [</span><br><span class="line">  "**/*.css",</span><br><span class="line">  "**/*.scss",</span><br><span class="line">  "./esnext/index.js",</span><br><span class="line">  <span class="string">"./esnext/configure.js"</span></span><br><span class="line">],</span><br><span class="line">意思是对这些文件不进行tree shaking处理</span><br><span class="line">例如</span><br><span class="line">import './common.css';</span><br><span class="line">虽然我们没有使用common.css的一些东西，但是它起到了样式的作用的，如果不在sideEffect中设置的话，webpack是不会对它进行打包的。</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="2-2"><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">optimization: &#123;</span><br><span class="line">    usedExports: <span class="literal">true</span>,</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// production模式是会自动配置好，可写可不写</span></span><br></pre></td></tr></table></figure></div></div></div>
+
+
+
+<h3 id="开发环境和生产环境配置文件"><a href="#开发环境和生产环境配置文件" class="headerlink" title="开发环境和生产环境配置文件"></a>开发环境和生产环境配置文件</h3><p>由于开发环境需要调试代码所以会引入相<code>devServer</code>之类的插件，那么这部分插件在生产环境中是不需要使用到的，那么我们就要对开发环境和生产环境分别设置不同的配置文件。</p>
+<p>首先安装插件<code>webpack-merge</code>用来将拼接common配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i webpack-merge -D</span><br></pre></td></tr></table></figure>
+
+<p>webpacktest<br> ├── package.json<br> ├── src<br> │   ├── index.html<br> │   ├── index.js<br> │   └── moment.js<br> ├── webpack.common.js<br> ├── webpack.dev.js<br> └── webpack.prod.js</p>
+<div class="tabs" id="3"><ul class="nav-tabs"><li class="tab active"><a href="#3-1">webpack.common.js</a></li><li class="tab"><a href="#3-2">webpack.dev.js</a></li><li class="tab"><a href="#3-3">webpack.prod.js</a></li><li class="tab"><a href="#3-4">npm script</a></li></ul><div class="tab-content"><div class="tab-pane active" id="3-1"><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="keyword">const</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">'html-webpack-plugin'</span>);</span><br><span class="line"><span class="keyword">const</span> &#123; CleanWebpackPlugin &#125; = <span class="built_in">require</span>(<span class="string">'clean-webpack-plugin'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  mode: <span class="string">'development'</span>, <span class="comment">// 默认为production</span></span><br><span class="line">  entry: &#123;</span><br><span class="line">    main: <span class="string">'./src/index.js'</span>, <span class="comment">// 打包入口文件</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.js$/</span>,</span><br><span class="line">        exclude: <span class="regexp">/node_modules/</span>, <span class="comment">// 不对node_modules下的js文件处理</span></span><br><span class="line">        loader: <span class="string">'babel-loader'</span></span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.css$/</span>,</span><br><span class="line">        use: [<span class="string">'style-loader'</span>, <span class="string">'css-loader'</span>],</span><br><span class="line">      &#125;,</span><br><span class="line">    ],</span><br><span class="line">  &#125;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    <span class="comment">// 输出文件配置</span></span><br><span class="line">    filename: <span class="string">'[name].js'</span>,</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">'dist'</span>),</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="keyword">new</span> HtmlWebpackPlugin(&#123;</span><br><span class="line">      template: <span class="string">'./src/index.html'</span>,</span><br><span class="line">    &#125;),</span><br><span class="line">    <span class="keyword">new</span> CleanWebpackPlugin(),</span><br><span class="line">  ],</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="3-2"><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> merge = <span class="built_in">require</span>(<span class="string">'webpack-merge'</span>);</span><br><span class="line"><span class="keyword">const</span> commonConfig = <span class="built_in">require</span>(<span class="string">'./webpack.common.js'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> devConfig = &#123;</span><br><span class="line">  mode: <span class="string">'development'</span>, <span class="comment">// 默认为production</span></span><br><span class="line">  devtool: <span class="string">'cheap-module-eval-source-map'</span>,</span><br><span class="line">  devServer: &#123;</span><br><span class="line">    contentBase: <span class="string">'./dist'</span>,</span><br><span class="line">    open: <span class="literal">true</span>, <span class="comment">// 自动打开浏览器</span></span><br><span class="line">    port: <span class="number">3001</span>, <span class="comment">// 服务器端口号</span></span><br><span class="line">    hot: <span class="literal">true</span>, <span class="comment">// 开启HRM</span></span><br><span class="line">  &#125;,</span><br><span class="line">  optimization: &#123;</span><br><span class="line">    usedExports: <span class="literal">true</span>,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = merge(commonConfig, devConfig);</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="3-3"><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> merge = <span class="built_in">require</span>(<span class="string">'webpack-merge'</span>);</span><br><span class="line"><span class="keyword">const</span> commonConfig = <span class="built_in">require</span>(<span class="string">'./webpack.common.js'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> prodConfig =  &#123;</span><br><span class="line">  mode: <span class="string">'development'</span>, <span class="comment">// 默认为production</span></span><br><span class="line">  devtool: <span class="string">'cheap-module-source-map'</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = merge(commonConfig, prodConfig);</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="3-4"><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"scripts"</span>: &#123;</span><br><span class="line">    <span class="string">"dev"</span>: <span class="string">"webpack-dev-server --config webpack.dev.js"</span>,</span><br><span class="line">        <span class="string">"build"</span>: <span class="string">"webpack --config webpack.prod.js"</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></div></div></div>
+
+<p>配置好后，开发环境使用<code>npm run dev</code>进行打包，生产环境用<code>npm run build</code>进行打包。</p>
 
           
             <div class='article_footer'>
@@ -557,6 +574,49 @@
   
     
     
+
+
+  
+
+<section class="widget list references  desktop mobile">
+  
+  <header>
+    
+      <i class="fas fa-quote-left fa-fw" aria-hidden="true"></i><span class='name'>参考资料</span>
+    
+  </header>
+
+
+  <div class='content'>
+    <ul class="list entry navigation">
+      
+        <li><a class="flat-box" title="https://coding.imooc.com/class/chapter/316.html#Anchor" href="https://coding.imooc.com/class/chapter/316.html#Anchor"
+          
+          
+          id="https:codingimooccomclasschapter316html#Anchor"
+          >
+          <div class='name'>
+            
+            从基础到实战 手把手带你掌握新版Webpack4.0
+          </div>
+          
+        </a></li>
+      
+        <li><a class="flat-box" title="https://webpack.js.org/" href="https://webpack.js.org/"
+          
+          
+          id="https:webpackjsorg"
+          >
+          <div class='name'>
+            
+            webpack官网
+          </div>
+          
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
 
 
 
@@ -585,7 +645,7 @@
           
         
           
-            <p>本文永久链接是：<a href=https://alanwang.site/2020/05/22/%E8%AE%B0%E5%BD%95%E7%94%9F%E6%B4%BB2020-5/>https://alanwang.site/2020/05/22/%E8%AE%B0%E5%BD%95%E7%94%9F%E6%B4%BB2020-5/</a></p>
+            <p>本文永久链接是：<a href=https://alanwang.site/2020/05/25/webpack4.0%E8%BF%9B%E9%98%B6%EF%BC%88%E4%B8%80%EF%BC%89/>https://alanwang.site/2020/05/25/webpack4.0%E8%BF%9B%E9%98%B6%EF%BC%88%E4%B8%80%EF%BC%89/</a></p>
           
         
       </blockquote>
@@ -611,7 +671,7 @@
           <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：2020年5月22日 22:50</p>
+    <p>发布于：2020年5月25日 14:43</p>
   </a>
 </div>
 
@@ -620,7 +680,7 @@
         
           
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E8%AE%B0%E5%BD%95%E7%94%9F%E6%B4%BB/" rel="nofollow"><i class="fas fa-tags fa-fw" aria-hidden="true"></i><p>记录生活</p></a></div>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/webpack4-0/" rel="nofollow"><i class="fas fa-tags fa-fw" aria-hidden="true"></i><p>webpack4.0</p></a></div>
 
 
         
@@ -638,7 +698,7 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
           
-          href="http://connect.qq.com/widget/shareqq/index.html?url=https://alanwang.site/2020/05/22/%E8%AE%B0%E5%BD%95%E7%94%9F%E6%B4%BB2020-5/&title=记录生活2020/5 - Alan|前端博客&summary=这是一篇记录5月生活的个人随记。📝"
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://alanwang.site/2020/05/25/webpack4.0%E8%BF%9B%E9%98%B6%EF%BC%88%E4%B8%80%EF%BC%89/&title=webpack4.0进阶（一） - Alan|前端博客&summary=webpack4.0进阶学习"
           
           >
           
@@ -650,7 +710,7 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer"
           
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://alanwang.site/2020/05/22/%E8%AE%B0%E5%BD%95%E7%94%9F%E6%B4%BB2020-5/&title=记录生活2020/5 - Alan|前端博客&summary=这是一篇记录5月生活的个人随记。📝"
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://alanwang.site/2020/05/25/webpack4.0%E8%BF%9B%E9%98%B6%EF%BC%88%E4%B8%80%EF%BC%89/&title=webpack4.0进阶（一） - Alan|前端博客&summary=webpack4.0进阶学习"
           
           >
           
@@ -662,7 +722,7 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
           
-          href="http://service.weibo.com/share/share.php?url=https://alanwang.site/2020/05/22/%E8%AE%B0%E5%BD%95%E7%94%9F%E6%B4%BB2020-5/&title=记录生活2020/5 - Alan|前端博客&summary=这是一篇记录5月生活的个人随记。📝"
+          href="http://service.weibo.com/share/share.php?url=https://alanwang.site/2020/05/25/webpack4.0%E8%BF%9B%E9%98%B6%EF%BC%88%E4%B8%80%EF%BC%89/&title=webpack4.0进阶（一） - Alan|前端博客&summary=webpack4.0进阶学习"
           
           >
           
@@ -686,22 +746,15 @@
         
           <div class="prev-next">
             
-              <a class='prev' href='/2020/05/25/webpack4.0%E8%BF%9B%E9%98%B6%EF%BC%88%E4%B8%80%EF%BC%89/'>
-                <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>webpack4.0进阶（一）</p>
-                <p class='content'>webpack4.0进阶学习
-
-
-Tree Shaking按需打包文件index.jsmoment.js123import &#123; used &#125; from './moment';...</p>
-              </a>
             
-            
-              <a class='next' href='/2020/05/18/webpack4.0%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93%EF%BC%88%E5%9B%9B%EF%BC%89/'>
-                <p class='title'>webpack4.0学习总结（四）<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-                <p class='content'>webpack的devServer热更新以及HMR局部热更新
+              <a class='next' href='/2020/05/22/%E8%AE%B0%E5%BD%95%E7%94%9F%E6%B4%BB2020-5/'>
+                <p class='title'>记录生活2020/5<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+                <p class='content'>这是一篇记录5月生活的个人随记。📝
 
 
-DevServerDevServer可以起一个本地服务并且实现代码的热更新。可以省去我们每次更新代码后重启服务额操作。
-1npm...</p>
+2020-05-22现在是22:53，我的论文初稿终于上传审核了🎈，查重率4.8%。记录一下，后天就要线上答辩了。
+
+</p>
               </a>
             
           </div>
@@ -746,7 +799,7 @@ DevServerDevServer可以起一个本地服务并且实现代码的热更新。�
 
   <script>
     window.subData = {
-      title: '记录生活2020/5',
+      title: 'webpack4.0进阶（一）',
       tools: true
     }
   </script>
@@ -772,7 +825,7 @@ DevServerDevServer可以起一个本地服务并且实现代码的热更新。�
 
 
     <div class="content">
-      
+      <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2020\05\14\webpack4.0学习总结（一）\" title="webpack4.0学习总结（一）" rel="bookmark">webpack4.0学习总结（一）</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2020\05\17\webpack4.0学习总结（三）\" title="webpack4.0学习总结（三）" rel="bookmark">webpack4.0学习总结（三）</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2020\05\15\webpack4.0学习总结（二）\" title="webpack4.0学习总结（二）" rel="bookmark">webpack4.0学习总结（二）</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2020\05\18\webpack4.0学习总结（四）\" title="webpack4.0学习总结（四）" rel="bookmark">webpack4.0学习总结（四）</a></h3></div></li></ul>
     </div>
   </section>
 
@@ -794,7 +847,7 @@ DevServerDevServer可以起一个本地服务并且实现代码的热更新。�
 
 
     <div class='content'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#2020-05-22"><span class="toc-number">1.</span> <span class="toc-text">2020-05-22</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Tree-Shaking按需打包文件"><span class="toc-number">1.</span> <span class="toc-text">Tree Shaking按需打包文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#开发环境和生产环境配置文件"><span class="toc-number">2.</span> <span class="toc-text">开发环境和生产环境配置文件</span></a></li></ol>
     </div>
   </section>
 
