@@ -587,7 +587,8 @@
 
 <p><code>/* webpackChunkName: &quot;lodash&quot; */</code>设置打包后的文件名为<code>vendors~lodash.js</code>，打开浏览器可以看到只有点击页面时，才会引入<code>vendors~lodash.js</code>，实现了<strong>懒加载</strong>。</p>
 <p>打包后的目录</p>
-<p>dist<br> ├── index.html<br> ├── main.js<br> ├── vendors<del>lodash.js<br> └── vendors</del>main.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">dist</span><br><span class="line"> ├── index.html</span><br><span class="line"> ├── main.js</span><br><span class="line"> ├── vendors~lodash.js</span><br><span class="line"> └── vendors~main.js</span><br></pre></td></tr></table></figure>
+
 <p>当然可以通过配置来设置打包后的文件名称。</p>
 <div class="note success"><p>代码分割<a href="https://webpack.js.org/plugins/split-chunks-plugin/#optimizationsplitchunks" target="_blank" rel="noopener">更多配置</a></p></div>
 
