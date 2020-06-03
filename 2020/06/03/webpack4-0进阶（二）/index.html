@@ -21,6 +21,8 @@
     <meta name="keywords" content="webpack4.0">
   
   
+    <meta name="description" content="TS、Eslint、webpack性能优化">
+  
 
   <!-- feed -->
   
@@ -507,13 +509,13 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>字数：629字</p>
+      <p>字数：818字</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>时长：2分钟</p>
+      <p>时长：3分钟</p>
     </a>
   </div>
 
@@ -532,7 +534,8 @@
       <section class="article typo">
         <div class="article-entry" itemprop="articleBody">
           
-          <a id="more"></a>
+          <p>TS、Eslint、webpack性能优化</p>
+<a id="more"></a>
 
 <h3 id="打包TS文件"><a href="#打包TS文件" class="headerlink" title="打包TS文件"></a>打包TS文件</h3><p>使用ts-loader</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i ts-loader typescript -D</span><br></pre></td></tr></table></figure>
@@ -579,8 +582,29 @@
 <li>减少mainFiles的使用</li>
 <li>减少alias的使用</li>
 </ul>
-<p>extensions使用</p>
-<div class="tabs" id="1"><ul class="nav-tabs"><li class="tab active"><a href="#1-1">webpack.config.js</a></li><li class="tab"><a href="#1-2">index.js</a></li><li class="tab"><a href="#1-3">tool.jsx</a></li></ul><div class="tab-content"><div class="tab-pane active" id="1-1"><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">resolve: &#123;</span><br><span class="line">    extensions: [<span class="string">'.js'</span>, <span class="string">'.jsx'</span>], <span class="comment">// 当</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="1-2"><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tool <span class="keyword">from</span> <span class="string">'./tool/tool'</span>;</span><br><span class="line"></span><br><span class="line">tool();</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="1-3"><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">Tool</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'my tool'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></div></div> 
+<p><strong>extensions使用</strong></p>
+<p>目录文件</p>
+<p>webpacktest<br> ├── package.json<br> ├── src<br> │   ├── index.html<br> │   ├── index.js<br> │   └── tool<br> │       └── tool.jsx<br> ├── webpack.common.js<br> ├── webpack.dev.js<br> └── webpack.prod.js</p>
+<div class="tabs" id="2"><ul class="nav-tabs"><li class="tab active"><a href="#2-1">webpack.config.js</a></li><li class="tab"><a href="#2-2">index.js</a></li><li class="tab"><a href="#2-3">tool.jsx</a></li></ul><div class="tab-content"><div class="tab-pane active" id="2-1"><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">resolve: &#123;</span><br><span class="line">    extensions: [<span class="string">'.js'</span>, <span class="string">'.jsx'</span>], </span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="2-2"><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tool <span class="keyword">from</span> <span class="string">'./tool/tool'</span>;</span><br><span class="line"></span><br><span class="line">tool();</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="2-3"><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">Tool</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'my tool'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></div></div> 
+
+<p>设置了<code>extensions</code>后，webpack由于找不到<code>./tool/tool</code>会先去寻找<code>./tool/tool.js</code>，如果没找到再去寻找<code>./tool/tool.jsx</code>。</p>
+<p><strong>mainFiles的使用</strong></p>
+<p>修改index.js文件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tool <span class="keyword">from</span> <span class="string">'./tool/'</span>;</span><br><span class="line"></span><br><span class="line">tool();</span><br></pre></td></tr></table></figure>
+
+<p>webpack配置</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">resolve: &#123;</span><br><span class="line">    extensions: [<span class="string">'.js'</span>, <span class="string">'.jsx'</span>],</span><br><span class="line">    mainFiles: [<span class="string">'index'</span>, <span class="string">'tool'</span>],</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>设置了<code>mainFiles</code>后，webpack会先去寻找<code>./tool/index.js</code>和<code>./tool/index.jsx</code> ，如果没找到再去寻找<code>./tool/tool.js</code>和<code>./tool/tool.jsx</code>。</p>
+<p><strong>alias的使用</strong></p>
+<p>修改index.js文件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tool <span class="keyword">from</span> <span class="string">'myTool'</span>; <span class="comment">//这里使用的是别名alias</span></span><br><span class="line"></span><br><span class="line">tool();</span><br></pre></td></tr></table></figure>
+
+<p>webpack配置</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">resolve: &#123;</span><br><span class="line">    extensions: [<span class="string">'.js'</span>, <span class="string">'.jsx'</span>],</span><br><span class="line">    mainFiles: [<span class="string">'index'</span>, <span class="string">'tool'</span>],</span><br><span class="line">    alias: &#123;</span><br><span class="line">        myTool: path.resolve(__dirname, <span class="string">'./src/tool/tool.jsx'</span>),</span><br><span class="line">     &#125;,</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>这样就可以使用别名myTool来直接引用tool.jsx文件了。</p>
+
           
             <div class='article_footer'>
               
@@ -712,7 +736,7 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
           
-          href="http://connect.qq.com/widget/shareqq/index.html?url=https://alanwang.site/2020/06/03/webpack4-0%E8%BF%9B%E9%98%B6%EF%BC%88%E4%BA%8C%EF%BC%89/&title=webpack4.0进阶（二） - Alan|前端博客&summary="
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://alanwang.site/2020/06/03/webpack4-0%E8%BF%9B%E9%98%B6%EF%BC%88%E4%BA%8C%EF%BC%89/&title=webpack4.0进阶（二） - Alan|前端博客&summary=TS、Eslint、webpack性能优化"
           
           >
           
@@ -724,7 +748,7 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer"
           
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://alanwang.site/2020/06/03/webpack4-0%E8%BF%9B%E9%98%B6%EF%BC%88%E4%BA%8C%EF%BC%89/&title=webpack4.0进阶（二） - Alan|前端博客&summary="
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://alanwang.site/2020/06/03/webpack4-0%E8%BF%9B%E9%98%B6%EF%BC%88%E4%BA%8C%EF%BC%89/&title=webpack4.0进阶（二） - Alan|前端博客&summary=TS、Eslint、webpack性能优化"
           
           >
           
@@ -736,7 +760,7 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
           
-          href="http://service.weibo.com/share/share.php?url=https://alanwang.site/2020/06/03/webpack4-0%E8%BF%9B%E9%98%B6%EF%BC%88%E4%BA%8C%EF%BC%89/&title=webpack4.0进阶（二） - Alan|前端博客&summary="
+          href="http://service.weibo.com/share/share.php?url=https://alanwang.site/2020/06/03/webpack4-0%E8%BF%9B%E9%98%B6%EF%BC%88%E4%BA%8C%EF%BC%89/&title=webpack4.0进阶（二） - Alan|前端博客&summary=TS、Eslint、webpack性能优化"
           
           >
           
