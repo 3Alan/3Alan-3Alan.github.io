@@ -65,12 +65,6 @@
   
 
   
-    
-      
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.0.3/styles/atom-one-dark.min.css">
-
-    
-  
   
     
 <link rel="stylesheet" href="/css/style.css">
@@ -559,181 +553,62 @@
 
 <h2 id="Loader"><a href="#Loader" class="headerlink" title="Loader"></a>Loader</h2><h3 id="file-loader"><a href="#file-loader" class="headerlink" title="file-loader"></a>file-loader</h3><p>上一节简单介绍了webpack是什么，webpack是一个模块打包器，可以将es的模块文件进行打包。上一节我们只打包了js文件，那我们能不能打包其他类型的文件呢，先来试一试打包图片吧。</p>
 <p>这里使用到了file-loader</p>
-<pre><code>npm i file-loader -D</code></pre>{% tabs 1 %}
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i <span class="built_in">file</span>-loader -D</span><br></pre></td></tr></table></figure>
 
-<!-- tab index.js -->
-
-```js
-// ES Moudule 模块化引入
-import ComponentB from './componentB';
-
-var root = document.getElementById('root');
-
-// CommonJs 模块引入
-var ComponentA = require('./componentA');
-var img1 = require('./IMG_3294.jpg');
-console.log(img1);
-var img = new Image();
-img.src = img1;
-root.append(img);
-
-new ComponentA();
-new ComponentB(); 
-```
-
-<!-- endtab -->
-
-<!-- tab webpack.config.js -->
-
-```js
-const path = require('path');
-
-module.exports = {
-  mode: 'development', // 默认为production
-  entry: {
-    main: './src/index.js' // 打包入口文件
-  },
-  module: {
-    rules: [
-      {
-        test: /\.jpg$/,
-        use: {
-          loader: 'file-loader'
-        }
-      }
-    ]
-  },
-  output: { // 输出文件配置
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist')
-  }
-}
-```
-
-<!-- endtab -->
-
-{% endtabs %}
+<div class="tabs" id="1"><ul class="nav-tabs"><li class="tab active"><a href="#1-1">index.js</a></li><li class="tab"><a href="#1-2">webpack.config.js</a></li></ul><div class="tab-content"><div class="tab-pane active" id="1-1"><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ES Moudule 模块化引入</span></span><br><span class="line"><span class="keyword">import</span> ComponentB <span class="keyword">from</span> <span class="string">'./componentB'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> root = <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// CommonJs 模块引入</span></span><br><span class="line"><span class="keyword">var</span> ComponentA = <span class="built_in">require</span>(<span class="string">'./componentA'</span>);</span><br><span class="line"><span class="keyword">var</span> img1 = <span class="built_in">require</span>(<span class="string">'./IMG_3294.jpg'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(img1);</span><br><span class="line"><span class="keyword">var</span> img = <span class="keyword">new</span> Image();</span><br><span class="line">img.src = img1;</span><br><span class="line">root.append(img);</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> ComponentA();</span><br><span class="line"><span class="keyword">new</span> ComponentB();</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="1-2"><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  mode: <span class="string">'development'</span>, <span class="comment">// 默认为production</span></span><br><span class="line">  entry: &#123;</span><br><span class="line">    main: <span class="string">'./src/index.js'</span> <span class="comment">// 打包入口文件</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.jpg$/</span>,</span><br><span class="line">        use: &#123;</span><br><span class="line">          loader: <span class="string">'file-loader'</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  output: &#123; <span class="comment">// 输出文件配置</span></span><br><span class="line">    filename: <span class="string">'bundle.js'</span>,</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">'dist'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></div></div>
 
 <p><code>npm run build</code>进行打包，我们看一下控制台打印出来的img1</p>
 <p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://gitee.com/alannum3/MyImages/raw/master/img/20200515205827.png" alt=""></p>
 <p>这里可以看到img1是一个<code>Module</code>。</p>
 <p>我们可以通过img1.default来获取路径或者直接通过import形式来引入，这样图片就成功得显示出来了😄</p>
-<pre><code class="js">import img1 from &#39;./IMG_3294.jpg&#39;</code></pre>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> img1 <span class="keyword">from</span> <span class="string">'./IMG_3294.jpg'</span></span><br></pre></td></tr></table></figure>
+
+
+
 <p>通过这个例子可以知道了loader的大致作用方法了，通过<code>test</code>来匹配特定文件使用（<code>use</code>)特定的<code>loader</code>来对文件进行打包处理。</p>
 <p>我们再看一下打包出来的文件</p>
 <p>dist<br> ├── a2099657cfcaf9f019ccf08e9dc8747d.jpg<br> ├── bundle.js<br> └── index.html</p>
 <p>发现我们的图片名称被改变成了一长串字符，那我怎么让它不改变名字呢。这时候loader的<strong>options</strong>就派上用场了😎</p>
-<pre><code class="js">rules: [
-    {
-        test: /\.(jpg|png)$/,
-        use: {
-            loader: &#39;file-loader&#39;,
-            options: {
-                name: &#39;[name].[ext]&#39;
-            }
-        }
-    }
-]</code></pre>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">rules: [</span><br><span class="line">    &#123;</span><br><span class="line">        test: <span class="regexp">/\.(jpg|png)$/</span>,</span><br><span class="line">        use: &#123;</span><br><span class="line">            loader: <span class="string">'file-loader'</span>,</span><br><span class="line">            options: &#123;</span><br><span class="line">                name: <span class="string">'[name].[ext]'</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
 <p>这里的<code>[name]</code>和<code>[ext]</code>是loader中的<strong>placeholder</strong>,分别表示文件的名字和后缀名，当然loader中还有很多的<a href="https://webpack.js.org/loaders/file-loader/#placeholders" target="_blank" rel="noopener">placeholder</a>。</p>
 <p>设置好后进行打包得到如下结果</p>
 <p>dist<br> ├── bundle.js<br> ├── IMG_3294.jpg<br> └── index.html</p>
 <p>现在有一个问题，当我们的图片一旦多起来那全部打包放在根目录下拿岂不是很乱，这个时候就可以使用options中的output来规定经过loader处理后的输出路径了。</p>
-<pre><code class="js">options: {
-    name: &#39;[name].[ext]&#39;,
-    outputPath: &#39;images/&#39;
-}</code></pre>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">options: &#123;</span><br><span class="line">    name: <span class="string">'[name].[ext]'</span>,</span><br><span class="line">    outputPath: <span class="string">'images/'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>打包看一下结果成功👌，运行一下html文件图片也可以正常显示。</p>
 <p>dist<br> ├── bundle.js<br> ├── images<br> │   └── IMG_3294.jpg<br> └── index.html</p>
 <p>到这里我们就了解了<strong>file-loader</strong>的基本使用了。</p>
 <h3 id="url-loader"><a href="#url-loader" class="headerlink" title="url-loader"></a>url-loader</h3><p>url-loader也可以打包文件，但是和file-loader不同的是，它会将我们的图片转化成base64编码，那如果我不想转化呢，我们可以使用options中的limit属性来限制文件在小于多少时转化成base64编码，一旦大于这个值打包出来的效果就和file-loader一样了。</p>
 <p>看一下例子就清楚了</p>
-<pre><code>npm i url-loader -D</code></pre><p>这里准备两个图片，一个大小300k，一个大小7k</p>
-<p>webpack配置</p>
-<pre><code class="js">const path = require(&#39;path&#39;);
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">npm</span> i url-loader -D</span><br></pre></td></tr></table></figure>
 
-module.exports = {
-  mode: &#39;development&#39;, // 默认为production
-  entry: {
-    main: &#39;./src/index.js&#39; // 打包入口文件
-  },
-  module: {
-    rules: [
-      {
-        test: /\.(jpg|png)$/,
-        use: {
-          loader: &#39;url-loader&#39;,
-          options: {
-            name: &#39;[name].[ext]&#39;,
-            outputPath: &#39;images/&#39;,
-            limit: 10240
-          }
-        }
-      }
-    ]
-  },
-  output: { // 输出文件配置
-    filename: &#39;bundle.js&#39;,
-    path: path.resolve(__dirname, &#39;dist&#39;)
-  }
-}</code></pre>
+<p>这里准备两个图片，一个大小300k，一个大小7k</p>
+<p>webpack配置</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  mode: <span class="string">'development'</span>, <span class="comment">// 默认为production</span></span><br><span class="line">  entry: &#123;</span><br><span class="line">    main: <span class="string">'./src/index.js'</span> <span class="comment">// 打包入口文件</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.(jpg|png)$/</span>,</span><br><span class="line">        use: &#123;</span><br><span class="line">          loader: <span class="string">'url-loader'</span>,</span><br><span class="line">          options: &#123;</span><br><span class="line">            name: <span class="string">'[name].[ext]'</span>,</span><br><span class="line">            outputPath: <span class="string">'images/'</span>,</span><br><span class="line">            limit: <span class="number">10240</span></span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  output: &#123; <span class="comment">// 输出文件配置</span></span><br><span class="line">    filename: <span class="string">'bundle.js'</span>,</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">'dist'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>看一下打包后的文件</p>
 <p>dist<br> ├── bundle.js<br> ├── images<br> │   └── 300k.jpg<br> └── index.html</p>
 <p>结果是大于10240的300k.jpg文件被以图片形式打包出来了，那7k.jpg文件去哪了呢，我们在bundle.js文件中可以找到了它，它被转化成了base64编码。</p>
-<pre><code>data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD...</code></pre><p>当然limit也可以设置为true/false，<a href="https://webpack.js.org/loaders/url-loader/#limit" target="_blank" rel="noopener">更多配置</a></p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data:image/jpeg;base64,/<span class="number">9</span>j/<span class="number">4</span>AAQSkZJRgABAQEAYABgAAD...</span><br></pre></td></tr></table></figure>
+
+<p>当然limit也可以设置为true/false，<a href="https://webpack.js.org/loaders/url-loader/#limit" target="_blank" rel="noopener">更多配置</a></p>
 <p>我在操作中发现了如果html中没有使用到7k.jpg，url-loader是不会对它进行打包的。</p>
-{% note info, 这里并不建议把大文件转化为base64，这样会增加bundle.js的体积，对项目优化不太友好 %}
+<div class="note info"><p>这里并不建议把大文件转化为base64，这样会增加bundle.js的体积，对项目优化不太友好</p></div>
 
 
 
 <h3 id="样式文件"><a href="#样式文件" class="headerlink" title="样式文件"></a>样式文件</h3><p>接着上面的例子，我现在想要为页面中的图片添加一些样式</p>
-{% tabs 2 %}
-
-<!-- tab index.js -->
-
-```js
-// ES Moudule 模块化引入
-import ComponentB from './componentB';
-import './index.css';
-
-var root = document.getElementById('root');
-
-// CommonJs 模块引入
-var ComponentA = require('./componentA');
-import img1 from './300k.jpg';
-console.log(img1);
-
-var img = new Image();
-img.src = img1;
-img.classList.add('circle');
-root.append(img);
-
-new ComponentA();
-new ComponentB(); 
-```
-
-<!-- endtab -->
-
-<!-- tab index.css -->
-
-```css
-.circle {
-  width: 100px;
-  height: 100px;
-  border-radius: 50px;
-}
-```
-
-<!-- endtab -->
-
-{% endtabs%}
+<div class="tabs" id="2"><ul class="nav-tabs"><li class="tab active"><a href="#2-1">index.js</a></li><li class="tab"><a href="#2-2">index.css</a></li></ul><div class="tab-content"><div class="tab-pane active" id="2-1"><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ES Moudule 模块化引入</span></span><br><span class="line"><span class="keyword">import</span> ComponentB <span class="keyword">from</span> <span class="string">'./componentB'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'./index.css'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> root = <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// CommonJs 模块引入</span></span><br><span class="line"><span class="keyword">var</span> ComponentA = <span class="built_in">require</span>(<span class="string">'./componentA'</span>);</span><br><span class="line"><span class="keyword">import</span> img1 <span class="keyword">from</span> <span class="string">'./300k.jpg'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(img1);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> img = <span class="keyword">new</span> Image();</span><br><span class="line">img.src = img1;</span><br><span class="line">img.classList.add(<span class="string">'circle'</span>);</span><br><span class="line">root.append(img);</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> ComponentA();</span><br><span class="line"><span class="keyword">new</span> ComponentB();</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="2-2"><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.circle</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">50px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></div></div>
 
 <p>现在我想要打包css文件该怎么办呢😶，我们要用到两个loader，<code>css-loader</code>和<code>style-loader</code></p>
 <p>安装</p>
-<pre><code>npm i style-loader css-loader -D</code></pre><p>webpack配置</p>
-<pre><code class="js">{
-    test: /\.css$/,
-    use: [&#39;style-loader&#39;, &#39;css-loader&#39;]
-}</code></pre>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">npm</span> i style-loader css-loader -D</span><br></pre></td></tr></table></figure>
+
+<p>webpack配置</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    test: <span class="regexp">/\.css$/</span>,</span><br><span class="line">    use: [<span class="string">'style-loader'</span>, <span class="string">'css-loader'</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>打包成功，打开网页看一看效果生效了</p>
 <p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://gitee.com/alannum3/MyImages/raw/master/img/image-20200515222855901.png" alt="image-20200515222855901"></p>
 <p>这里简单介绍一下style-loader和css-loader的作用，首先它们执行有先后顺序的，先使用css-loader对css文件进行打包，再用style-loader把打包后的css文件内容以<code>&lt;style&gt;&lt;/style&gt;</code>加到页面的header中。</p>
@@ -741,114 +616,36 @@ new ComponentB();
 <div class="note info"><p>有时候我们要为css加上浏览器引擎前缀-webkit，这里有一个loader可以帮我们完成postcss-loader</p></div>
 
 <p>安装</p>
-<pre><code>npm i postcss-loader autoprefixer -D</code></pre><p>webpack配置</p>
-<pre><code class="js">{
-    test: /\.css$/,
-        use: [&#39;style-loader&#39;, &#39;css-loader&#39;, {
-            loader: &#39;postcss-loader&#39;,
-            options: {
-                ident: &#39;postcss&#39;,
-                pulgins: [
-                    require(&#39;autoprefixer&#39;)
-                ]
-            }
-        }],
-},</code></pre>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i postcss-loader <span class="built_in">auto</span>prefixer -D</span><br></pre></td></tr></table></figure>
+
+<p>webpack配置</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    test: <span class="regexp">/\.css$/</span>,</span><br><span class="line">        use: [<span class="string">'style-loader'</span>, <span class="string">'css-loader'</span>, &#123;</span><br><span class="line">            loader: <span class="string">'postcss-loader'</span>,</span><br><span class="line">            options: &#123;</span><br><span class="line">                ident: <span class="string">'postcss'</span>,</span><br><span class="line">                pulgins: [</span><br><span class="line">                    <span class="built_in">require</span>(<span class="string">'autoprefixer'</span>)</span><br><span class="line">                ]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;],</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
 <p>这里貌似有点问题，后期我再研究研究。</p>
 <h2 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h2><h3 id="css模块化"><a href="#css模块化" class="headerlink" title="css模块化"></a>css模块化</h3><p>先看一个场景</p>
-<div class="tabs" id="3"><ul class="nav-tabs"><li class="tab active"><a href="#3-1">index.js</a></li><li class="tab"><a href="#3-2">componentA.js</a></li></ul><div class="tab-content"><div class="tab-pane active" id="3-1"><pre><code class="js"><span class="keyword">import</span> <span class="string">'./index.css'</span>;
-<span class="keyword">import</span> img1 <span class="keyword">from</span> <span class="string">'./300k.jpg'</span>;
-<span class="keyword">import</span> ComponentA <span class="keyword">from</span> <span class="string">'./componentA'</span>;
-
-<span class="keyword">var</span> root = <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>);
-
-<span class="keyword">var</span> img = <span class="keyword">new</span> Image();
-img.src = img1;
-img.classList.add(<span class="string">'circle'</span>);
-root.append(img);
-
-ComponentA();</code></pre></div><div class="tab-pane" id="3-2"><pre><code class="js"><span class="keyword">import</span> img1 <span class="keyword">from</span> <span class="string">'./300k.jpg'</span>;
-
-<span class="function"><span class="keyword">function</span> <span class="title">ComponentA</span>(<span class="params"></span>) </span>{
-  <span class="keyword">var</span> img = <span class="keyword">new</span> Image();
-  img.src = img1;
-  img.classList.add(<span class="string">'circle'</span>);
-  <span class="keyword">var</span> root = <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>);
-  root.append(img);
-}
-
-<span class="keyword">export</span> <span class="keyword">default</span> ComponentA;</code></pre></div></div></div>
+<div class="tabs" id="3"><ul class="nav-tabs"><li class="tab active"><a href="#3-1">index.js</a></li><li class="tab"><a href="#3-2">componentA.js</a></li></ul><div class="tab-content"><div class="tab-pane active" id="3-1"><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'./index.css'</span>;</span><br><span class="line"><span class="keyword">import</span> img1 <span class="keyword">from</span> <span class="string">'./300k.jpg'</span>;</span><br><span class="line"><span class="keyword">import</span> ComponentA <span class="keyword">from</span> <span class="string">'./componentA'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> root = <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> img = <span class="keyword">new</span> Image();</span><br><span class="line">img.src = img1;</span><br><span class="line">img.classList.add(<span class="string">'circle'</span>);</span><br><span class="line">root.append(img);</span><br><span class="line"></span><br><span class="line">ComponentA();</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="3-2"><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> img1 <span class="keyword">from</span> <span class="string">'./300k.jpg'</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ComponentA</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> img = <span class="keyword">new</span> Image();</span><br><span class="line">  img.src = img1;</span><br><span class="line">  img.classList.add(<span class="string">'circle'</span>);</span><br><span class="line">  <span class="keyword">var</span> root = <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>);</span><br><span class="line">  root.append(img);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> ComponentA;</span><br></pre></td></tr></table></figure></div></div></div>
 
 <p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://gitee.com/alannum3/MyImages/raw/master/img/image-20200516121515523.png" alt="image-20200516121515523"></p>
 <p>我们看到circle样式同样作用在了componentA上了，也就是说circle已经等同于是全局样式了😥。还好我们可以通过配置<code>css-loader</code>的options来使用css的模块化来解决这个问题。</p>
-<pre><code class="js">{
-    test: /\.css$/,
-        use: [
-            &#39;style-loader&#39;,
-            {
-                loader: &#39;css-loader&#39;,
-                options: {
-                    modules: true,
-                }
-            },
-            {
-                loader: &#39;postcss-loader&#39;,
-                options: {
-                    ident: &#39;postcss&#39;,
-                    pulgins: [require(&#39;autoprefixer&#39;)],
-                },
-            },
-        ],
-},</code></pre>
-<p>配置好后我们在要使用样式的地方使用下面这种写法</p>
-<pre><code class="js">import circle from &#39;./index.css&#39;;
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    test: <span class="regexp">/\.css$/</span>,</span><br><span class="line">        use: [</span><br><span class="line">            <span class="string">'style-loader'</span>,</span><br><span class="line">            &#123;</span><br><span class="line">                loader: <span class="string">'css-loader'</span>,</span><br><span class="line">                options: &#123;</span><br><span class="line">                    modules: <span class="literal">true</span>,</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                loader: <span class="string">'postcss-loader'</span>,</span><br><span class="line">                options: &#123;</span><br><span class="line">                    ident: <span class="string">'postcss'</span>,</span><br><span class="line">                    pulgins: [<span class="built_in">require</span>(<span class="string">'autoprefixer'</span>)],</span><br><span class="line">                &#125;,</span><br><span class="line">            &#125;,</span><br><span class="line">        ],</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
 
-img.classList.add(circle.circle);</code></pre>
+<p>配置好后我们在要使用样式的地方使用下面这种写法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> circle <span class="keyword">from</span> <span class="string">'./index.css'</span>;</span><br><span class="line"></span><br><span class="line">img.classList.add(circle.circle);</span><br></pre></td></tr></table></figure>
+
 <p>这样我们再修改样式就不会影响到其他地方了。</p>
 <h3 id="css外部引入"><a href="#css外部引入" class="headerlink" title="css外部引入"></a>css外部引入</h3><p>这里主要介绍css-loader的options<code>importLoaders</code>。</p>
 <p>我们在index.css文件中引入外部css文件</p>
-<pre><code class="css">@import &#39;./import.css&#39;;</code></pre>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@import</span> <span class="string">'./import.css'</span>;</span><br></pre></td></tr></table></figure>
+
 <p>假设我们有以下几个loader处理css文件</p>
 <p><code>[&#39;style-loader&#39;, &#39;css-loader&#39;, &#39;sass-loader&#39;, &#39;postcss-loader&#39;]</code></p>
 <p>当webpack处理index.css文件时按照postcss-loader-&gt;sass-loader-&gt;css-loader顺序来执行css文件的</p>
 <p>当遇到@import时处理import.css时，如果不做处理的话，import.css将直接从css-loader开始处理的，那我想让它从postcss-loader从头处理的话就要设置imortLoaders数目了。</p>
-<pre><code class="js">{
-    loader: &#39;css-loader&#39;,
-    options: {
-        importLoaders: 1,
-    }
-},</code></pre>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    loader: <span class="string">'css-loader'</span>,</span><br><span class="line">    options: &#123;</span><br><span class="line">        importLoaders: <span class="number">1</span>,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
 <p>这里的1表示处理@import引入的css文件是，先要被前面的1个loader处理，也就是import.css的处理顺序是sass-loader-&gt;css-loader-style-loader。</p>
 <h3 id="处理字体文件"><a href="#处理字体文件" class="headerlink" title="处理字体文件"></a>处理字体文件</h3><p>直接使用<code>file-loader</code>处理就可以了</p>
-<div class="tabs" id="4"><ul class="nav-tabs"><li class="tab active"><a href="#4-1">webpack.config.js</a></li><li class="tab"><a href="#4-2">index.js</a></li><li class="tab"><a href="#4-3">iconfont.css</a></li></ul><div class="tab-content"><div class="tab-pane active" id="4-1"><pre><code class="js">{
-    test: <span class="regexp">/\.(eot|ttf|svg|woff)$/</span>,
-    use: {
-        loader: <span class="string">'file-loader'</span>,
-    },
-},</code></pre></div><div class="tab-pane" id="4-2"><pre><code class="js"><span class="keyword">import</span> <span class="string">'./font/iconfont.css'</span>;
-
-<span class="keyword">var</span> root = <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>);
-
-root.innerHTML = <span class="string">'&lt;div class="iconfont icon-smile"&gt;&lt;/div&gt;'</span></code></pre></div><div class="tab-pane" id="4-3"><pre><code class="js">@font-face {font-family: <span class="string">"iconfont"</span>;
-  src: url(<span class="string">'iconfont.eot?t=1589604469136'</span>); <span class="comment">/* IE9 */</span>
-  src: url(<span class="string">'iconfont.eot?t=1589604469136#iefix'</span>) format(<span class="string">'embedded-opentype'</span>), <span class="comment">/* IE6-IE8 */</span>
-  url(<span class="string">'data:application/x-font-woff2;charset=utf-8;base64,这里base64代码太长删除掉了'</span>) format(<span class="string">'woff2'</span>),
-  url(<span class="string">'iconfont.woff?t=1589604469136'</span>) format(<span class="string">'woff'</span>),
-  url(<span class="string">'iconfont.ttf?t=1589604469136'</span>) format(<span class="string">'truetype'</span>), <span class="comment">/* chrome, firefox, opera, Safari, Android, iOS 4.2+ */</span>
-  url(<span class="string">'iconfont.svg?t=1589604469136#iconfont'</span>) format(<span class="string">'svg'</span>); <span class="comment">/* iOS 4.1- */</span>
-}
-
-.iconfont {
-  font-family: <span class="string">"iconfont"</span> !important;
-  font-size: <span class="number">16</span>px;
-  font-style: normal;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.icon-smile:before {
-  content: <span class="string">"\e783"</span>;
-}</code></pre></div></div></div>
+<div class="tabs" id="4"><ul class="nav-tabs"><li class="tab active"><a href="#4-1">webpack.config.js</a></li><li class="tab"><a href="#4-2">index.js</a></li><li class="tab"><a href="#4-3">iconfont.css</a></li></ul><div class="tab-content"><div class="tab-pane active" id="4-1"><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    test: <span class="regexp">/\.(eot|ttf|svg|woff)$/</span>,</span><br><span class="line">    use: &#123;</span><br><span class="line">        loader: <span class="string">'file-loader'</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="4-2"><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'./font/iconfont.css'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> root = <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>);</span><br><span class="line"></span><br><span class="line">root.innerHTML = <span class="string">'&lt;div class="iconfont icon-smile"&gt;&lt;/div&gt;'</span></span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="4-3"><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">@font-face &#123;font-family: <span class="string">"iconfont"</span>;</span><br><span class="line">  src: url(<span class="string">'iconfont.eot?t=1589604469136'</span>); <span class="comment">/* IE9 */</span></span><br><span class="line">  src: url(<span class="string">'iconfont.eot?t=1589604469136#iefix'</span>) format(<span class="string">'embedded-opentype'</span>), <span class="comment">/* IE6-IE8 */</span></span><br><span class="line">  url(<span class="string">'data:application/x-font-woff2;charset=utf-8;base64,这里base64代码太长删除掉了'</span>) format(<span class="string">'woff2'</span>),</span><br><span class="line">  url(<span class="string">'iconfont.woff?t=1589604469136'</span>) format(<span class="string">'woff'</span>),</span><br><span class="line">  url(<span class="string">'iconfont.ttf?t=1589604469136'</span>) format(<span class="string">'truetype'</span>), <span class="comment">/* chrome, firefox, opera, Safari, Android, iOS 4.2+ */</span></span><br><span class="line">  url(<span class="string">'iconfont.svg?t=1589604469136#iconfont'</span>) format(<span class="string">'svg'</span>); <span class="comment">/* iOS 4.1- */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.iconfont &#123;</span><br><span class="line">  font-family: <span class="string">"iconfont"</span> !important;</span><br><span class="line">  font-size: <span class="number">16</span>px;</span><br><span class="line">  font-style: normal;</span><br><span class="line">  -webkit-font-smoothing: antialiased;</span><br><span class="line">  -moz-osx-font-smoothing: grayscale;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.icon-smile:before &#123;</span><br><span class="line">  content: <span class="string">"\e783"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></div></div>
 
 <p>ok!这章到此介绍。现在我们已经能够处理一些常见文件的打包了，对webpack的认识也应该算一个简单的入门了。😁</p>
 
@@ -1118,7 +915,7 @@ webpack是一个模块打包器
 
 
     <div class="content">
-      <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\posts\f9d92613\" title="webpack4.0进阶（三）" rel="bookmark">webpack4.0进阶（三）</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\posts\ff905629\" title="webpack4.0学习总结（一）" rel="bookmark">webpack4.0学习总结（一）</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\posts\b4c78541\" title="webpack4.0进阶（二）" rel="bookmark">webpack4.0进阶（二）</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\posts\35b500c6\" title="webpack4.0学习总结（四）" rel="bookmark">webpack4.0学习总结（四）</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\posts\829819a3\" title="webpack4.0学习总结（三）" rel="bookmark">webpack4.0学习总结（三）</a></h3></div></li></ul>
+      <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\posts\f9d92613\" title="webpack4.0进阶（三）" rel="bookmark">webpack4.0进阶（三）</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\posts\b4c78541\" title="webpack4.0进阶（二）" rel="bookmark">webpack4.0进阶（二）</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\posts\ff905629\" title="webpack4.0学习总结（一）" rel="bookmark">webpack4.0学习总结（一）</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\posts\829819a3\" title="webpack4.0学习总结（三）" rel="bookmark">webpack4.0学习总结（三）</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\posts\35b500c6\" title="webpack4.0学习总结（四）" rel="bookmark">webpack4.0学习总结（四）</a></h3></div></li></ul>
     </div>
   </section>
 
@@ -1444,13 +1241,6 @@ webpack是一个模块打包器
 
 
 
-
-  
-    
-<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/highlight.min.js"></script>
-
-    <script>hljs.initHighlightingOnLoad();</script>
-  
 
 
 

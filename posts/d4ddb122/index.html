@@ -18,7 +18,7 @@
   
     <title>react博客-项目部署 - Alan|前端博客</title>
   
-    <meta name="keywords" content="博客,部署,React,阿里云">
+    <meta name="keywords" content="博客,React,部署,阿里云">
   
   
     <meta name="description" content="阿里云最近推出了一个“在家实践活动”，免费领取半年的服务器，真香。领取地址">
@@ -64,12 +64,6 @@
   <link rel='icon' href=''>
   
 
-  
-    
-      
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.0.3/styles/atom-one-dark.min.css">
-
-    
   
   
     
@@ -529,7 +523,7 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>字数：581字</p>
+      <p>字数：582字</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
@@ -562,7 +556,9 @@
 <p>在命令行中输入用户名<code>root</code>和密码得到<code>Welcome to Alibaba Cloud Elastic Compute Service !</code>即完成了连接。</p>
 <h2 id="使用宝塔进行管理"><a href="#使用宝塔进行管理" class="headerlink" title="使用宝塔进行管理"></a>使用宝塔进行管理</h2><p><a href="https://www.bt.cn/bbs/thread-19376-1-1.html" target="_blank" rel="noopener">https://www.bt.cn/bbs/thread-19376-1-1.html</a></p>
 <p>连接成功服务器后在命令行输入(<strong>Centos</strong>系统，其他系统查看上面网址)，复制按下鼠标右键完成宝塔的安装</p>
-<pre><code>yum install -y wget &amp;&amp; wget -O install.sh http://download.bt.cn/install/install_6.0.sh &amp;&amp; sh install.sh</code></pre><p>安装成功后会返回一个端口号为8888的网站以及账号和密码：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -<span class="keyword">y</span> wget &amp;&amp; wget -O install.<span class="keyword">sh</span> http://download.bt.<span class="keyword">cn</span>/install/install_6.<span class="number">0</span>.<span class="keyword">sh</span> &amp;&amp; <span class="keyword">sh</span> install.<span class="keyword">sh</span></span><br></pre></td></tr></table></figure>
+
+<p>安装成功后会返回一个端口号为8888的网站以及账号和密码：</p>
 <p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://gitee.com/alannum3/MyImages/raw/master/img/image-20200507135712898.png" alt="image-20200507135712898"></p>
 <p>访问该地址，这个时候网站时不能访问的，因为远程服务器没有开放8888端口。</p>
 <p>设置教程：</p>
@@ -681,7 +677,7 @@
         
           
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E5%8D%9A%E5%AE%A2/" rel="nofollow"><i class="fas fa-tags fa-fw" aria-hidden="true"></i><p>博客</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E9%83%A8%E7%BD%B2/" rel="nofollow"><i class="fas fa-tags fa-fw" aria-hidden="true"></i><p>部署</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/React/" rel="nofollow"><i class="fas fa-tags fa-fw" aria-hidden="true"></i><p>React</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91/" rel="nofollow"><i class="fas fa-tags fa-fw" aria-hidden="true"></i><p>阿里云</p></a></div>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E5%8D%9A%E5%AE%A2/" rel="nofollow"><i class="fas fa-tags fa-fw" aria-hidden="true"></i><p>博客</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/React/" rel="nofollow"><i class="fas fa-tags fa-fw" aria-hidden="true"></i><p>React</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E9%83%A8%E7%BD%B2/" rel="nofollow"><i class="fas fa-tags fa-fw" aria-hidden="true"></i><p>部署</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91/" rel="nofollow"><i class="fas fa-tags fa-fw" aria-hidden="true"></i><p>阿里云</p></a></div>
 
 
         
@@ -756,7 +752,7 @@
 配置egg-jwt
 配置config/plugin.js文件
 
-exports.jwt =...</p>
+1234exports.j...</p>
               </a>
             
             
@@ -766,12 +762,7 @@ exports.jwt =...</p>
 
 
 这里是正文
-title: 测试主题
-date: 2020-05-13 09:19:17
-top: true
-categories: 测试分类
-tags: 测试标签
-author:...</p>
+123456789101112131415161718192021222324252627title: 测试主题date: 2020-05-13 09:19:17to...</p>
               </a>
             
           </div>
@@ -1168,13 +1159,6 @@ author:...</p>
 
 
 
-
-  
-    
-<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/highlight.min.js"></script>
-
-    <script>hljs.initHighlightingOnLoad();</script>
-  
 
 
 
