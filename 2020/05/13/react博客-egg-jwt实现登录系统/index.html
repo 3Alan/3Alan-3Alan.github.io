@@ -65,6 +65,12 @@
   
 
   
+    
+      
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.0.3/styles/atom-one-dark.min.css">
+
+    
+  
   
     
 <link rel="stylesheet" href="/css/style.css">
@@ -184,7 +190,7 @@
     <div id="loading-bar-wrapper">
   <div id="loading-bar"></div>
 </div>
-<header class="l_header shadow blur">
+<header class="l_header shadow floatable">
   <div class='container'>
   <div class='wrapper'>
     <div class='nav-sub'>
@@ -455,7 +461,7 @@
   
 
   
-    <article id="post" class="post white-box reveal shadow blur article-type-post" itemscope itemprop="blogPost">
+    <article id="post" class="post white-box reveal shadow floatable article-type-post" itemscope itemprop="blogPost">
       
 
 
@@ -523,7 +529,7 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>字数：799字</p>
+      <p>字数：780字</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
@@ -555,32 +561,66 @@
 <h3 id="配置egg-jwt"><a href="#配置egg-jwt" class="headerlink" title="配置egg-jwt"></a>配置egg-jwt</h3><ol>
 <li>配置<code>config/plugin.js</code>文件</li>
 </ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">exports.jwt = &#123;</span><br><span class="line">  enable: <span class="literal">true</span>,</span><br><span class="line">  package: <span class="string">'egg-jwt'</span>,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="js">exports.jwt = {
+  enable: true,
+  package: &#39;egg-jwt&#39;,
+};</code></pre>
 <ol start="2">
 <li>配置<code>config/config.default.js</code>文件</li>
 </ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 自己设定的密钥，用于对信息进行签名</span></span><br><span class="line">config.jwt = &#123;</span><br><span class="line">  secret: <span class="string">'xxxxxx'</span>,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="js">// 自己设定的密钥，用于对信息进行签名
+config.jwt = {
+  secret: &#39;xxxxxx&#39;,
+};</code></pre>
 <h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><h3 id="后台实现登录操作返回token"><a href="#后台实现登录操作返回token" class="headerlink" title="后台实现登录操作返回token"></a>后台实现登录操作返回token</h3><ol>
 <li>路由层</li>
 </ol>
 <p>在第二个参数上加上jwt即可实现对该路由的鉴权 </p>
 <p>下面的jwt是自定义的中间件<code>auth.js</code>，该文件在下一部分介绍</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">'use strict'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;Egg.Application&#125;</span> <span class="variable">app</span></span> - egg application</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="params">app</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; router, controller, middleware, config &#125; = app;</span><br><span class="line">  <span class="keyword">const</span> &#123; admin &#125; = controller.admin;</span><br><span class="line">  <span class="keyword">const</span> jwt = middleware.auth(config.jwt);</span><br><span class="line">  router.post(<span class="string">'/admin/login'</span>, admin.login);</span><br><span class="line">  <span class="comment">// 需要鉴权的路由再第二个参数上加上jwt</span></span><br><span class="line">  router.get(<span class="string">'/admin/get_type_list'</span>, jwt, admin.getTypeList);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<pre><code class="js">&#39;use strict&#39;;
 
+/**
+ * @param {Egg.Application} app - egg application
+ */
+module.exports = app =&gt; {
+  const { router, controller, middleware, config } = app;
+  const { admin } = controller.admin;
+  const jwt = middleware.auth(config.jwt);
+  router.post(&#39;/admin/login&#39;, admin.login);
+  // 需要鉴权的路由再第二个参数上加上jwt
+  router.get(&#39;/admin/get_type_list&#39;, jwt, admin.getTypeList);
+};</code></pre>
 <ol start="2">
 <li>controller层</li>
 </ol>
 <p>使用<code>jwt.sign(加密数据, 密钥, [options, callback])</code> 来生成token</p>
 <p>相关配置可以查看<a href="https://www.npmjs.com/package/jsonwebtoken" target="_blank" rel="noopener">jsonwebtoken</a></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> login() &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; app, ctx &#125; = <span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">const</span> &#123; username, password &#125; = ctx.request.body;</span><br><span class="line">    <span class="keyword">const</span> checkValidate = <span class="keyword">await</span> ctx.service.admin.admin.checkUserValidate(username, password);</span><br><span class="line">    <span class="keyword">if</span> (checkValidate) &#123;</span><br><span class="line">        <span class="comment">// 将信息使用jwt进行签名加密生成token，expiresIn（token有效时间）</span></span><br><span class="line">        <span class="keyword">const</span> token = app.jwt.sign(&#123; username, password &#125;, app.config.jwt.secret, &#123; <span class="attr">expiresIn</span>: <span class="string">'2h'</span> &#125;);</span><br><span class="line">        ctx.body = &#123;</span><br><span class="line">            code: <span class="string">'0001'</span>,</span><br><span class="line">            msg: <span class="string">'登录成功'</span>,</span><br><span class="line">            token,</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        ctx.body = &#123;</span><br><span class="line">            code: <span class="string">'0002'</span>,</span><br><span class="line">            msg: <span class="string">'用户名或者密码错误，请重试！'</span>,</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="js">async login() {
+    const { app, ctx } = this;
+    const { username, password } = ctx.request.body;
+    const checkValidate = await ctx.service.admin.admin.checkUserValidate(username, password);
+    if (checkValidate) {
+        // 将信息使用jwt进行签名加密生成token，expiresIn（token有效时间）
+        const token = app.jwt.sign({ username, password }, app.config.jwt.secret, { expiresIn: &#39;2h&#39; });
+        ctx.body = {
+            code: &#39;0001&#39;,
+            msg: &#39;登录成功&#39;,
+            token,
+        };
+    } else {
+        ctx.body = {
+            code: &#39;0002&#39;,
+            msg: &#39;用户名或者密码错误，请重试！&#39;,
+        };
+    }
+}</code></pre>
 <ol start="3">
 <li>service层</li>
 </ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> checkUserValidate(username, password) &#123;</span><br><span class="line">  <span class="keyword">const</span> isValidate = <span class="keyword">await</span> <span class="keyword">this</span>.app.mysql.get(<span class="string">'admin'</span>, &#123; username, password &#125;);</span><br><span class="line">  <span class="keyword">return</span> !!isValidate;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="js">async checkUserValidate(username, password) {
+  const isValidate = await this.app.mysql.get(&#39;admin&#39;, { username, password });
+  return !!isValidate;
+}</code></pre>
 <ol start="4">
 <li>使用postman进行测试</li>
 </ol>
@@ -588,12 +628,59 @@
 <p>将生成的token返回给前台后使用<code>localStorage.setItem</code>把<code>token</code>保存到本地</p>
 <h3 id="前台传递token进行鉴权"><a href="#前台传递token进行鉴权" class="headerlink" title="前台传递token进行鉴权"></a>前台传递token进行鉴权</h3><h4 id="封装axios"><a href="#封装axios" class="headerlink" title="封装axios"></a>封装axios</h4><p>新建axios文件对axio进行封装，通过axios的拦截器来实现每次请求时自动在headers上携带token数据到后台，后台使用<code>jwt.verify</code>来检验token的正确性</p>
 <p><em>axios.js</em></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">'axios'</span>;</span><br><span class="line"></span><br><span class="line">axios.interceptors.request.use(<span class="function"><span class="params">config</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 登录成功后保存在本地的token</span></span><br><span class="line">  <span class="keyword">const</span> token = localStorage.getItem(<span class="string">'token'</span>);</span><br><span class="line">  config.headers.Authorization = <span class="string">`Bearer <span class="subst">$&#123;token&#125;</span>`</span>;</span><br><span class="line">  <span class="keyword">return</span> config;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">axios.interceptors.response.use(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// code是后台接口设置的</span></span><br><span class="line">  <span class="keyword">const</span> &#123; code &#125; = response.data;</span><br><span class="line">  <span class="keyword">if</span> (code === <span class="string">'0003'</span> || code === <span class="string">'0004'</span>) &#123;</span><br><span class="line">    <span class="built_in">window</span>.location.href = <span class="string">'/login'</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> response;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> axios;</span><br></pre></td></tr></table></figure>
+<pre><code class="js">import axios from &#39;axios&#39;;
 
+axios.interceptors.request.use(config =&gt; {
+  // 登录成功后保存在本地的token
+  const token = localStorage.getItem(&#39;token&#39;);
+  config.headers.Authorization = `Bearer ${token}`;
+  return config;
+});
+
+axios.interceptors.response.use(response =&gt; {
+  // code是后台接口设置的
+  const { code } = response.data;
+  if (code === &#39;0003&#39; || code === &#39;0004&#39;) {
+    window.location.href = &#39;/login&#39;;
+  }
+  return response;
+});
+
+export default axios;</code></pre>
 <p>封装好后，之后都使用该封装好后的axios进行请求。</p>
 <h4 id="后台校验处理"><a href="#后台校验处理" class="headerlink" title="后台校验处理"></a>后台校验处理</h4><p><em>auth.js</em></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">'use strict'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="params">options</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">auth</span>(<span class="params">ctx, next</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 获取前台通过axios封装后穿过来的token</span></span><br><span class="line">    <span class="keyword">const</span> token = ctx.header.authorization;</span><br><span class="line">    <span class="keyword">if</span> (token) &#123;</span><br><span class="line">      <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">// 验证并对token进行解码</span></span><br><span class="line">        <span class="keyword">const</span> decode = ctx.app.jwt.verify(token.split(<span class="string">' '</span>)[<span class="number">1</span>], options.secret);</span><br><span class="line">        <span class="built_in">console</span>.log(decode);</span><br><span class="line">        <span class="keyword">await</span> next();</span><br><span class="line">      &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(error.name);</span><br><span class="line">        <span class="keyword">if</span> (error.name === <span class="string">'JsonWebTokenError'</span> || error.name === <span class="string">'TokenExpiredError'</span>) &#123;</span><br><span class="line">          <span class="comment">// 这里的错误有许多种情况：1.token错误，2.token过期... 这里统一处理为鉴权失败</span></span><br><span class="line">          ctx.body = &#123;</span><br><span class="line">            code: <span class="string">'0003'</span>,</span><br><span class="line">            msg: <span class="string">'用户鉴权失败，请重新登录'</span>,</span><br><span class="line">          &#125;;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          <span class="keyword">throw</span> error;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      ctx.body = &#123;</span><br><span class="line">        code: <span class="string">'0004'</span>,</span><br><span class="line">        msg: <span class="string">'您没有登录，请先登录'</span>,</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<pre><code class="js">&#39;use strict&#39;;
 
+module.exports = options =&gt; {
+  return async function auth(ctx, next) {
+    // 获取前台通过axios封装后穿过来的token
+    const token = ctx.header.authorization;
+    if (token) {
+      try {
+        // 验证并对token进行解码
+        const decode = ctx.app.jwt.verify(token.split(&#39; &#39;)[1], options.secret);
+        console.log(decode);
+        await next();
+      } catch (error) {
+        console.log(error.name);
+        if (error.name === &#39;JsonWebTokenError&#39; || error.name === &#39;TokenExpiredError&#39;) {
+          // 这里的错误有许多种情况：1.token错误，2.token过期... 这里统一处理为鉴权失败
+          ctx.body = {
+            code: &#39;0003&#39;,
+            msg: &#39;用户鉴权失败，请重新登录&#39;,
+          };
+        } else {
+          throw error;
+        }
+      }
+    } else {
+      ctx.body = {
+        code: &#39;0004&#39;,
+        msg: &#39;您没有登录，请先登录&#39;,
+      };
+    }
+  };
+};</code></pre>
 <p>后台通过<code>/middleware/auth.js</code>中间件来实现给需要鉴权的接口进行鉴权，通过对前台传过来的token数据进行验证<code>jwt.verify</code>来识别登录状态。对<code>JsonWebTokenError</code>错误统一处理，应为<code>auth.js</code>作为中间件，所以接口中出现的其他错误也会在这里被catch到，对于不是<code>JsonWebTokenError</code>的错误，直接把错误抛出去。</p>
 
           
@@ -762,7 +849,7 @@ webpack是一个模块打包器
 
 
 
-  <article class="post white-box reveal comments shadow blur">
+  <article class="post white-box reveal comments shadow floatable">
     <section class="article typo">
       <p ct><i class='fas fa-comments'></i> 评论</p>
       
@@ -809,7 +896,7 @@ webpack是一个模块打包器
     
   
 
-  <section class="widget related_posts shadow blur desktop mobile">
+  <section class="widget related_posts shadow floatable desktop mobile">
     
   <header>
     
@@ -831,7 +918,7 @@ webpack是一个模块打包器
     
 
 
-  <section class="widget toc-wrapper shadow blur desktop mobile">
+  <section class="widget toc-wrapper shadow floatable desktop mobile">
     
   <header>
     
@@ -1145,6 +1232,13 @@ webpack是一个模块打包器
 
 
 
+
+  
+    
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/highlight.min.js"></script>
+
+    <script>hljs.initHighlightingOnLoad();</script>
+  
 
 
 

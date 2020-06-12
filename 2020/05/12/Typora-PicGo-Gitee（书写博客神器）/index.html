@@ -18,7 +18,7 @@
   
     <title>Typora+PicGo+Gitee（书写博客神器） - Alan|前端博客</title>
   
-    <meta name="keywords" content="博客,Typora,工具">
+    <meta name="keywords" content="Typora,博客,工具">
   
   
     <meta name="description" content="写博客，难免会随手截图来解释博客中的一些知识点或者内容。当高高兴兴地在本地电脑写完博客后将它上传之后发现所有图片都浏览不了了，这其实就是因为图片都保存在本地了。为了解决这个问题，从长远和财力来考虑，我使用了gitee搭配开源项目PicGo来做图床生成在线图片链接，这样无论在哪都能畅通查看图片了。而不使用githu...">
@@ -64,6 +64,12 @@
   <link rel='icon' href=''>
   
 
+  
+    
+      
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.0.3/styles/atom-one-dark.min.css">
+
+    
   
   
     
@@ -184,7 +190,7 @@
     <div id="loading-bar-wrapper">
   <div id="loading-bar"></div>
 </div>
-<header class="l_header shadow blur">
+<header class="l_header shadow floatable">
   <div class='container'>
   <div class='wrapper'>
     <div class='nav-sub'>
@@ -455,7 +461,7 @@
   
 
   
-    <article id="post" class="post white-box reveal shadow blur article-type-post" itemscope itemprop="blogPost">
+    <article id="post" class="post white-box reveal shadow floatable article-type-post" itemscope itemprop="blogPost">
       
 
 
@@ -652,7 +658,7 @@
         
           
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E5%8D%9A%E5%AE%A2/" rel="nofollow"><i class="fas fa-tags fa-fw" aria-hidden="true"></i><p>博客</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Typora/" rel="nofollow"><i class="fas fa-tags fa-fw" aria-hidden="true"></i><p>Typora</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E5%B7%A5%E5%85%B7/" rel="nofollow"><i class="fas fa-tags fa-fw" aria-hidden="true"></i><p>工具</p></a></div>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Typora/" rel="nofollow"><i class="fas fa-tags fa-fw" aria-hidden="true"></i><p>Typora</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E5%8D%9A%E5%AE%A2/" rel="nofollow"><i class="fas fa-tags fa-fw" aria-hidden="true"></i><p>博客</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E5%B7%A5%E5%85%B7/" rel="nofollow"><i class="fas fa-tags fa-fw" aria-hidden="true"></i><p>工具</p></a></div>
 
 
         
@@ -724,7 +730,12 @@
 
 
 这里是正文
-123456789101112131415161718192021222324252627title: 测试主题date: 2020-05-13 09:19:17to...</p>
+title: 测试主题
+date: 2020-05-13 09:19:17
+top: true
+categories: 测试分类
+tags: 测试标签
+author:...</p>
               </a>
             
             
@@ -739,7 +750,7 @@
 
 
 
-  <article class="post white-box reveal comments shadow blur">
+  <article class="post white-box reveal comments shadow floatable">
     <section class="article typo">
       <p ct><i class='fas fa-comments'></i> 评论</p>
       
@@ -786,7 +797,7 @@
     
   
 
-  <section class="widget related_posts shadow blur desktop mobile">
+  <section class="widget related_posts shadow floatable desktop mobile">
     
   <header>
     
@@ -796,7 +807,7 @@
 
 
     <div class="content">
-      <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2020\05\13\react博客-egg-jwt实现登录系统\" title="react博客-egg-jwt实现登录系统" rel="bookmark">react博客-egg-jwt实现登录系统</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2020\05\13\react博客-项目部署\" title="react博客-项目部署" rel="bookmark">react博客-项目部署</a></h3></div></li></ul>
+      <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2020\05\13\react博客-项目部署\" title="react博客-项目部署" rel="bookmark">react博客-项目部署</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2020\05\13\react博客-egg-jwt实现登录系统\" title="react博客-egg-jwt实现登录系统" rel="bookmark">react博客-egg-jwt实现登录系统</a></h3></div></li></ul>
     </div>
   </section>
 
@@ -808,7 +819,7 @@
     
 
 
-  <section class="widget toc-wrapper shadow blur desktop mobile">
+  <section class="widget toc-wrapper shadow floatable desktop mobile">
     
   <header>
     
@@ -1122,6 +1133,13 @@
 
 
 
+
+  
+    
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/highlight.min.js"></script>
+
+    <script>hljs.initHighlightingOnLoad();</script>
+  
 
 
 

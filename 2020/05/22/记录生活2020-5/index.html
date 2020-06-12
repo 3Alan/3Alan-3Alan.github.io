@@ -65,6 +65,12 @@
   
 
   
+    
+      
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.0.3/styles/atom-one-dark.min.css">
+
+    
+  
   
     
 <link rel="stylesheet" href="/css/style.css">
@@ -184,7 +190,7 @@
     <div id="loading-bar-wrapper">
   <div id="loading-bar"></div>
 </div>
-<header class="l_header shadow blur">
+<header class="l_header shadow floatable">
   <div class='container'>
   <div class='wrapper'>
     <div class='nav-sub'>
@@ -455,7 +461,7 @@
   
 
   
-    <article id="post" class="post white-box reveal shadow blur article-type-post" itemscope itemprop="blogPost">
+    <article id="post" class="post white-box reveal shadow floatable article-type-post" itemscope itemprop="blogPost">
       
 
 
@@ -695,7 +701,9 @@
                 <p class='content'>webpack4.0进阶学习
 
 
-Tree Shaking按需打包文件index.jsmoment.js123import &#123; used &#125; from './moment';...</p>
+Tree Shaking按需打包文件index.jsmoment.jsimport { used } from './moment';
+
+used();expo...</p>
               </a>
             
             
@@ -705,7 +713,7 @@ Tree Shaking按需打包文件index.jsmoment.js123import &#123; used &#125; from
 
 
 DevServerDevServer可以起一个本地服务并且实现代码的热更新。可以省去我们每次更新代码后重启服务额操作。
-1npm...</p>
+npm ...</p>
               </a>
             
           </div>
@@ -719,7 +727,7 @@ DevServerDevServer可以起一个本地服务并且实现代码的热更新。�
 
 
 
-  <article class="post white-box reveal comments shadow blur">
+  <article class="post white-box reveal comments shadow floatable">
     <section class="article typo">
       <p ct><i class='fas fa-comments'></i> 评论</p>
       
@@ -766,7 +774,7 @@ DevServerDevServer可以起一个本地服务并且实现代码的热更新。�
     
   
 
-  <section class="widget related_posts shadow blur desktop mobile">
+  <section class="widget related_posts shadow floatable desktop mobile">
     
   <header>
     
@@ -788,7 +796,7 @@ DevServerDevServer可以起一个本地服务并且实现代码的热更新。�
     
 
 
-  <section class="widget toc-wrapper shadow blur desktop mobile">
+  <section class="widget toc-wrapper shadow floatable desktop mobile">
     
   <header>
     
@@ -1102,6 +1110,13 @@ DevServerDevServer可以起一个本地服务并且实现代码的热更新。�
 
 
 
+
+  
+    
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/highlight.min.js"></script>
+
+    <script>hljs.initHighlightingOnLoad();</script>
+  
 
 
 

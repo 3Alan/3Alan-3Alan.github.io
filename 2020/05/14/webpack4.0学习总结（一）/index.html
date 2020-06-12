@@ -65,6 +65,12 @@
   
 
   
+    
+      
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.0.3/styles/atom-one-dark.min.css">
+
+    
+  
   
     
 <link rel="stylesheet" href="/css/style.css">
@@ -184,7 +190,7 @@
     <div id="loading-bar-wrapper">
   <div id="loading-bar"></div>
 </div>
-<header class="l_header shadow blur">
+<header class="l_header shadow floatable">
   <div class='container'>
   <div class='wrapper'>
     <div class='nav-sub'>
@@ -455,7 +461,7 @@
   
 
   
-    <article id="post" class="post white-box reveal shadow blur article-type-post" itemscope itemprop="blogPost">
+    <article id="post" class="post white-box reveal shadow floatable article-type-post" itemscope itemprop="blogPost">
       
 
 
@@ -555,40 +561,73 @@
 <p>本质上，<em>webpack</em> 是一个现代 JavaScript 应用程序的<em>静态模块打包器(module bundler)</em>。当 webpack 处理应用程序时，它会递归地构建一个<em>依赖关系图(dependency graph)</em>，其中包含应用程序需要的每个模块，然后将所有这些模块打包成一个或多个 <em>bundle</em>。</p>
 </blockquote>
 <p>上面引用了webpack官网的一段介绍，我们可以简单的理解webpack是一个模块打包器，那什么是模块打包器呢？😂先看一个简单的例子</p>
-<div class="tabs" id="1"><ul class="nav-tabs"><li class="tab active"><a href="#1-1">index.html</a></li><li class="tab"><a href="#1-2">index.js</a></li><li class="tab"><a href="#1-3">componentA.js</a></li><li class="tab"><a href="#1-4">componentB.js</a></li></ul><div class="tab-content"><div class="tab-pane active" id="1-1"><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"root"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./index.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="1-2"><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ES Moudule 模块化引入</span></span><br><span class="line"><span class="keyword">import</span> ComponentB <span class="keyword">from</span> <span class="string">'./componentB'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> root = <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// CommonJs 模块引入</span></span><br><span class="line"><span class="keyword">var</span> ComponentA = <span class="built_in">require</span>(<span class="string">'./componentA'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> ComponentA();</span><br><span class="line"><span class="keyword">new</span> ComponentB();</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="1-3"><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ComponentA</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> componentA = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>);</span><br><span class="line">  componentA.innerHTML = <span class="string">'ComponentA'</span>;</span><br><span class="line">  root.append(componentA);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = ComponentA;</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="1-4"><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ComponentB</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> componentB = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>);</span><br><span class="line">  componentB.innerHTML = <span class="string">'ComponentB'</span>;</span><br><span class="line">  root.append(componentB);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> ComponentB;</span><br></pre></td></tr></table></figure></div></div></div>
+<div class="tabs" id="1"><ul class="nav-tabs"><li class="tab active"><a href="#1-1">index.html</a></li><li class="tab"><a href="#1-2">index.js</a></li><li class="tab"><a href="#1-3">componentA.js</a></li><li class="tab"><a href="#1-4">componentB.js</a></li></ul><div class="tab-content"><div class="tab-pane active" id="1-1"><pre><code class="html"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span>
+<span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span>
+<span class="tag">&lt;<span class="name">head</span>&gt;</span>
+  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span>
+  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span>
+  <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">head</span>&gt;</span>
+<span class="tag">&lt;<span class="name">body</span>&gt;</span>
+  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"root"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>
+  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./index.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">body</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">html</span>&gt;</span></code></pre></div><div class="tab-pane" id="1-2"><pre><code class="js"><span class="comment">// ES Moudule 模块化引入</span>
+<span class="keyword">import</span> ComponentB <span class="keyword">from</span> <span class="string">'./componentB'</span>;
+
+<span class="keyword">var</span> root = <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>);
+
+<span class="comment">// CommonJs 模块引入</span>
+<span class="keyword">var</span> ComponentA = <span class="built_in">require</span>(<span class="string">'./componentA'</span>);
+
+<span class="keyword">new</span> ComponentA();
+<span class="keyword">new</span> ComponentB(); </code></pre></div><div class="tab-pane" id="1-3"><pre><code class="js"><span class="function"><span class="keyword">function</span> <span class="title">ComponentA</span>(<span class="params"></span>) </span>{
+  <span class="keyword">var</span> componentA = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>);
+  componentA.innerHTML = <span class="string">'ComponentA'</span>;
+  root.append(componentA);
+}
+
+<span class="built_in">module</span>.exports = ComponentA;</code></pre></div><div class="tab-pane" id="1-4"><pre><code class="js"><span class="function"><span class="keyword">function</span> <span class="title">ComponentB</span>(<span class="params"></span>) </span>{
+  <span class="keyword">var</span> componentB = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>);
+  componentB.innerHTML = <span class="string">'ComponentB'</span>;
+  root.append(componentB);
+}
+
+<span class="keyword">export</span> <span class="keyword">default</span> ComponentB;</code></pre></div></div></div>
 
 <p>这里的模块可以理解成<code>componentA</code>和<code>componentB</code>，这种写法在<code>vue</code>和<code>react</code>中非常常见，写完这些文件后打开<code>index.html</code>文件，浏览器是会报错的。</p>
 <div class="note error"><p>Uncaught SyntaxError: Cannot use import statement outside a module</p></div>
 
 <p>这是由于这里使用了es6中的模板引入的方式，浏览器是识别不了这种方式的，那怎么办呢？😥</p>
 <p>这个时候webpack就派上用场了，首先初始化该项目</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm init -y</span><br></pre></td></tr></table></figure>
-
-<p>初始化后会生成<code>package.json</code>文件</p>
+<pre><code>npm init -y</code></pre><p>初始化后会生成<code>package.json</code>文件</p>
 <p><strong>安装webpack-cli和webpack</strong>（不建议全局安装）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install webpack-cli -D</span><br><span class="line">npm install webpack -S</span><br></pre></td></tr></table></figure>
-
-<p>安装固定版本的webpack</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install webpack@版本号</span><br><span class="line">npm info webpack  &#x2F;&#x2F; 查看包信息</span><br></pre></td></tr></table></figure>
-
-
-
-<p>打包index.js</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx webpack index.js</span><br></pre></td></tr></table></figure>
-
-<div class="note idea green"><p>这里如果不使用npx的话node会默认在全局环境中找寻webpack，加上npx的话就会使用项目中安装的webpack来执行命令</p></div>
+<pre><code>npm install webpack-cli -D
+npm install webpack -S</code></pre><p>安装固定版本的webpack</p>
+<pre><code>npm install webpack@版本号
+npm info webpack  // 查看包信息</code></pre><p>打包index.js</p>
+<pre><code>npx webpack index.js</code></pre>{% note idea green, 这里如果不使用npx的话node会默认在全局环境中找寻webpack，加上npx的话就会使用项目中安装的webpack来执行命令  %}
 
 <p>打包后可以看到根目录下多了一个dist文件夹（webpack默认设置好的，后面会讲如何改变），里面有一个main.js文件，这个文件就是经过webpack处理后的index.js。</p>
 <p>然后我们修改一下<code>index.html</code>的代码</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./dist/main.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
+<pre><code class="html">&lt;script src=&quot;./dist/main.js&quot;&gt;&lt;/script&gt;</code></pre>
 <p>这下浏览器就能正常识别html中的js文件了，到这里为止理解webpack是一个模块打包器应该不是很难了吧。webpack将模块<code>componentA</code>和<code>componentB</code>打包生成了最后的<code>main.js</code>。</p>
 <h2 id="webpack配置文件"><a href="#webpack配置文件" class="headerlink" title="webpack配置文件"></a>webpack配置文件</h2><p>webpack的配置文件名默认是<code>webpack.config.js</code>，当然我们也可以指定配置文件。</p>
 <p>开始之前我们先修改一下项目目录</p>
 <p>webpacktest<br> ├── index.html<br> ├── package-lock.json<br> ├── package.json<br> ├── src<br> │   ├── componentA.js<br> │   ├── componentB.js<br> │   └── index.js<br> └── webpack.config.js</p>
 <p>在项目根目录下新建配置文件webpack.config.js：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  mode: <span class="string">'development'</span>, <span class="comment">// 默认为production</span></span><br><span class="line">  entry: &#123;</span><br><span class="line">    main: <span class="string">'./src/index.js'</span> <span class="comment">// 打包入口文件</span></span><br><span class="line">  &#125;,</span><br><span class="line">  output: &#123; <span class="comment">// 输出文件配置</span></span><br><span class="line">    filename: <span class="string">'bundle.js'</span>,</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">'dist'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="js">const path = require(&#39;path&#39;);
 
+module.exports = {
+  mode: &#39;development&#39;, // 默认为production
+  entry: {
+    main: &#39;./src/index.js&#39; // 打包入口文件
+  },
+  output: { // 输出文件配置
+    filename: &#39;bundle.js&#39;,
+    path: path.resolve(__dirname, &#39;dist&#39;)
+  }
+}</code></pre>
 <p>上面引用的path是node中的一个模块，<code>__dirname</code>表示webpack.config.js所在的目录。</p>
 <p><em>entry可以简写为entry: ‘./src/index.js’</em></p>
 <div class="note info"><p>mode中的development和production有什么区别呢</p></div>
@@ -597,21 +636,15 @@
 <div class="note link"><p>node path的 <a href="http://nodejs.cn/api/path.html#path_path_resolve_paths" target="_blank" rel="noopener">更多</a></p></div>
 
 <p>执行下面命令后即可完成打包，效果和上一节一样</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx webpack</span><br></pre></td></tr></table></figure>
-
-<p>当然也可以使用自定义配置文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx webpack --config 自定义配置文件</span><br></pre></td></tr></table></figure>
-
-
-
-<p>写过项目的小伙伴应该都发现平时都是使用<code>npm run xxx</code>来打包项目的，下面就来介绍一下如何配置</p>
+<pre><code>npx webpack</code></pre><p>当然也可以使用自定义配置文件</p>
+<pre><code>npx webpack --config 自定义配置文件</code></pre><p>写过项目的小伙伴应该都发现平时都是使用<code>npm run xxx</code>来打包项目的，下面就来介绍一下如何配置</p>
 <p>修改package.json文件中的script</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">"scripts": &#123;</span><br><span class="line">    "build": "webpack"</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-
+<pre><code class="json">&quot;scripts&quot;: {
+    &quot;build&quot;: &quot;webpack&quot;
+},</code></pre>
 <p>这样就可以通过<code>npm run build</code>来进行打包了，不过看过第一节的小伙伴肯定有疑问了，这样配置会不会使用全局的webpack去进行打包呢🙄，其实并不会，这里<code>npm script</code>命令会在项目的<code>node_modules</code>文件中去寻找webpack并执行。</p>
 <p>打包好后我们打开index.html看看，发现是会报错的，这里注意：我们要手动把index.html移动到dist目录下并修改一下js路径，因为webpack并没有将index.html打包到dist目录下。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./bundle.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
+<pre><code class="html">&lt;script src=&quot;./bundle.js&quot;&gt;&lt;/script&gt;</code></pre>
 <p>这下再运行index.html就没有任何问题了。🎉</p>
 
           
@@ -811,7 +844,7 @@ Loaderfile-loader上一节简单介...</p>
 配置egg-jwt
 配置config/plugin.js文件
 
-1234exports.j...</p>
+exports.jwt =...</p>
               </a>
             
           </div>
@@ -825,7 +858,7 @@ Loaderfile-loader上一节简单介...</p>
 
 
 
-  <article class="post white-box reveal comments shadow blur">
+  <article class="post white-box reveal comments shadow floatable">
     <section class="article typo">
       <p ct><i class='fas fa-comments'></i> 评论</p>
       
@@ -872,7 +905,7 @@ Loaderfile-loader上一节简单介...</p>
     
   
 
-  <section class="widget related_posts shadow blur desktop mobile">
+  <section class="widget related_posts shadow floatable desktop mobile">
     
   <header>
     
@@ -882,7 +915,7 @@ Loaderfile-loader上一节简单介...</p>
 
 
     <div class="content">
-      <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2020\06\03\webpack4-0进阶（二）\" title="webpack4.0进阶（二）" rel="bookmark">webpack4.0进阶（二）</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2020\06\07\webpack4-0进阶（三）\" title="webpack4-0进阶（三）" rel="bookmark">webpack4-0进阶（三）</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2020\05\15\webpack4.0学习总结（二）\" title="webpack4.0学习总结（二）" rel="bookmark">webpack4.0学习总结（二）</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2020\05\17\webpack4.0学习总结（三）\" title="webpack4.0学习总结（三）" rel="bookmark">webpack4.0学习总结（三）</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2020\05\18\webpack4.0学习总结（四）\" title="webpack4.0学习总结（四）" rel="bookmark">webpack4.0学习总结（四）</a></h3></div></li></ul>
+      <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2020\06\05\webpack4-0进阶（三）\" title="webpack4.0进阶（三）" rel="bookmark">webpack4.0进阶（三）</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2020\06\03\webpack4-0进阶（二）\" title="webpack4.0进阶（二）" rel="bookmark">webpack4.0进阶（二）</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2020\05\17\webpack4.0学习总结（三）\" title="webpack4.0学习总结（三）" rel="bookmark">webpack4.0学习总结（三）</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2020\05\18\webpack4.0学习总结（四）\" title="webpack4.0学习总结（四）" rel="bookmark">webpack4.0学习总结（四）</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2020\05\25\webpack4.0进阶（一）\" title="webpack4.0进阶（一）" rel="bookmark">webpack4.0进阶（一）</a></h3></div></li></ul>
     </div>
   </section>
 
@@ -894,7 +927,7 @@ Loaderfile-loader上一节简单介...</p>
     
 
 
-  <section class="widget toc-wrapper shadow blur desktop mobile">
+  <section class="widget toc-wrapper shadow floatable desktop mobile">
     
   <header>
     
@@ -1208,6 +1241,13 @@ Loaderfile-loader上一节简单介...</p>
 
 
 
+
+  
+    
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/highlight.min.js"></script>
+
+    <script>hljs.initHighlightingOnLoad();</script>
+  
 
 
 
