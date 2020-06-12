@@ -21,7 +21,7 @@
     <meta name="keywords" content="webpack4.0">
   
   
-    <meta name="description" content="手写简单的loader、Plugin">
+    <meta name="description" content="手写简单的loader、Plugin、简答的webpack">
   
 
   <!-- feed -->
@@ -548,7 +548,7 @@
       <section class="article typo">
         <div class="article-entry" itemprop="articleBody">
           
-          <p>手写简单的loader、Plugin</p>
+          <p>手写简单的loader、Plugin、简答的webpack</p>
 <a id="more"></a>
 
 <h3 id="手写简单的loader"><a href="#手写简单的loader" class="headerlink" title="手写简单的loader"></a>手写简单的loader</h3><p>目录</p>
@@ -598,7 +598,7 @@
 <div class="tabs" id="3"><ul class="nav-tabs"><li class="tab active"><a href="#3-1">index.js</a></li><li class="tab"><a href="#3-2">learn.js</a></li><li class="tab"><a href="#3-3">course.js</a></li></ul><div class="tab-content"><div class="tab-pane active" id="3-1"><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> notify <span class="keyword">from</span> <span class="string">'./learn.js'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(notify);</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="3-2"><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; course &#125; <span class="keyword">from</span> <span class="string">'./course.js'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> learnNotify = <span class="string">`time to learn <span class="subst">$&#123;course&#125;</span>`</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> learnNotify;</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="3-3"><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> course = <span class="string">'webpack'</span>;</span><br></pre></td></tr></table></figure></div></div></div>
 
 <p>我将整个项目拆分成2个部分来分析</p>
-<h4 id="处理路口文件找到所有import文件"><a href="#处理路口文件找到所有import文件" class="headerlink" title="处理路口文件找到所有import文件"></a>处理路口文件找到所有import文件</h4><p>思路：</p>
+<h4 id="处理入口文件找到所有import文件"><a href="#处理入口文件找到所有import文件" class="headerlink" title="处理入口文件找到所有import文件"></a>处理入口文件找到所有import文件</h4><p>思路：</p>
 <ol>
 <li>通过fs.readFileSync读取index.js的内容</li>
 <li>使用@babel/parser将读取的内容转化为AST抽象语法树</li>
@@ -758,7 +758,7 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
           
-          href="http://connect.qq.com/widget/shareqq/index.html?url=https://alanwang.site/2020/06/07/webpack4-0%E8%BF%9B%E9%98%B6%EF%BC%88%E4%B8%89%EF%BC%89/&title=webpack4-0进阶（三） - Alan|前端博客&summary=手写简单的loader、Plugin"
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://alanwang.site/2020/06/07/webpack4-0%E8%BF%9B%E9%98%B6%EF%BC%88%E4%B8%89%EF%BC%89/&title=webpack4-0进阶（三） - Alan|前端博客&summary=手写简单的loader、Plugin、简答的webpack"
           
           >
           
@@ -770,7 +770,7 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer"
           
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://alanwang.site/2020/06/07/webpack4-0%E8%BF%9B%E9%98%B6%EF%BC%88%E4%B8%89%EF%BC%89/&title=webpack4-0进阶（三） - Alan|前端博客&summary=手写简单的loader、Plugin"
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://alanwang.site/2020/06/07/webpack4-0%E8%BF%9B%E9%98%B6%EF%BC%88%E4%B8%89%EF%BC%89/&title=webpack4-0进阶（三） - Alan|前端博客&summary=手写简单的loader、Plugin、简答的webpack"
           
           >
           
@@ -782,7 +782,7 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
           
-          href="http://service.weibo.com/share/share.php?url=https://alanwang.site/2020/06/07/webpack4-0%E8%BF%9B%E9%98%B6%EF%BC%88%E4%B8%89%EF%BC%89/&title=webpack4-0进阶（三） - Alan|前端博客&summary=手写简单的loader、Plugin"
+          href="http://service.weibo.com/share/share.php?url=https://alanwang.site/2020/06/07/webpack4-0%E8%BF%9B%E9%98%B6%EF%BC%88%E4%B8%89%EF%BC%89/&title=webpack4-0进阶（三） - Alan|前端博客&summary=手写简单的loader、Plugin、简答的webpack"
           
           >
           
@@ -887,7 +887,7 @@ ts-test ├──...</p>
 
 
     <div class="content">
-      <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2020\06\03\webpack4-0进阶（二）\" title="webpack4.0进阶（二）" rel="bookmark">webpack4.0进阶（二）</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2020\05\14\webpack4.0学习总结（一）\" title="webpack4.0学习总结（一）" rel="bookmark">webpack4.0学习总结（一）</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2020\05\15\webpack4.0学习总结（二）\" title="webpack4.0学习总结（二）" rel="bookmark">webpack4.0学习总结（二）</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2020\05\18\webpack4.0学习总结（四）\" title="webpack4.0学习总结（四）" rel="bookmark">webpack4.0学习总结（四）</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2020\05\17\webpack4.0学习总结（三）\" title="webpack4.0学习总结（三）" rel="bookmark">webpack4.0学习总结（三）</a></h3></div></li></ul>
+      <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2020\06\03\webpack4-0进阶（二）\" title="webpack4.0进阶（二）" rel="bookmark">webpack4.0进阶（二）</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2020\05\14\webpack4.0学习总结（一）\" title="webpack4.0学习总结（一）" rel="bookmark">webpack4.0学习总结（一）</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2020\05\15\webpack4.0学习总结（二）\" title="webpack4.0学习总结（二）" rel="bookmark">webpack4.0学习总结（二）</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2020\05\17\webpack4.0学习总结（三）\" title="webpack4.0学习总结（三）" rel="bookmark">webpack4.0学习总结（三）</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\2020\05\18\webpack4.0学习总结（四）\" title="webpack4.0学习总结（四）" rel="bookmark">webpack4.0学习总结（四）</a></h3></div></li></ul>
     </div>
   </section>
 
@@ -909,7 +909,7 @@ ts-test ├──...</p>
 
 
     <div class='content'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#手写简单的loader"><span class="toc-number">1.</span> <span class="toc-text">手写简单的loader</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#手写简单的Plugin"><span class="toc-number">2.</span> <span class="toc-text">手写简单的Plugin</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#react和vue脚手架webpack配置"><span class="toc-number">3.</span> <span class="toc-text">react和vue脚手架webpack配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#手写一个简单的webpack打包工具"><span class="toc-number">4.</span> <span class="toc-text">手写一个简单的webpack打包工具</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#处理路口文件找到所有import文件"><span class="toc-number">4.1.</span> <span class="toc-text">处理路口文件找到所有import文件</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#手写简单的loader"><span class="toc-text">手写简单的loader</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#手写简单的Plugin"><span class="toc-text">手写简单的Plugin</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#react和vue脚手架webpack配置"><span class="toc-text">react和vue脚手架webpack配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#手写一个简单的webpack打包工具"><span class="toc-text">手写一个简单的webpack打包工具</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#处理入口文件找到所有import文件"><span class="toc-text">处理入口文件找到所有import文件</span></a></li></ol></li></ol>
     </div>
   </section>
 
