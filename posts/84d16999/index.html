@@ -1,0 +1,1642 @@
+<!DOCTYPE html>
+<html>
+<head hexo-theme='https://volantis.js.org/#2.6.6'>
+  <meta charset="utf-8">
+  <!-- SEO相关 -->
+  
+    
+  
+  <!-- 渲染优化 -->
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- 页面元数据 -->
+  
+    <title>webpack4.0进阶（一） - Alan|前端博客</title>
+  
+    <meta name="keywords" content="webpack4.0">
+  
+  
+    <meta name="description" content="webpack4.0进阶学习">
+  
+
+  <!-- feed -->
+  
+
+  <!-- import meta -->
+  
+    
+      <meta name='theme-color' content='#FFFFFF'>
+    
+      <meta name='msapplication-TileColor' content='#1BC3FB'>
+    
+      <meta name='msapplication-config' content='https://cdn.jsdelivr.net/gh/xaoxuu/cdn-favicon@19.9.6/browserconfig.xml'>
+    
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13/css/all.min.css">
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+
+  
+
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.css">
+  
+
+  
+
+  <!-- import link -->
+  
+  
+  <link rel='icon' href=''>
+  
+
+  
+    
+      
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.0.3/styles/atom-one-dark.min.css">
+
+    
+  
+  
+    
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+
+  
+  
+    <!-- ba -->
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+	  setTimeout(function() { 
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?ff1856f91533fcea9c8c2fe5a1b06fe7";
+		hm.defer=true;
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+	  }, 5000);
+    })();
+    </script>
+  
+</head>
+
+<body>
+  
+  <div class="cover-wrapper">
+    
+      <cover class='cover post half'>
+        <div class='cover-body'>
+  <div class='a'>
+    
+    
+      <p class="title">Alan</p>
+    
+    
+      <p class="subtitle">此刻想举重若轻，之前必要负重前行</p>
+    
+  </div>
+  <div class='b'>
+    
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <input type="text" class="input u-search-input" placeholder="" />
+          <i class="icon fas fa-search fa-fw"></i>
+        </form>
+      </div>
+    
+    <div class='menu navigation'>
+      <ul class='cover-list-h'>
+        
+          
+            <li>
+              <a class="nav home"
+                href="/"
+                
+                
+                id="home">
+                <i class='fas fa-home fa-fw'></i>首页
+              </a>
+            </li>
+          
+            <li>
+              <a class="nav home"
+                href="/archives"
+                
+                
+                id="archives">
+                <i class='fas fa-archive fa-fw'></i>归档
+              </a>
+            </li>
+          
+            <li>
+              <a class="nav home"
+                href="/categories"
+                
+                
+                id="categories">
+                <i class='fas fa-list-alt fa-fw'></i>分类
+              </a>
+            </li>
+          
+            <li>
+              <a class="nav home"
+                href="/about"
+                
+                
+                id="about">
+                <i class='fas fa-basketball-ball fa-fw'></i>关于我
+              </a>
+            </li>
+          
+            <li>
+              <a class="nav home"
+                href="/friends"
+                
+                
+                id="friends">
+                <i class='fas fa-user-friends fa-fw'></i>友链
+              </a>
+            </li>
+          
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+      </cover>
+    
+    <div id="loading-bar-wrapper">
+  <div id="loading-bar"></div>
+</div>
+<header class="l_header shadow floatable">
+  <div class='container'>
+  <div class='wrapper'>
+    <div class='nav-sub'>
+      <p class="title"></p>
+      <ul class='switcher nav-list-h'>
+        <li><a class="s-comment fas fa-comments fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+          <li><a class="s-toc fas fa-list fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+      </ul>
+    </div>
+		<div class="nav-main">
+      
+        
+        <a class="title flat-box" target="_self" href='/'>
+          
+          
+            <i class='fas fa-basketball-ball'></i>
+          
+          
+            Alan
+          
+          
+        </a>
+      
+
+			<div class='menu navigation'>
+				<ul class='nav-list-h'>
+          
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-home fa-fw'></i>首页
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" 
+                  
+                  
+                  >
+                  <i class='fas fa-ellipsis-v fa-fw'></i>更多
+                </a>
+                
+                  <ul class="list-v">
+                    
+                      
+            
+              <li>
+                <a class="flat-box" href=https://alanwang.avosapps.us/
+                  
+                  
+                    target="_blank"
+                  
+                  
+                    id="https:alanwangavosappsus"
+                  >
+                  <i class='fas fa-comments fa-fw'></i>评论管理
+                </a>
+                
+              </li>
+            
+          
+                    
+                  </ul>
+                
+              </li>
+            
+          
+          
+				</ul>
+			</div>
+
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <i class="icon fas fa-search fa-fw"></i>
+          <input type="text" class="input u-search-input" placeholder="Search..." />
+        </form>
+      </div>
+
+			<ul class='switcher nav-list-h'>
+				
+					<li><a class="s-search fas fa-search fa-fw" target="_self" href='javascript:void(0)'></a></li>
+				
+				<li>
+          <a class="s-menu fas fa-bars fa-fw" target="_self" href='javascript:void(0)'></a>
+          <ul class="menu-phone list-v navigation white-box">
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-home fa-fw'></i>首页
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="flat-box" 
+                  
+                  
+                  >
+                  <i class='fas fa-ellipsis-v fa-fw'></i>更多
+                </a>
+                
+                  <ul class="list-v">
+                    
+                      
+            
+              <li>
+                <a class="flat-box" href=https://alanwang.avosapps.us/
+                  
+                  
+                    target="_blank"
+                  
+                  
+                    id="https:alanwangavosappsus"
+                  >
+                  <i class='fas fa-comments fa-fw'></i>评论管理
+                </a>
+                
+              </li>
+            
+          
+                    
+                  </ul>
+                
+              </li>
+            
+          
+            
+          </ul>
+        </li>
+			</ul>
+		</div>
+	</div>
+  </div>
+</header>
+
+<script>setLoadingBarProgress(40);</script>
+
+  </div>
+
+
+  <div class="l_body">
+    <div class='body-wrapper'>
+      
+
+<div class='l_main'>
+  
+
+  
+    <article id="post" class="post white-box reveal shadow floatable article-type-post" itemscope itemprop="blogPost">
+      
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  <h1 class="title">
+    <a href="/posts/84d16999/">
+      webpack4.0进阶（一）
+    </a>
+  </h1>
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-05-30T17:20:00+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：2020年5月30日 17:20</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/%E5%89%8D%E7%AB%AF/webpack4-0%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/' rel="nofollow">
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <p>前端/webpack4.0学习总结</p>
+    </a>
+  </div>
+
+
+            
+          
+            
+              
+  <div class="new-meta-item browse valine">
+    <a class='notlink'>
+      <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+      
+      <span id="/posts/84d16999/" class="leancloud_visitors" data-flag-title="webpack4.0进阶（一）">
+      <p>
+        <span class="leancloud-visitors-count"></span>
+      </p>
+      </span>
+    </a>
+  </div>
+
+
+            
+          
+            
+              
+  <div class="new-meta-item wordcount">
+    <a class='notlink'>
+      <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
+      <p>字数：2.2k字</p>
+    </a>
+  </div>
+  <div class="new-meta-item readtime">
+    <a class='notlink'>
+      <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
+      <p>时长：9分钟</p>
+    </a>
+  </div>
+
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+      <section class="article typo">
+        <div class="article-entry" itemprop="articleBody">
+          
+          <p>webpack4.0进阶学习</p>
+<a id="more"></a>
+
+<h3 id="Tree-Shaking按需打包文件"><a href="#Tree-Shaking按需打包文件" class="headerlink" title="Tree Shaking按需打包文件"></a>Tree Shaking按需打包文件</h3><div class="tabs" id="1"><ul class="nav-tabs"><li class="tab active"><a href="#1-1">index.js</a></li><li class="tab"><a href="#1-2">moment.js</a></li></ul><div class="tab-content"><div class="tab-pane active" id="1-1"><pre><code class="js"><span class="keyword">import</span> { used } <span class="keyword">from</span> <span class="string">'./moment'</span>;
+
+used();</code></pre></div><div class="tab-pane" id="1-2"><pre><code class="js"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">used</span>(<span class="params"></span>) </span>{
+  <span class="built_in">console</span>.log(<span class="string">'used function'</span>);
+}
+
+<span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">notUsed</span>(<span class="params"></span>) </span>{
+  <span class="built_in">console</span>.log(<span class="string">'notUsed funtion'</span>);
+}</code></pre></div></div></div>
+
+<p>上面这个例子中我们只使用到了moment中的<code>used</code>，但是打包后连同<code>notUsed</code>一起被打包进了main.js文件中</p>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://gitee.com/alannum3/MyImages/raw/master/img/image-20200525151309388.png" alt="image-20200525151309388"></p>
+<p>Tree Shaking可以帮我们解决这个问题。</p>
+<div class="note warning"><p>注意：1.Tree Shaking只在production模式下生效。2.只支持ES Module 语法（import），不支持CommonJs</p></div>
+
+<div class="tabs" id="2"><ul class="nav-tabs"><li class="tab active"><a href="#2-1">package.json</a></li><li class="tab"><a href="#2-2">webpack.config.js</a></li></ul><div class="tab-content"><div class="tab-pane active" id="2-1"><pre><code class="json">"sideEffects": false,
+或者
+"sideEffects": [
+  "**/*.css",
+  "**/*.scss",
+  "./esnext/index.js",
+  <span class="string">"./esnext/configure.js"</span>
+],
+意思是对这些文件不进行tree shaking处理
+例如
+import './common.css';
+虽然我们没有使用common.css的一些东西，但是它起到了样式的作用的，如果不在sideEffect中设置的话，webpack是不会对它进行打包的。</code></pre></div><div class="tab-pane" id="2-2"><pre><code class="js">optimization: {
+    usedExports: <span class="literal">true</span>,
+}
+<span class="comment">// production模式是会自动配置好，可写可不写</span></code></pre></div></div></div>
+
+
+
+<h3 id="开发环境和生产环境配置文件"><a href="#开发环境和生产环境配置文件" class="headerlink" title="开发环境和生产环境配置文件"></a>开发环境和生产环境配置文件</h3><p>由于开发环境需要调试代码所以会引入<code>devServer</code>之类的插件，那么这部分插件在生产环境中是不需要使用到的，我们可以对开发环境和生产环境分别设置不同的配置文件。</p>
+<p>首先安装插件<code>webpack-merge</code>用来将拼接common配置</p>
+<pre><code>npm i webpack-merge -D</code></pre><p>目录如下：</p>
+<p>webpacktest<br> ├── package.json<br> ├── src<br> │   ├── index.html<br> │   ├── index.js<br> │   └── moment.js<br> ├── webpack.common.js<br> ├── webpack.dev.js<br> └── webpack.prod.js</p>
+{% tabs 3 %}
+
+<!-- tab webpack.common.js -->
+
+```js
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+
+module.exports = {
+  mode: 'development', // 默认为production
+  entry: {
+    main: './src/index.js', // 打包入口文件
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/, // 不对node_modules下的js文件处理
+        loader: 'babel-loader'
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+      },
+    ],
+  },
+  output: {
+    // 输出文件配置
+    filename: '[name].js',
+    path: path.resolve(__dirname, 'dist'),
+  },
+  optimization: {
+    usedExports: true,
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+    }),
+    new CleanWebpackPlugin(),
+  ],
+};
+```
+
+<!-- endtab -->
+
+<!-- tab webpack.dev.js -->
+
+```js
+const merge = require('webpack-merge');
+const commonConfig = require('./webpack.common.js');
+
+const devConfig = {
+  mode: 'development', // 默认为production
+  devtool: 'cheap-module-eval-source-map',
+  devServer: {
+    contentBase: './dist',
+    open: true, // 自动打开浏览器
+    port: 3001, // 服务器端口号
+    hot: true, // 开启HRM
+  }
+};
+
+module.exports = merge(commonConfig, devConfig);
+```
+
+<!-- endtab -->
+
+<!-- tab webpack.prod.js -->
+
+```js
+const merge = require('webpack-merge');
+const commonConfig = require('./webpack.common.js');
+
+const prodConfig =  {
+  mode: 'development', // 默认为production
+  devtool: 'cheap-module-source-map'
+};
+
+module.exports = merge(commonConfig, prodConfig);
+```
+
+<!-- endtab -->
+
+<!-- tab npm script -->
+
+```js
+"scripts": {
+    "dev": "webpack-dev-server --config webpack.dev.js",
+    "build": "webpack --config webpack.prod.js"
+},
+```
+
+<!-- endtab -->
+
+{% endtabs%}
+
+<p>配置好后，开发环境使用<code>npm run dev</code>进行打包，生产环境用<code>npm run build</code>进行打包。</p>
+<h3 id="代码分割"><a href="#代码分割" class="headerlink" title="代码分割"></a>代码分割</h3><p>代码分割有利于性能的优化。何为代码分割：</p>
+<p>有这么一个场景，我在<code>index.js</code>中使用到了一些公共代码库/工具库（lodash），<code>index.js</code>中的代码是依赖于lodash中的一些工具的。当我们打包时，lodash也是被打包到了<code>main.js</code>文件中，并且一旦<code>index.js</code>中的业务代码改变了，连同lodash也要一同重新打包加载，但是我们一般是不会去改动lodash这类工具库的。于是我们可以借助代码分割来将业务代码和lodash进行分割，这样下次再修改业务代码时，我们就无需重新加载lodash的内容了。</p>
+<p>先安装lodash</p>
+<pre><code>npm i lodash -S</code></pre><p>这里为了便于查看打包后的文件内容，我们加上一条npm script<code>&quot;start&quot;: &quot;webpack --config webpack.dev.js&quot;</code>(由于devServer不会生成打包内容)</p>
+<p><em>index.js</em></p>
+<pre><code class="js">import _ from &#39;lodash&#39;;
+
+console.log(_.compact([0, 1, false, 2, &#39;&#39;, 3]));</code></pre>
+<p><code>npm run start</code>打包，发现打包后的main.js文件中包含lodash内容。</p>
+<p>那如何实现代码分割呢，只需配置webpack.common.js文件</p>
+<pre><code class="js">optimization: {
+    splitChunks: {
+        chunks: &#39;all&#39;
+    }
+}</code></pre>
+<p>再次打包，发现打包后的文件中多了一个<code>vendor~main.js</code>，webpack自动将lodash内容打包进去了，而main.js文件中就没有了lodash的内容了。</p>
+<p>dist<br> ├── index.html<br> ├── main.js<br> └── vendors~main.js</p>
+<p>上面介绍的时同步代码分割，下面看一下异步代码分割<code>index.js</code>，可以实现<strong>懒加载</strong></p>
+<pre><code class="js">async function createElement() {
+  const { default: _ } = await import(/* webpackChunkName: &quot;lodash&quot; */&#39;lodash&#39;);
+  const element = document.createElement(&#39;div&#39;);
+  element.innerHTML = _.compact([0, 1, false, 2, &#39;&#39;, 3]);
+  return element;
+}
+
+document.addEventListener(&#39;click&#39;, () =&gt; {
+  createElement().then(element =&gt; {
+    document.body.appendChild(element);
+  })
+})
+</code></pre>
+<p><code>/* webpackChunkName: &quot;lodash&quot; */</code>设置打包后的文件名为<code>vendors~lodash.js</code>，打开浏览器可以看到只有点击页面时，才会引入<code>vendors~lodash.js</code>，实现了<strong>懒加载</strong>。</p>
+<p>打包后的目录</p>
+<pre><code>dist
+ ├── index.html
+ ├── main.js
+ ├── vendors~lodash.js
+ └── vendors~main.js</code></pre><p>当然可以通过其他配置来设置打包后的文件名称。</p>
+<div class="note success"><p>代码分割<a href="https://webpack.js.org/plugins/split-chunks-plugin/#optimizationsplitchunks" target="_blank" rel="noopener">更多配置</a></p></div>
+
+
+
+<h3 id="打包分析工具"><a href="#打包分析工具" class="headerlink" title="打包分析工具"></a>打包分析工具</h3><p>首先要拿到<code>status.json</code>文件，具体获取方式只需配置npm script即可</p>
+<pre><code class="json">&quot;start&quot;: &quot;webpack --profile --json &gt; status.json --config webpack.dev.js&quot;,</code></pre>
+<p>打包后会生成<code>status.json</code>文件。</p>
+<p>然后使用<a href="https://webpack.js.org/guides/code-splitting/#bundle-analysis" target="_blank" rel="noopener">官网提供的一些工具</a>就可以可视化分析打包结果了。</p>
+<p>在写代码时，我们要尽可能的使用异步引入，这样可以提高代码的<strong>使用率</strong>，提升性能，减少加载不必要的代码。</p>
+{% note info, 查看代码使用率的方法，浏览器控制台按下ctrl+shift+p，输入show coverage %}
+
+
+
+<h3 id="代码优化"><a href="#代码优化" class="headerlink" title="代码优化"></a>代码优化</h3><p>现在有一个优化场景，我有一个登录按钮，当点击按钮后弹出登录框。这里的优化思路是，页面加载时只加载登录按钮的代码，当按钮代码加载完后。利用空闲时间去加载登录框的代码。这样既可以优化首屏加载速度，还可以解决因使用懒加载登录框（也就是点击按钮后再去加载）而带来的用户体验较差的问题。</p>
+<p>具体代码：(只需要在import中加入/* webpackPrefetch: true */)</p>
+{% tabs 1 %}
+
+<!-- tab index.js -->
+
+```js
+document.addEventListener('click', () => {
+  import(/* webpackPrefetch: true */'./loginModal.js').then(({default: login}) => {
+    login();
+  })
+})
+```
+
+<!-- endtab -->
+
+<!-- tab loginModal.js -->
+
+```js
+export default function () {
+  alert('loginModal');
+}
+```
+
+<!-- endtab -->
+
+{% endtabs %}
+
+
+
+<h3 id="css文件处理"><a href="#css文件处理" class="headerlink" title="css文件处理"></a>css文件处理</h3><p><strong>MiniCssExtractPlugin</strong></p>
+<blockquote>
+<p>This plugin should be used only on <code>production</code> builds without <code>style-loader</code> in the loaders chain, especially if you want to have HMR in <code>development</code>.</p>
+</blockquote>
+<p>官方推荐不要在开发环境中使用，因为不支持HMR，不利于提高开发效率。</p>
+<pre><code>npm install --save-dev mini-css-extract-plugin</code></pre><div class="tabs" id="2"><ul class="nav-tabs"><li class="tab active"><a href="#2-1">index.js</a></li><li class="tab"><a href="#2-2">style.css</a></li></ul><div class="tab-content"><div class="tab-pane active" id="2-1"><pre><code class="js"><span class="keyword">import</span> <span class="string">'./style.css'</span>;</code></pre></div><div class="tab-pane" id="2-2"><pre><code class="css"><span class="selector-tag">body</span> {
+  <span class="attribute">background</span>: <span class="number">#e65</span>;
+}</code></pre></div></div></div>
+
+<div class="tabs" id="3"><ul class="nav-tabs"><li class="tab active"><a href="#3-1">webpack.common.js</a></li><li class="tab"><a href="#3-2">webpack.dev.js</a></li><li class="tab"><a href="#3-3">webpack.prod.js</a></li><li class="tab"><a href="#3-4">package.json</a></li></ul><div class="tab-content"><div class="tab-pane active" id="3-1"><pre><code class="js"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);
+<span class="keyword">const</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">'html-webpack-plugin'</span>);
+<span class="keyword">const</span> { CleanWebpackPlugin } = <span class="built_in">require</span>(<span class="string">'clean-webpack-plugin'</span>);
+
+<span class="built_in">module</span>.exports = {
+  mode: <span class="string">'development'</span>, <span class="comment">// 默认为production</span>
+  entry: {
+    main: <span class="string">'./src/index.js'</span>, <span class="comment">// 打包入口文件</span>
+  },
+  <span class="built_in">module</span>: {
+    rules: [
+      {
+        test: <span class="regexp">/\.js$/</span>,
+        exclude: <span class="regexp">/node_modules/</span>, <span class="comment">// 不对node_modules下的js文件处理</span>
+        loader: <span class="string">'babel-loader'</span>,
+      },
+    ],
+  },
+  output: {
+    <span class="comment">// 输出文件配置</span>
+    filename: <span class="string">'[name].js'</span>,
+    chunkFilename: <span class="string">'[name].chunk.js'</span>,
+    path: path.resolve(__dirname, <span class="string">'dist'</span>),
+  },
+  plugins: [
+    <span class="keyword">new</span> HtmlWebpackPlugin({
+      template: <span class="string">'./src/index.html'</span>,
+    }),
+    <span class="keyword">new</span> CleanWebpackPlugin(),
+  ],
+  optimization: {
+    usedExports: <span class="literal">true</span>,
+    splitChunks: {
+      chunks: <span class="string">'all'</span>,
+    },
+  },
+};</code></pre></div><div class="tab-pane" id="3-2"><pre><code class="js"><span class="keyword">const</span> merge = <span class="built_in">require</span>(<span class="string">'webpack-merge'</span>);
+<span class="keyword">const</span> commonConfig = <span class="built_in">require</span>(<span class="string">'./webpack.common.js'</span>);
+
+<span class="keyword">const</span> devConfig = {
+  mode: <span class="string">'development'</span>,
+  devtool: <span class="string">'cheap-module-eval-source-map'</span>,
+  devServer: {
+    contentBase: <span class="string">'./dist'</span>,
+    open: <span class="literal">true</span>, <span class="comment">// 自动打开浏览器</span>
+    port: <span class="number">3001</span>, <span class="comment">// 服务器端口号</span>
+    hot: <span class="literal">true</span>, <span class="comment">// 开启HRM</span>
+  },
+  <span class="built_in">module</span>: {
+    rules: [
+      {
+        test: <span class="regexp">/\.css$/</span>,
+        use: [<span class="string">'style-loader'</span>, <span class="string">'css-loader'</span>],
+      }
+    ],
+  },
+};
+
+<span class="built_in">module</span>.exports = merge(commonConfig, devConfig);</code></pre></div><div class="tab-pane" id="3-3"><pre><code class="js"><span class="keyword">const</span> merge = <span class="built_in">require</span>(<span class="string">'webpack-merge'</span>);
+<span class="keyword">const</span> commonConfig = <span class="built_in">require</span>(<span class="string">'./webpack.common.js'</span>);
+<span class="keyword">const</span> MiniCssExtractPlugin = <span class="built_in">require</span>(<span class="string">'mini-css-extract-plugin'</span>);
+
+<span class="keyword">const</span> prodConfig =  {
+  mode: <span class="string">'development'</span>,
+  devtool: <span class="string">'cheap-module-source-map'</span>,
+  <span class="built_in">module</span>: {
+    rules: [
+      {
+        test: <span class="regexp">/\.css$/</span>,
+        use: [MiniCssExtractPlugin.loader, <span class="string">'css-loader'</span>],
+      }
+    ],
+  },
+  plugins: [
+    <span class="keyword">new</span> MiniCssExtractPlugin({})
+  ]
+};
+
+<span class="built_in">module</span>.exports = merge(commonConfig, prodConfig);</code></pre></div><div class="tab-pane" id="3-4"><pre><code class="json">"sideEffects": [
+    <span class="string">"*.css"</span>
+],</code></pre></div></div></div>
+
+<p>也可以使用<strong><a href="https://github.com/NMFR/optimize-css-assets-webpack-plugin" target="_blank" rel="noopener">optimize-css-assets-webpack-plugin</a></strong>来压缩css代码</p>
+<h3 id="配置output解决浏览器cache问题"><a href="#配置output解决浏览器cache问题" class="headerlink" title="配置output解决浏览器cache问题"></a>配置output解决浏览器cache问题</h3><p>浏览器是有缓存功能的，在我们第一次加载main.js后，浏览器会保有main.js的缓存，下次再加载时就直接从缓存获取了。但是当我们下次发布新版本时（修改了main.js文件），浏览器还是使用以前缓存的main.js内容，所以显示的内容并不是最新的。</p>
+<p><em>处理方法</em></p>
+<p>设置output的filename，添加<code>[contenthash]</code>占位符。</p>
+<pre><code class="js">output: {
+    // 输出文件配置
+    filename: &#39;[name].[contenthash].js&#39;,
+    chunkFilename: &#39;[name].[contenthash].js&#39;,
+},</code></pre>
+<h3 id="shimming"><a href="#shimming" class="headerlink" title="shimming"></a>shimming</h3><p>看一个场景，假设library.js是一个比较老的第三方库。</p>
+<div class="tabs" id="4"><ul class="nav-tabs"><li class="tab active"><a href="#4-1">index.js</a></li><li class="tab"><a href="#4-2">library.js</a></li></ul><div class="tab-content"><div class="tab-pane active" id="4-1"><pre><code class="js"><span class="keyword">import</span> <span class="string">'./style.css'</span>;
+<span class="keyword">import</span> { createText } <span class="keyword">from</span> <span class="string">'./library'</span>;
+
+createText();</code></pre></div><div class="tab-pane" id="4-2"><pre><code class="js"><span class="comment">// 这个第三方库中使用到了loadsh，但是并没有引入lodash</span>
+<span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">createText</span>(<span class="params"></span>) </span>{
+  <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>).innerHTML = _.compact([<span class="number">0</span>, <span class="number">1</span>, <span class="literal">false</span>, <span class="number">2</span>, <span class="string">''</span>, <span class="number">3</span>]);
+}</code></pre></div></div></div>
+
+<p><code>npm run dev</code>打包后浏览器报错</p>
+<div class="note error"><p>Uncaught ReferenceError: _ is not defined</p></div>
+
+<p>如果<code>library.js</code>是我们自己写的库那还好说，直接自己手动引入lodash就可以了。但是由于是第三方库，源文件是在node_module中的，不利于修改，这个时候就可以用<strong>shimming</strong>来解决了。</p>
+<p><strong>配置webpack.common.js</strong></p>
+<pre><code class="js">// 记得引入const webpack =require(&#39;webpack&#39;);
+// 下面代码的意思：当遇到_时，会自动为我们添加下面代码
+// import _ from &#39;lodash&#39;
+plugins: [
+    new webpack.ProvidePlugin({
+        _: &#39;lodash&#39;
+    })
+],</code></pre>
+<p>更多配置参考<a href="https://www.webpackjs.com/guides/shimming/" target="_blank" rel="noopener">shimming</a></p>
+<p><strong>细粒度 shimming</strong></p>
+<p>试着在index.js中打印出<strong>this</strong>，发现<strong>this</strong>其实是指向模块本身。那如何把this指向<strong>window</strong>呢，这里要借助<code>imports-loader</code></p>
+<pre><code>npm i imports-loader -D</code></pre><p>配置好loader</p>
+<pre><code class="js">rules: [
+    {
+        test: /\.js$/,
+        exclude: /node_modules/, // 不对node_modules下的js文件处理
+        use: [
+            {
+                loader: &#39;babel-loader&#39;,
+            },
+            {
+                loader: &#39;imports-loader?this=&gt;window&#39;
+            }
+        ]
+    },
+]</code></pre>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>Tree Shaking可以实现对js文件的按需打包，只在production下生效。</li>
+<li>为生产和开发环境分别创建不同配置文件。</li>
+<li>利用代码分割实现懒加载（利用魔法注释）。</li>
+<li>利用status.json来分析打包过程。</li>
+<li>单独生成css文件，减少mian.js体积。</li>
+<li>为output文件设置hash值，防止浏览器使用缓存。</li>
+</ul>
+
+          
+            <div class='article_footer'>
+              
+                
+  
+    
+    
+
+
+  
+
+<section class="widget list references  desktop mobile">
+  
+  <header>
+    
+      <i class="fas fa-quote-left fa-fw" aria-hidden="true"></i><span class='name'>参考资料</span>
+    
+  </header>
+
+
+  <div class='content'>
+    <ul class="list entry navigation">
+      
+        <li><a class="flat-box" title="https://coding.imooc.com/class/chapter/316.html#Anchor" href="https://coding.imooc.com/class/chapter/316.html#Anchor"
+          
+          
+          id="https:codingimooccomclasschapter316html#Anchor"
+          >
+          <div class='name'>
+            
+            从基础到实战 手把手带你掌握新版Webpack4.0
+          </div>
+          
+        </a></li>
+      
+        <li><a class="flat-box" title="https://webpack.js.org/" href="https://webpack.js.org/"
+          
+          
+          id="https:webpackjsorg"
+          >
+          <div class='name'>
+            
+            webpack官网
+          </div>
+          
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
+
+
+
+  
+
+  
+    
+    
+
+
+
+  
+
+  
+    
+    
+
+<section class="widget copyright  desktop mobile">
+  <div class='content'>
+    
+      <blockquote>
+        
+          
+            <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+          
+        
+          
+            <p>本文永久链接是：<a href=https://alanwang.site/posts/84d16999/>https://alanwang.site/posts/84d16999/</a></p>
+          
+        
+      </blockquote>
+    
+  </div>
+</section>
+
+  
+
+
+              
+            </div>
+          
+        </div>
+        
+          
+
+
+  <section class='meta' id="footer-meta">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：2020年5月25日 14:43</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/webpack4-0/" rel="nofollow"><i class="fas fa-tags fa-fw" aria-hidden="true"></i><p>webpack4.0</p></a></div>
+
+
+        
+      
+        
+          
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
+          
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://alanwang.site/posts/84d16999/&title=webpack4.0进阶（一） - Alan|前端博客&summary=webpack4.0进阶学习"
+          
+          >
+          
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/qq.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer"
+          
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://alanwang.site/posts/84d16999/&title=webpack4.0进阶（一） - Alan|前端博客&summary=webpack4.0进阶学习"
+          
+          >
+          
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/qzone.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
+          
+          href="http://service.weibo.com/share/share.php?url=https://alanwang.site/posts/84d16999/&title=webpack4.0进阶（一） - Alan|前端博客&summary=webpack4.0进阶学习"
+          
+          >
+          
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/weibo.png">
+          
+        </a>
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </section>
+
+
+        
+        
+          <div class="prev-next">
+            
+              <a class='prev' href='/posts/20802113/'>
+                <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>前端面试题</p>
+                <p class='content'>记录了自己疫情期间自学+复习总结的一些面试题，虽然期间只面试了一家。😥（拿到了offer（实习），个人原因没去）
+
+
+背景由于今年疫情的原因以及一些个人原因，辞去了之前的实习工作。在家待了也快...</p>
+              </a>
+            
+            
+              <a class='next' href='/posts/66d3b164/'>
+                <p class='title'>记录生活2020/5<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+                <p class='content'>这是一篇记录5月生活的个人随记。📝
+
+
+2020-05-22现在是22:53，我的论文初稿终于上传审核了🎈，查重率4.8%。记录一下，后天就要线上答辩了。
+
+</p>
+              </a>
+            
+          </div>
+        
+      </section>
+    </article>
+  
+
+  
+    <!-- 显示推荐文章和评论 -->
+
+
+
+  <article class="post white-box reveal comments shadow floatable">
+    <section class="article typo">
+      <p ct><i class='fas fa-comments'></i> 评论</p>
+      
+      
+      
+      
+      
+      
+        <section id="comments">
+          <div id="valine_container" class="valine_thread">
+            <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+          </div>
+        </section>
+      
+      
+    </section>
+  </article>
+
+
+  
+
+
+
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+
+  <script>
+    window.subData = {
+      title: 'webpack4.0进阶（一）',
+      tools: true
+    }
+  </script>
+
+
+</div>
+<aside class='l_side'>
+  
+  
+
+  
+    
+    
+  
+
+  <section class="widget related_posts shadow floatable desktop mobile">
+    
+  <header>
+    
+      <i class="fas fa-bookmark fa-fw" aria-hidden="true"></i><span class='name'>相关文章</span>
+    
+  </header>
+
+
+    <div class="content">
+      <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\posts\f9d92613\" title="webpack4.0进阶（三）" rel="bookmark">webpack4.0进阶（三）</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\posts\ff905629\" title="webpack4.0学习总结（一）" rel="bookmark">webpack4.0学习总结（一）</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\posts\b4c78541\" title="webpack4.0进阶（二）" rel="bookmark">webpack4.0进阶（二）</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\posts\cf86baf1\" title="webpack4.0学习总结（二）" rel="bookmark">webpack4.0学习总结（二）</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\posts\35b500c6\" title="webpack4.0学习总结（四）" rel="bookmark">webpack4.0学习总结（四）</a></h3></div></li></ul>
+    </div>
+  </section>
+
+
+  
+
+  
+    
+    
+
+
+  <section class="widget toc-wrapper shadow floatable desktop mobile">
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Tree-Shaking按需打包文件"><span class="toc-text">Tree Shaking按需打包文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#开发环境和生产环境配置文件"><span class="toc-text">开发环境和生产环境配置文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码分割"><span class="toc-text">代码分割</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#打包分析工具"><span class="toc-text">打包分析工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码优化"><span class="toc-text">代码优化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#css文件处理"><span class="toc-text">css文件处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置output解决浏览器cache问题"><span class="toc-text">配置output解决浏览器cache问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#shimming"><span class="toc-text">shimming</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol>
+    </div>
+  </section>
+
+
+  
+
+
+</aside>
+
+
+  
+  <footer class="clearfix">
+    <br><br>
+    
+      
+        <div class="aplayer-container">
+          
+
+  
+    <meting-js
+      theme='#1BCDFC'
+      autoplay='false'
+      volume='0.7'
+      loop='all'
+      order='list'
+      fixed='false'
+      list-max-height='340px'
+      server='netease'
+      type='playlist'
+      id='1980666520'
+      list-folded='true'>
+    </meting-js>
+  
+
+
+        </div>
+      
+    
+      
+        <br>
+        <div class="social-wrapper">
+          
+            
+              <a href="mailto:alannum3@qq.com"
+                class="social fas fa-envelope flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+            
+              <a href="https://github.com/3Alan"
+                class="social fab fa-github flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+            
+              <a href="tencent://message/?uin=1540703192"
+                class="social fab fa-qq flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+        </div>
+      
+    
+      
+        <div><p>博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+</div>
+      
+    
+      
+        本站使用
+        <a href="https://volantis.js.org/" target="_blank" class="codename">Volantis</a>
+        作为主题，总访问量为
+          <span id="busuanzi_value_site_pv"><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+          次
+          总访客量
+          <span id="busuanzi_value_site_uv"><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+          次
+          <span id="timeDate">载入天数...</span>
+        
+      
+    
+      
+        <div class='copyright'>
+        <p><a href="https://alanwang.site/">Copyright © 2020 Alan</a></p>
+
+        </div>
+      
+    
+  </footer>
+
+<script>setLoadingBarProgress(80);</script>
+
+<script>
+  var now = new Date(); 
+  var grt= new Date("05/11/2020 13:14:00");
+  now.setTime(now.getTime()); 
+  days = Math.floor((now - grt ) / 1000 / 60 / 60 / 24); 
+  document.getElementById("timeDate").innerHTML = "本站已安全运行 "+days+" 天 "; 
+</script>
+
+<script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?ff1856f91533fcea9c8c2fe5a1b06fe7";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+  
+
+      <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+  </div>
+  
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4/dist/jquery.min.js"></script>
+
+
+  <script>
+    
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/" || "/";
+    if (!ROOT.endsWith('/')) ROOT += '/';
+  </script>
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-volantis@2/js/instant_page.js" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.6/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      ScrollReveal().reveal('.l_main .reveal', {
+        distance: '8px',
+        duration: '800',
+        interval: '100',
+        scale: '1'
+      });
+    });
+  </script>
+
+
+  
+<script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+
+  <script type="text/javascript">
+    $(function() {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+  <script defer src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
+
+
+
+  
+  
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js"></script>
+
+    <script type="text/javascript">
+      $(function(){
+        var imgs=["https://gitee.com/alannum3/MyImages/raw/master/img/triangles-3321900_1920.png", "https://gitee.com/alannum3/MyImages/raw/master/img/img-8e2c27a1a7510d3b73317e96ec2f4b72.jpg", "https://gitee.com/alannum3/MyImages/raw/master/img/img-2da8b0f6ac052b7b9402dea246a56701.jpg", "https://gitee.com/alannum3/MyImages/raw/master/img/img-389c21fac02e9980506b6f7ff7f130f6.jpg", "https://gitee.com/alannum3/MyImages/raw/master/img/img-b7f5935e94f6deda4fda5e2820c48bef.jpg", "https://gitee.com/alannum3/MyImages/raw/master/img/img-3c991ba94430b0ddf426d9062bbea403.jpg"];
+        if ('true' == 'true') {
+          function shuffle(arr){
+            /*From countercurrent-time*/
+            var n = arr.length;
+            while(n--) {
+              var index = Math.floor(Math.random() * n);
+              var temp = arr[index];
+              arr[index] = arr[n];
+              arr[n] = temp;
+            }
+          }
+          shuffle(imgs);
+        }
+        if ('') {
+          $('').backstretch(
+            imgs,
+          {
+            duration: "20000",
+            fade: "1500"
+          });
+        } else {
+          $.backstretch(
+            imgs,
+          {
+            duration: "20000",
+            fade: "1500"
+          });
+        }
+      });
+    </script>
+  
+
+
+
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.js"></script>
+
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/meting@2.0/dist/Meting.min.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4/dist/Valine.min.js"></script>
+
+  
+  <script>
+  var GUEST_INFO = ['nick','mail','link'];
+  var meta = 'nick,mail,link'.split(',').filter(function(item){
+    return GUEST_INFO.indexOf(item) > -1
+  });
+  var REQUIRED_FIELDS = ['nick','mail','link'];
+  var requiredFields = 'nick,mail'.split(',').filter(function(item){
+    return REQUIRED_FIELDS.indexOf(item) > -1
+  });
+  var valine = new Valine();
+  function emoji(path, idx, ext) {
+      return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  valine.init({
+    el: '#valine_container',
+    meta: meta,
+    
+    appId: "aowgxqHE7wB4I8HLWqC4c4Ut-MdYXbMMI",
+    appKey: "37wkY4T3cM7nV2UWV7EIEHPy",
+    placeholder: "快来评论吧~",
+    pageSize:'10',
+    avatar:'robohash',
+    lang:'zh-cn',
+    visitor: 'true',
+    highlight: 'true',
+    mathJax: 'false',
+    enableQQ: 'true',
+    requiredFields: requiredFields,
+    emojiCDN: 'https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/emoji/valine/',
+    emojiMaps: emojiMaps
+  })
+  </script>
+
+
+
+
+
+  
+<script src="/js/app.js"></script>
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-volantis@2.6.5/js/search.js"></script>
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-volantis@2/js/comment_typing.js"></script>
+
+
+
+
+  
+    
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/highlight.min.js"></script>
+
+    <script>hljs.initHighlightingOnLoad();</script>
+  
+
+
+
+<!-- 复制 -->
+
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="fas fa-copy"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('fa-copy');
+        $icon.addClass('fa-check-circle');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('fa-check-circle');
+          $icon.addClass('fa-copy');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('fa-copy');
+        $icon.addClass('fa-times-circle');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('fa-times-circle');
+          $icon.addClass('fa-copy');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  function pjax_fancybox() {
+    $(".article-entry").find("img").not('.inline').not('a img').each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 标准 markdown 描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".article-entry").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  $(function () {
+    pjax_fancybox();
+  });
+</script>
+
+
+
+
+  <script>setLoadingBarProgress(100);</script>
+<script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(n){n.imageLazyLoadSetting.processImages=o;var i=n.imageLazyLoadSetting.isSPA,r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function o(){i&&(r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")));for(var t,e,a=0;a<r.length;a++)t=r[a],0<=(e=t.getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(n.innerHeight||document.documentElement.clientHeight)&&function(){var t,e,n,i,o=r[a];t=o,e=function(){r=r.filter(function(t){return o!==t})},n=new Image,i=t.getAttribute("data-original"),n.onload=function(){t.src=i,e&&e()},n.src=i}()}o(),n.addEventListener("scroll",function(){var t,e;t=o,e=n,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(e)},500)})}(this);</script></body>
+</html>
