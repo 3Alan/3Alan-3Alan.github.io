@@ -3576,6 +3576,23 @@ footer .copyright p {
 .l_main .post section.meta .new-meta-box i {
   font-size: 0.8125rem;
 }
+.l_main .post section.meta .new-meta-box .new-meta-item.top-post .notlink i,
+.l_main .post section.meta .new-meta-box .new-meta-item.top-post .notlink p {
+  color: #f5222d;
+}
+.l_main .post section.meta .new-meta-box .new-meta-item.category i {
+  color: #ffc928;
+}
+.l_main .post section.meta .new-meta-box .new-meta-item.category p {
+  color: #666;
+}
+.l_main .post section.meta .new-meta-box .new-meta-item.category p:hover {
+  color: #ff5722;
+}
+.l_main .post section.meta .new-meta-box .new-meta-item.valine i,
+.l_main .post section.meta .new-meta-box .new-meta-item.valine p {
+  color: #fe5f58;
+}
 .l_main .post section.meta .new-meta-box .new-meta-item {
   color: rgba(85,85,85,0.65);
   display: flex;
@@ -3611,15 +3628,6 @@ footer .copyright p {
 }
 .l_main .post section.meta .new-meta-box .new-meta-item.link-btns .btn:hover p {
   color: #fff;
-}
-.l_main .post section.meta .new-meta-box .new-meta-item .notlink {
-  cursor: default;
-}
-.l_main .post section.meta .new-meta-box .new-meta-item .notlink:hover {
-  color: rgba(85,85,85,0.65);
-}
-.l_main .post section.meta .new-meta-box .new-meta-item .notlink:hover p {
-  color: rgba(85,85,85,0.65);
 }
 .l_main .post section.meta .new-meta-box .new-meta-item:last-child {
   margin-right: 0;
