@@ -5283,7 +5283,6 @@ ul.list-v >li>a.active {
     right: 16px;
     border-radius: 4px;
     box-shadow: 0 4px 8px 0px rgba(0,0,0,0.1);
-    border: 1px solid #1b1d23;
     visibility: hidden;
     transform: scale(0, 0);
     transform-origin: right top;
