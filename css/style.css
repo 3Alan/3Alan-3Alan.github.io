@@ -5307,6 +5307,10 @@ ul.list-v >li>a.active {
   font-size: 0.875rem;
   display: inline-block;
 }
+.l_side .toc-wrapper ul .toc-item,
+.l_side .toc-wrapper ol .toc-item {
+  margin-bottom: 6px;
+}
 .l_side .toc-wrapper ul .toc-child a,
 .l_side .toc-wrapper ol .toc-child a {
   font-weight: normal;
