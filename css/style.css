@@ -1757,8 +1757,12 @@ pre {
   border-radius: 2px;
   width: 100%;
 }
-.highlight pre .title,
-.highlight pre .attr,
+.highlight pre .attr {
+  color: #d19a66;
+}
+.highlight pre .title {
+  color: #61afef;
+}
 .highlight pre .attribute {
   color: #3f51b5;
 }
@@ -1830,7 +1834,7 @@ pre {
 .highlight.css .line .selector-tag,
 .highlight.less .line .selector-tag,
 .highlight.stylus .line .selector-tag {
-  color: #ee2b29;
+  color: #e06c75;
 }
 .highlight.html .line .selector-class,
 .highlight.css .line .selector-class,
@@ -1846,7 +1850,7 @@ pre {
 .highlight.css .line .attribute,
 .highlight.less .line .attribute,
 .highlight.stylus .line .attribute {
-  color: #3f51b5;
+  color: #e5c07b;
 }
 .highlight.html .line .number,
 .highlight.css .line .number,
@@ -1889,10 +1893,10 @@ pre {
   color: #3fa33f;
 }
 .highlight.json .line .attr {
-  color: #e24f5a;
+  color: #e06c75;
 }
 .highlight.json .line .literal {
-  color: #3f51b5;
+  color: #d19a66;
 }
 .highlight.yaml .line .attr {
   color: #e24f5a;
