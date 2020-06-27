@@ -1453,7 +1453,7 @@ div.tabs .tab-content .tab-pane .highlight {
 }
 div.tabs .tab-content .tab-pane pre {
   margin: 0;
-  border-radius: 0;
+  border-radius: 0 0 6px 6px;
   border: none;
 }
 div.tabs .tab-content .tab-pane pre code {

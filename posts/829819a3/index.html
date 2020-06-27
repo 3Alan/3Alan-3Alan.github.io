@@ -56,6 +56,12 @@
   
 
   
+    
+      
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.0.3/styles/atom-one-dark.min.css">
+
+    
+  
   
     
 <link rel="stylesheet" href="/css/style.css">
@@ -549,66 +555,192 @@
 </blockquote>
 <p>官网介绍到，它可以帮我们自动创造HTML文件，并且还可以使用自定义的HTML模板。</p>
 <p>直接看例子：</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">npm</span> <span class="string">i</span> <span class="string">html-webpack-plugin</span> <span class="string">-D</span></span><br></pre></td></tr></table></figure>
+<pre><code class="yaml">npm i html-webpack-plugin -D</code></pre>
+<pre><code>webpacktest
+ ├── package-lock.json
+ ├── package.json
+ ├── src
+ │   └── index.js
+ └── webpack.config.js</code></pre><p>index.js</p>
+<pre><code class="js">var root = document.getElementById(&#39;root&#39;);
 
-<p>webpacktest<br> ├── package-lock.json<br> ├── package.json<br> ├── src<br> │   └── index.js<br> └── webpack.config.js</p>
-<div class="tabs" id="1"><ul class="nav-tabs"><li class="tab active"><a href="#1-1">index.js</a></li><li class="tab"><a href="#1-2">webpack.config.js</a></li></ul><div class="tab-content"><div class="tab-pane active" id="1-1"><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> root = <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>);</span><br><span class="line"></span><br><span class="line">root.innerHTML = <span class="string">'&lt;div&gt;Hello Webpack&lt;/div&gt;'</span></span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="1-2"><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="keyword">const</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">'html-webpack-plugin'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  mode: <span class="string">'development'</span>, <span class="comment">// 默认为production</span></span><br><span class="line">  entry: &#123;</span><br><span class="line">    main: <span class="string">'./src/index.js'</span>, <span class="comment">// 打包入口文件</span></span><br><span class="line">  &#125;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    <span class="comment">// 输出文件配置</span></span><br><span class="line">    filename: <span class="string">'bundle.js'</span>,</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">'dist'</span>),</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [<span class="keyword">new</span> HtmlWebpackPlugin()]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div></div></div>
+root.innerHTML = &#39;&lt;div&gt;Hello Webpack&lt;/div&gt;&#39;</code></pre>
+<p>webpack.config.js</p>
+<pre><code class="js">const path = require(&#39;path&#39;);
+const HtmlWebpackPlugin = require(&#39;html-webpack-plugin&#39;);
 
+module.exports = {
+  mode: &#39;development&#39;, // 默认为production
+  entry: {
+    main: &#39;./src/index.js&#39;, // 打包入口文件
+  },
+  output: {
+    // 输出文件配置
+    filename: &#39;bundle.js&#39;,
+    path: path.resolve(__dirname, &#39;dist&#39;),
+  },
+  plugins: [new HtmlWebpackPlugin()]
+};</code></pre>
 <p><code>npm run build</code>进行打包看下结果</p>
-<p>webpacktest<br> ├── dist<br> │   ├── bundle.js<br> │   └── index.html<br> ├── package-lock.json<br> ├── package.json<br> ├── src<br> │   └── index.js<br> └── webpack.config.js</p>
-<p>HtmlWebpackPlugin插件自动为我们生成了index.html，但是…浏览器打开index.html一看什么都没有。这是咋回事，来看一看生成的index.html文件发现了问题</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Webpack App<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1"</span>&gt;</span><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"bundle.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
+<pre><code>webpacktest
+ ├── dist
+ │   ├── bundle.js
+ │   └── index.html
+ ├── package-lock.json
+ ├── package.json
+ ├── src
+ │   └── index.js
+ └── webpack.config.js</code></pre><p>HtmlWebpackPlugin插件自动为我们生成了index.html，但是…浏览器打开index.html一看什么都没有。这是咋回事，来看一看生成的index.html文件发现了问题</p>
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;Webpack App&lt;/title&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;&lt;/head&gt;
+  &lt;body&gt;
+  &lt;script src=&quot;bundle.js&quot;&gt;&lt;/script&gt;&lt;/body&gt;
+&lt;/html&gt;</code></pre>
 <p>生成的文件中是没有<code>#root</code>节点的，那怎么办？我们还需要配置一下HtmlWebpackPlugin，前面官网的介绍中也提到了</p>
 <blockquote>
 <p>You can either let the plugin generate an HTML file for you, supply your own template using <a href="https://lodash.com/docs#template" target="_blank" rel="noopener">lodash templates</a>, or use your own <a href="https://webpack.js.org/loaders" target="_blank" rel="noopener">loader</a></p>
 </blockquote>
 <p>我们需要自己提供一个HTML模板，于是在src目录下创建一个index.html作为HtmlWebpackPlugin打包的模板</p>
-<div class="tabs" id="2"><ul class="nav-tabs"><li class="tab active"><a href="#2-1">index.html</a></li><li class="tab"><a href="#2-2">webpack.config.js</a></li></ul><div class="tab-content"><div class="tab-pane active" id="2-1"><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>html template<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"root"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="2-2"><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">plugins: [<span class="keyword">new</span> HtmlWebpackPlugin(&#123;</span><br><span class="line">    template: <span class="string">'./src/index.html'</span></span><br><span class="line">&#125;)]</span><br></pre></td></tr></table></figure></div></div></div>
+<div class="tabs" id="2"><ul class="nav-tabs"><li class="tab active"><a href="#2-1">index.html</a></li><li class="tab"><a href="#2-2">webpack.config.js</a></li></ul><div class="tab-content"><div class="tab-pane active" id="2-1"><pre><code class="html"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span>
+<span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span>
+<span class="tag">&lt;<span class="name">head</span>&gt;</span>
+  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span>
+  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span>
+  <span class="tag">&lt;<span class="name">title</span>&gt;</span>html template<span class="tag">&lt;/<span class="name">title</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">head</span>&gt;</span>
+<span class="tag">&lt;<span class="name">body</span>&gt;</span>
+  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"root"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">body</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">html</span>&gt;</span></code></pre></div><div class="tab-pane" id="2-2"><pre><code class="js">plugins: [<span class="keyword">new</span> HtmlWebpackPlugin({
+    template: <span class="string">'./src/index.html'</span>
+})]</code></pre></div></div></div>
 
 
 
 <p>再打包一次看一下dist目录下生成的index.html文件和我们定义的html模板是一样的了。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>html template<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"root"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"bundle.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;title&gt;html template&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div id=&quot;root&quot;&gt;&lt;/div&gt;
+&lt;script src=&quot;bundle.js&quot;&gt;&lt;/script&gt;&lt;/body&gt;
+&lt;/html&gt;</code></pre>
 <p>打开浏览器发现Hello Webpack也正确显示出来了。🎉</p>
 <h3 id="clean-webpack-plugin"><a href="#clean-webpack-plugin" class="headerlink" title="clean-webpack-plugin"></a>clean-webpack-plugin</h3><p><a href="https://www.npmjs.com/package/clean-webpack-plugin" target="_blank" rel="noopener">https://www.npmjs.com/package/clean-webpack-plugin</a></p>
 <p>它的作用就是在每次打包前会将webpack中配置的<code>out.path</code>(dist目录)清空</p>
-<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">npm</span> i clean-webpack-plugin -D</span><br></pre></td></tr></table></figure>
+<pre><code>npm i clean-webpack-plugin -D</code></pre><p>为了验证是否清空了dist目录，我们先在dist目录下自己创建一个文件my.js</p>
+<pre><code>dist
+ ├── bundle.js
+ ├── index.html
+ └── my.js</code></pre><pre><code class="js">const path = require(&#39;path&#39;);
+const HtmlWebpackPlugin = require(&#39;html-webpack-plugin&#39;);
+const { CleanWebpackPlugin } = require(&#39;clean-webpack-plugin&#39;);
 
-<p>为了验证是否清空了dist目录，我们先在dist目录下自己创建一个文件my.js</p>
-<p>dist<br> ├── bundle.js<br> ├── index.html<br> └── my.js</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="keyword">const</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">'html-webpack-plugin'</span>);</span><br><span class="line"><span class="keyword">const</span> &#123; CleanWebpackPlugin &#125; = <span class="built_in">require</span>(<span class="string">'clean-webpack-plugin'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  mode: <span class="string">'development'</span>, <span class="comment">// 默认为production</span></span><br><span class="line">  entry: &#123;</span><br><span class="line">    main: <span class="string">'./src/index.js'</span>, <span class="comment">// 打包入口文件</span></span><br><span class="line">  &#125;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    <span class="comment">// 输出文件配置</span></span><br><span class="line">    filename: <span class="string">'bundle.js'</span>,</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">'dist'</span>),</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [<span class="keyword">new</span> HtmlWebpackPlugin(&#123;</span><br><span class="line">    template: <span class="string">'./src/index.html'</span></span><br><span class="line">  &#125;), <span class="keyword">new</span> CleanWebpackPlugin()]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
+module.exports = {
+  mode: &#39;development&#39;, // 默认为production
+  entry: {
+    main: &#39;./src/index.js&#39;, // 打包入口文件
+  },
+  output: {
+    // 输出文件配置
+    filename: &#39;bundle.js&#39;,
+    path: path.resolve(__dirname, &#39;dist&#39;),
+  },
+  plugins: [new HtmlWebpackPlugin({
+    template: &#39;./src/index.html&#39;
+  }), new CleanWebpackPlugin()]
+};</code></pre>
 <p><code>npm run build</code>打包</p>
-<p>dist<br> ├── bundle.js<br> └── index.html</p>
-<p>我们发现之前创建的my.js文件已经被CleanWebpackPlugin给清除了。</p>
+<pre><code>dist
+ ├── bundle.js
+ └── index.html</code></pre><p>我们发现之前创建的my.js文件已经被CleanWebpackPlugin给清除了。</p>
 <h3 id="多入口文件"><a href="#多入口文件" class="headerlink" title="多入口文件"></a>多入口文件</h3><p>有时我们的打包入口文件有多个，这时候就要通过设置entry来完成打包。并通过[name]占位符来设置打包出来的文件的名称。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="keyword">const</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">'html-webpack-plugin'</span>);</span><br><span class="line"><span class="keyword">const</span> &#123; CleanWebpackPlugin &#125; = <span class="built_in">require</span>(<span class="string">'clean-webpack-plugin'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  mode: <span class="string">'development'</span>, <span class="comment">// 默认为production</span></span><br><span class="line">  entry: &#123;</span><br><span class="line">    main: <span class="string">'./src/index.js'</span>, <span class="comment">// 打包入口文件</span></span><br><span class="line">    enrty: <span class="string">'./src/entry.js'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    <span class="comment">// 输出文件配置</span></span><br><span class="line">    filename: <span class="string">'[name].js'</span>,</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">'dist'</span>),</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [<span class="keyword">new</span> HtmlWebpackPlugin(&#123;</span><br><span class="line">    template: <span class="string">'./src/index.html'</span></span><br><span class="line">  &#125;), <span class="keyword">new</span> CleanWebpackPlugin()]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<pre><code class="js">const path = require(&#39;path&#39;);
+const HtmlWebpackPlugin = require(&#39;html-webpack-plugin&#39;);
+const { CleanWebpackPlugin } = require(&#39;clean-webpack-plugin&#39;);
 
+module.exports = {
+  mode: &#39;development&#39;, // 默认为production
+  entry: {
+    main: &#39;./src/index.js&#39;, // 打包入口文件
+    enrty: &#39;./src/entry.js&#39;,
+  },
+  output: {
+    // 输出文件配置
+    filename: &#39;[name].js&#39;,
+    path: path.resolve(__dirname, &#39;dist&#39;),
+  },
+  plugins: [new HtmlWebpackPlugin({
+    template: &#39;./src/index.html&#39;
+  }), new CleanWebpackPlugin()]
+};</code></pre>
 <p><code>npm run build</code>打包结果</p>
-<p>dist<br> ├── enrty.js<br> ├── index.html<br> └── main.js</p>
-<p>看一看index.html</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>html template<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"root"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"main.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"enrty.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
+<pre><code>dist
+ ├── enrty.js
+ ├── index.html
+ └── main.js</code></pre><p>看一看index.html</p>
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;title&gt;html template&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div id=&quot;root&quot;&gt;&lt;/div&gt;
+&lt;script src=&quot;main.js&quot;&gt;&lt;/script&gt;&lt;script src=&quot;enrty.js&quot;&gt;&lt;/script&gt;&lt;/body&gt;
+&lt;/html&gt;</code></pre>
 <p>可以看到HtmlWebpackPlugin帮我们把<code>main.js</code>和<code>entry.j</code>2个文件都自动引入到html文件当中了。</p>
 <p>在实际业务场景中，为了优化服务器性能，我们会将打包好的dist目录中的一部分文件丢到cdn中来加快访问速度。这时候我们就要将cdn的地址手动复制到打包后的html文件中了，不过我们可以通过设置output的publicPath来完成。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">output: &#123;</span><br><span class="line">    <span class="comment">// 输出文件配置</span></span><br><span class="line">    filename: <span class="string">'[name].js'</span>,</span><br><span class="line">        publicPath: <span class="string">'https://cdn.example.com/assets'</span>,</span><br><span class="line">            path: path.resolve(__dirname, <span class="string">'dist'</span>),</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-
+<pre><code class="js">output: {
+    // 输出文件配置
+    filename: &#39;[name].js&#39;,
+        publicPath: &#39;https://cdn.example.com/assets&#39;,
+            path: path.resolve(__dirname, &#39;dist&#39;),
+},</code></pre>
 <p>打包后的效果</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.example.com/assets/main.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.example.com/assets/enrty.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
+<pre><code class="html">&lt;script src=&quot;https://cdn.example.com/assets/main.js&quot;&gt;&lt;/script&gt;&lt;script src=&quot;https://cdn.example.com/assets/enrty.js&quot;&gt;&lt;/script&gt;</code></pre>
 <h3 id="SourceMap"><a href="#SourceMap" class="headerlink" title="SourceMap"></a>SourceMap</h3><p>sourcemap是什么，我们修改一下index.js文件内容并且在webpack配置中关闭sourcemap(devtool: ‘none’)</p>
-<div class="tabs" id="3"><ul class="nav-tabs"><li class="tab active"><a href="#3-1">index.js</a></li><li class="tab"><a href="#3-2">webpack.config.js</a></li></ul><div class="tab-content"><div class="tab-pane active" id="3-1"><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> root = <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>);</span><br><span class="line"></span><br><span class="line">errfun();</span><br><span class="line"></span><br><span class="line">root.innerHTML = <span class="string">'&lt;div&gt;Hello Webpack&lt;/div&gt;'</span></span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="3-2"><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="keyword">const</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">'html-webpack-plugin'</span>);</span><br><span class="line"><span class="keyword">const</span> &#123; CleanWebpackPlugin &#125; = <span class="built_in">require</span>(<span class="string">'clean-webpack-plugin'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  mode: <span class="string">'development'</span>, <span class="comment">// 默认为production</span></span><br><span class="line">  devtool: <span class="string">'none'</span>,</span><br><span class="line">  entry: &#123;</span><br><span class="line">    main: <span class="string">'./src/index.js'</span>, <span class="comment">// 打包入口文件</span></span><br><span class="line">    enrty: <span class="string">'./src/entry.js'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    <span class="comment">// 输出文件配置</span></span><br><span class="line">    filename: <span class="string">'[name].js'</span>,</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">'dist'</span>),</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [<span class="keyword">new</span> HtmlWebpackPlugin(&#123;</span><br><span class="line">    template: <span class="string">'./src/index.html'</span></span><br><span class="line">  &#125;), <span class="keyword">new</span> CleanWebpackPlugin()]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div></div></div>
+<p>index.js</p>
+<pre><code class="js">var root = document.getElementById(&#39;root&#39;);
 
+errfun();
+
+root.innerHTML = &#39;&lt;div&gt;Hello Webpack&lt;/div&gt;&#39;</code></pre>
+<p>webpack.config.js</p>
+<pre><code class="js">const path = require(&#39;path&#39;);
+const HtmlWebpackPlugin = require(&#39;html-webpack-plugin&#39;);
+const { CleanWebpackPlugin } = require(&#39;clean-webpack-plugin&#39;);
+
+module.exports = {
+  mode: &#39;development&#39;, // 默认为production
+  devtool: &#39;none&#39;,
+  entry: {
+    main: &#39;./src/index.js&#39;, // 打包入口文件
+    enrty: &#39;./src/entry.js&#39;,
+  },
+  output: {
+    // 输出文件配置
+    filename: &#39;[name].js&#39;,
+    path: path.resolve(__dirname, &#39;dist&#39;),
+  },
+  plugins: [new HtmlWebpackPlugin({
+    template: &#39;./src/index.html&#39;
+  }), new CleanWebpackPlugin()]
+};</code></pre>
 <p>index.js中使用了一个不存在的函数errfun()，打包运行一下是会报错的。</p>
 <p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://gitee.com/alannum3/MyImages/raw/master/img/image-20200517134620514.png" alt="image-20200517134620514"></p>
 <p>这个时候我们想要调试代码，但是它这里提示的错误行是打包后的main.js所在的位置。</p>
 <p>现在我们配置sourcemap看看。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">devtool: <span class="string">'source-map'</span>,</span><br></pre></td></tr></table></figure>
-
+<pre><code class="js">devtool: &#39;source-map&#39;,</code></pre>
 <p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://gitee.com/alannum3/MyImages/raw/master/img/image-20200517135446504.png" alt="image-20200517135446504"></p>
 <p>这个时候我们就能定位到错误是出现在我们index.js的第三行了。</p>
 <div class="note info"><p>配置不同sourceMap会不同程度上增加应用的打包时间或消耗性能</p></div>
@@ -801,7 +933,7 @@
 
 
 DevServerDevServer可以起一个本地服务并且实现代码的热更新。可以省去我们每次更新代码后重启服务额操作。
-1npm...</p>
+npm ...</p>
               </a>
             
             
@@ -1208,6 +1340,13 @@ DevServerDevServer可以起一个本地服务并且实现代码的热更新。�
 
 
 
+
+  
+    
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/highlight.min.js"></script>
+
+    <script>hljs.initHighlightingOnLoad();</script>
+  
 
 
 
