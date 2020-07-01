@@ -16,12 +16,12 @@
 
   <!-- 页面元数据 -->
   
-    <title>webpack4.0进阶（一） - Alan|前端博客</title>
+    <title>TypeScript学习总结（一） - Alan|前端博客</title>
   
-    <meta name="keywords" content="webpack4.0">
+    <meta name="keywords" content="TypeScript">
   
   
-    <meta name="description" content="webpack4.0进阶学习">
+    <meta name="description" content="TypeScript常用知识点总结">
   
 
   <!-- feed -->
@@ -464,8 +464,8 @@
         
           
   <h1 class="title">
-    <a href="/posts/84d16999/">
-      webpack4.0进阶（一）
+    <a href="/posts/fc7889ef/">
+      TypeScript学习总结（一）
     </a>
   </h1>
 
@@ -479,9 +479,9 @@
               
   
   <div class='new-meta-item category'>
-    <a href='/categories/%E5%89%8D%E7%AB%AF/webpack4-0%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/' rel="nofollow">
+    <a href='/categories/%E5%89%8D%E7%AB%AF/TypeScript/' rel="nofollow">
       <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <p>前端/webpack4.0学习总结</p>
+      <p>前端/TypeScript</p>
     </a>
   </div>
 
@@ -489,10 +489,10 @@
             
           
             
-              <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-05-30T17:20:00+08:00">
+              <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-07-01T11:52:09+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2020年5月30日 17:20</p>
+    <p>更新于：2020年7月1日 11:52</p>
   </a>
 </div>
 
@@ -509,7 +509,7 @@
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>时长：10分钟</p>
+      <p>时长：9分钟</p>
     </a>
   </div>
 
@@ -522,7 +522,7 @@
     <a class='notlink'>
       <i class="fas fa-fire fa-fw" aria-hidden="true"></i>
       
-      <span id="/posts/84d16999/" class="leancloud_visitors" data-flag-title="webpack4.0进阶（一）">
+      <span id="/posts/fc7889ef/" class="leancloud_visitors" data-flag-title="TypeScript学习总结（一）">
       <p>
         <span class="leancloud-visitors-count"></span>
       </p>
@@ -545,337 +545,271 @@
       <section class="article typo">
         <div class="article-entry" itemprop="articleBody">
           
-          <p>webpack4.0进阶学习</p>
+          <p>TypeScript常用知识点总结</p>
 <a id="more"></a>
 
-<h3 id="Tree-Shaking按需打包文件"><a href="#Tree-Shaking按需打包文件" class="headerlink" title="Tree Shaking按需打包文件"></a>Tree Shaking按需打包文件</h3><div class="tabs" id="1"><ul class="nav-tabs"><li class="tab active"><a href="#1-1">index.js</a></li><li class="tab"><a href="#1-2">moment.js</a></li></ul><div class="tab-content"><div class="tab-pane active" id="1-1"><pre><code class="js"><span class="keyword">import</span> { used } <span class="keyword">from</span> <span class="string">'./moment'</span>;
-
-used();</code></pre></div><div class="tab-pane" id="1-2"><pre><code class="js"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">used</span>(<span class="params"></span>) </span>{
-  <span class="built_in">console</span>.log(<span class="string">'used function'</span>);
-}
-
-<span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">notUsed</span>(<span class="params"></span>) </span>{
-  <span class="built_in">console</span>.log(<span class="string">'notUsed funtion'</span>);
-}</code></pre></div></div></div>
-
-<p>上面这个例子中我们只使用到了moment中的<code>used</code>，但是打包后连同<code>notUsed</code>一起被打包进了main.js文件中</p>
-<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://gitee.com/alannum3/MyImages/raw/master/img/image-20200525151309388.png" alt="image-20200525151309388"></p>
-<p>Tree Shaking可以帮我们解决这个问题。</p>
-<div class="note warning"><p>注意：1.Tree Shaking只在production模式下生效。2.只支持ES Module 语法（import），不支持CommonJs</p></div>
-
-<div class="tabs" id="2"><ul class="nav-tabs"><li class="tab active"><a href="#2-1">package.json</a></li><li class="tab"><a href="#2-2">webpack.config.js</a></li></ul><div class="tab-content"><div class="tab-pane active" id="2-1"><pre><code class="json">"sideEffects": false,
-或者
-"sideEffects": [
-  "**/*.css",
-  "**/*.scss",
-  "./esnext/index.js",
-  <span class="string">"./esnext/configure.js"</span>
-],
-意思是对这些文件不进行tree shaking处理
-例如
-import './common.css';
-虽然我们没有使用common.css的一些东西，但是它起到了样式的作用的，如果不在sideEffect中设置的话，webpack是不会对它进行打包的。</code></pre></div><div class="tab-pane" id="2-2"><pre><code class="js">optimization: {
-    usedExports: <span class="literal">true</span>,
-}
-<span class="comment">// production模式是会自动配置好，可写可不写</span></code></pre></div></div></div>
-
-
-
-<h3 id="开发环境和生产环境配置文件"><a href="#开发环境和生产环境配置文件" class="headerlink" title="开发环境和生产环境配置文件"></a>开发环境和生产环境配置文件</h3><p>由于开发环境需要调试代码所以会引入<code>devServer</code>之类的插件，那么这部分插件在生产环境中是不需要使用到的，我们可以对开发环境和生产环境分别设置不同的配置文件。</p>
-<p>首先安装插件<code>webpack-merge</code>用来将拼接common配置</p>
-<pre><code>npm i webpack-merge -D</code></pre><p>目录如下：</p>
-<pre><code>webpacktest
- ├── package.json
- ├── src
- │   ├── index.html
- │   ├── index.js
- │   └── moment.js
- ├── webpack.common.js
- ├── webpack.dev.js
- └── webpack.prod.js</code></pre><p>webpack.common.js</p>
-<pre><code class="js">const path = require(&#39;path&#39;);
-const HtmlWebpackPlugin = require(&#39;html-webpack-plugin&#39;);
-const { CleanWebpackPlugin } = require(&#39;clean-webpack-plugin&#39;);
-
-module.exports = {
-  mode: &#39;development&#39;, // 默认为production
-  entry: {
-    main: &#39;./src/index.js&#39;, // 打包入口文件
-  },
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/, // 不对node_modules下的js文件处理
-        loader: &#39;babel-loader&#39;
-      },
-      {
-        test: /\.css$/,
-        use: [&#39;style-loader&#39;, &#39;css-loader&#39;],
-      },
-    ],
-  },
-  output: {
-    // 输出文件配置
-    filename: &#39;[name].js&#39;,
-    path: path.resolve(__dirname, &#39;dist&#39;),
-  },
-  optimization: {
-    usedExports: true,
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: &#39;./src/index.html&#39;,
-    }),
-    new CleanWebpackPlugin(),
-  ],
-};</code></pre>
-<p>webpack.dev.js</p>
-<pre><code class="js">const merge = require(&#39;webpack-merge&#39;);
-const commonConfig = require(&#39;./webpack.common.js&#39;);
-
-const devConfig = {
-  mode: &#39;development&#39;, // 默认为production
-  devtool: &#39;cheap-module-eval-source-map&#39;,
-  devServer: {
-    contentBase: &#39;./dist&#39;,
-    open: true, // 自动打开浏览器
-    port: 3001, // 服务器端口号
-    hot: true, // 开启HRM
-  }
-};
-
-module.exports = merge(commonConfig, devConfig);</code></pre>
-<p>webpack.prod.js</p>
-<pre><code class="js">const merge = require(&#39;webpack-merge&#39;);
-const commonConfig = require(&#39;./webpack.common.js&#39;);
-
-const prodConfig =  {
-  mode: &#39;development&#39;, // 默认为production
-  devtool: &#39;cheap-module-source-map&#39;
-};
-
-module.exports = merge(commonConfig, prodConfig);</code></pre>
-<p>npm script</p>
-<pre><code class="json">&quot;scripts&quot;: {
-    &quot;dev&quot;: &quot;webpack-dev-server --config webpack.dev.js&quot;,
-    &quot;build&quot;: &quot;webpack --config webpack.prod.js&quot;
-},</code></pre>
-<p>配置好后，开发环境使用<code>npm run dev</code>进行打包，生产环境用<code>npm run build</code>进行打包。</p>
-<h3 id="代码分割"><a href="#代码分割" class="headerlink" title="代码分割"></a>代码分割</h3><p>代码分割有利于性能的优化。何为代码分割：</p>
-<p>有这么一个场景，我在<code>index.js</code>中使用到了一些公共代码库/工具库（lodash），<code>index.js</code>中的代码是依赖于lodash中的一些工具的。当我们打包时，lodash也是被打包到了<code>main.js</code>文件中，并且一旦<code>index.js</code>中的业务代码改变了，连同lodash也要一同重新打包加载，但是我们一般是不会去改动lodash这类工具库的。于是我们可以借助代码分割来将业务代码和lodash进行分割，这样下次再修改业务代码时，我们就无需重新加载lodash的内容了。</p>
-<p>先安装lodash</p>
-<pre><code>npm i lodash -S</code></pre><p>这里为了便于查看打包后的文件内容，我们加上一条npm script<code>&quot;start&quot;: &quot;webpack --config webpack.dev.js&quot;</code>(由于devServer不会生成打包内容)</p>
-<p><em>index.js</em></p>
-<pre><code class="js">import _ from &#39;lodash&#39;;
-
-console.log(_.compact([0, 1, false, 2, &#39;&#39;, 3]));</code></pre>
-<p><code>npm run start</code>打包，发现打包后的main.js文件中包含lodash内容。</p>
-<p>那如何实现代码分割呢，只需配置webpack.common.js文件</p>
-<pre><code class="js">optimization: {
-    splitChunks: {
-        chunks: &#39;all&#39;
-    }
-}</code></pre>
-<p>再次打包，发现打包后的文件中多了一个<code>vendor~main.js</code>，webpack自动将lodash内容打包进去了，而main.js文件中就没有了lodash的内容了。</p>
-<pre><code>dist
- ├── index.html
- ├── main.js
- └── vendors~main.js</code></pre><p>上面介绍的时同步代码分割，下面看一下异步代码分割<code>index.js</code>，可以实现<strong>懒加载</strong></p>
-<pre><code class="js">async function createElement() {
-  const { default: _ } = await import(/* webpackChunkName: &quot;lodash&quot; */&#39;lodash&#39;);
-  const element = document.createElement(&#39;div&#39;);
-  element.innerHTML = _.compact([0, 1, false, 2, &#39;&#39;, 3]);
-  return element;
-}
-
-document.addEventListener(&#39;click&#39;, () =&gt; {
-  createElement().then(element =&gt; {
-    document.body.appendChild(element);
-  })
-})
-</code></pre>
-<p><code>/* webpackChunkName: &quot;lodash&quot; */</code>设置打包后的文件名为<code>vendors~lodash.js</code>，打开浏览器可以看到只有点击页面时，才会引入<code>vendors~lodash.js</code>，实现了<strong>懒加载</strong>。</p>
-<p>打包后的目录</p>
-<pre><code>dist
- ├── index.html
- ├── main.js
- ├── vendors~lodash.js
- └── vendors~main.js</code></pre><p>当然可以通过其他配置来设置打包后的文件名称。</p>
-<div class="note success"><p>代码分割<a href="https://webpack.js.org/plugins/split-chunks-plugin/#optimizationsplitchunks" target="_blank" rel="noopener">更多配置</a></p></div>
-
-
-
-<h3 id="打包分析工具"><a href="#打包分析工具" class="headerlink" title="打包分析工具"></a>打包分析工具</h3><p>首先要拿到<code>status.json</code>文件，具体获取方式只需配置npm script即可</p>
-<pre><code class="json">&quot;start&quot;: &quot;webpack --profile --json &gt; status.json --config webpack.dev.js&quot;,</code></pre>
-<p>打包后会生成<code>status.json</code>文件。</p>
-<p>然后使用<a href="https://webpack.js.org/guides/code-splitting/#bundle-analysis" target="_blank" rel="noopener">官网提供的一些工具</a>就可以可视化分析打包结果了。</p>
-<p>在写代码时，我们要尽可能的使用异步引入，这样可以提高代码的<strong>使用率</strong>，提升性能，减少加载不必要的代码。</p>
-<blockquote>
-<p>查看代码使用率的方法，浏览器控制台按下ctrl+shift+p，输入show coverage</p>
-</blockquote>
-<h3 id="代码优化"><a href="#代码优化" class="headerlink" title="代码优化"></a>代码优化</h3><p>现在有一个优化场景，我有一个登录按钮，当点击按钮后弹出登录框。这里的优化思路是，页面加载时只加载登录按钮的代码，当按钮代码加载完后。利用空闲时间去加载登录框的代码。这样既可以优化首屏加载速度，还可以解决因使用懒加载登录框（也就是点击按钮后再去加载）而带来的用户体验较差的问题。</p>
-<p>具体代码：(只需要在import中加入/* webpackPrefetch: true */)</p>
-<p>index.js</p>
-<pre><code class="js">document.addEventListener(&#39;click&#39;, () =&gt; {
-  import(/* webpackPrefetch: true */&#39;./loginModal.js&#39;).then(({default: login}) =&gt; {
-    login();
-  })
-})</code></pre>
-<p>loginModal.js</p>
-<pre><code class="js">export default function () {
-  alert(&#39;loginModal&#39;);
-}</code></pre>
-<h3 id="css文件处理"><a href="#css文件处理" class="headerlink" title="css文件处理"></a>css文件处理</h3><p><strong>MiniCssExtractPlugin</strong></p>
-<blockquote>
-<p>This plugin should be used only on <code>production</code> builds without <code>style-loader</code> in the loaders chain, especially if you want to have HMR in <code>development</code>.</p>
-</blockquote>
-<p>官方推荐不要在开发环境中使用，因为不支持HMR，不利于提高开发效率。</p>
-<pre><code>npm install --save-dev mini-css-extract-plugin</code></pre><p>index.js</p>
-<pre><code class="js">import &#39;./style.css&#39;;</code></pre>
-<p>style.css</p>
-<pre><code class="css">body {
-  background: #e65;
-}</code></pre>
-<div class="tabs" id="3"><ul class="nav-tabs"><li class="tab active"><a href="#3-1">webpack.common.js</a></li><li class="tab"><a href="#3-2">webpack.dev.js</a></li><li class="tab"><a href="#3-3">webpack.prod.js</a></li><li class="tab"><a href="#3-4">package.json</a></li></ul><div class="tab-content"><div class="tab-pane active" id="3-1"><pre><code class="js"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);
-<span class="keyword">const</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">'html-webpack-plugin'</span>);
-<span class="keyword">const</span> { CleanWebpackPlugin } = <span class="built_in">require</span>(<span class="string">'clean-webpack-plugin'</span>);
-
-<span class="built_in">module</span>.exports = {
-  mode: <span class="string">'development'</span>, <span class="comment">// 默认为production</span>
-  entry: {
-    main: <span class="string">'./src/index.js'</span>, <span class="comment">// 打包入口文件</span>
-  },
-  <span class="built_in">module</span>: {
-    rules: [
-      {
-        test: <span class="regexp">/\.js$/</span>,
-        exclude: <span class="regexp">/node_modules/</span>, <span class="comment">// 不对node_modules下的js文件处理</span>
-        loader: <span class="string">'babel-loader'</span>,
-      },
-    ],
-  },
-  output: {
-    <span class="comment">// 输出文件配置</span>
-    filename: <span class="string">'[name].js'</span>,
-    chunkFilename: <span class="string">'[name].chunk.js'</span>,
-    path: path.resolve(__dirname, <span class="string">'dist'</span>),
-  },
-  plugins: [
-    <span class="keyword">new</span> HtmlWebpackPlugin({
-      template: <span class="string">'./src/index.html'</span>,
-    }),
-    <span class="keyword">new</span> CleanWebpackPlugin(),
-  ],
-  optimization: {
-    usedExports: <span class="literal">true</span>,
-    splitChunks: {
-      chunks: <span class="string">'all'</span>,
-    },
-  },
-};</code></pre></div><div class="tab-pane" id="3-2"><pre><code class="js"><span class="keyword">const</span> merge = <span class="built_in">require</span>(<span class="string">'webpack-merge'</span>);
-<span class="keyword">const</span> commonConfig = <span class="built_in">require</span>(<span class="string">'./webpack.common.js'</span>);
-
-<span class="keyword">const</span> devConfig = {
-  mode: <span class="string">'development'</span>,
-  devtool: <span class="string">'cheap-module-eval-source-map'</span>,
-  devServer: {
-    contentBase: <span class="string">'./dist'</span>,
-    open: <span class="literal">true</span>, <span class="comment">// 自动打开浏览器</span>
-    port: <span class="number">3001</span>, <span class="comment">// 服务器端口号</span>
-    hot: <span class="literal">true</span>, <span class="comment">// 开启HRM</span>
-  },
-  <span class="built_in">module</span>: {
-    rules: [
-      {
-        test: <span class="regexp">/\.css$/</span>,
-        use: [<span class="string">'style-loader'</span>, <span class="string">'css-loader'</span>],
-      }
-    ],
-  },
-};
-
-<span class="built_in">module</span>.exports = merge(commonConfig, devConfig);</code></pre></div><div class="tab-pane" id="3-3"><pre><code class="js"><span class="keyword">const</span> merge = <span class="built_in">require</span>(<span class="string">'webpack-merge'</span>);
-<span class="keyword">const</span> commonConfig = <span class="built_in">require</span>(<span class="string">'./webpack.common.js'</span>);
-<span class="keyword">const</span> MiniCssExtractPlugin = <span class="built_in">require</span>(<span class="string">'mini-css-extract-plugin'</span>);
-
-<span class="keyword">const</span> prodConfig =  {
-  mode: <span class="string">'development'</span>,
-  devtool: <span class="string">'cheap-module-source-map'</span>,
-  <span class="built_in">module</span>: {
-    rules: [
-      {
-        test: <span class="regexp">/\.css$/</span>,
-        use: [MiniCssExtractPlugin.loader, <span class="string">'css-loader'</span>],
-      }
-    ],
-  },
-  plugins: [
-    <span class="keyword">new</span> MiniCssExtractPlugin({})
-  ]
-};
-
-<span class="built_in">module</span>.exports = merge(commonConfig, prodConfig);</code></pre></div><div class="tab-pane" id="3-4"><pre><code class="json">"sideEffects": [
-    <span class="string">"*.css"</span>
-],</code></pre></div></div></div>
-
-<p>也可以使用<strong><a href="https://github.com/NMFR/optimize-css-assets-webpack-plugin" target="_blank" rel="noopener">optimize-css-assets-webpack-plugin</a></strong>来压缩css代码</p>
-<h3 id="配置output解决浏览器cache问题"><a href="#配置output解决浏览器cache问题" class="headerlink" title="配置output解决浏览器cache问题"></a>配置output解决浏览器cache问题</h3><p>浏览器是有缓存功能的，在我们第一次加载main.js后，浏览器会保有main.js的缓存，下次再加载时就直接从缓存获取了。但是当我们下次发布新版本时（修改了main.js文件），浏览器还是使用以前缓存的main.js内容，所以显示的内容并不是最新的。</p>
-<p><em>处理方法</em></p>
-<p>设置output的filename，添加<code>[contenthash]</code>占位符。</p>
-<pre><code class="js">output: {
-    // 输出文件配置
-    filename: &#39;[name].[contenthash].js&#39;,
-    chunkFilename: &#39;[name].[contenthash].js&#39;,
-},</code></pre>
-<h3 id="shimming"><a href="#shimming" class="headerlink" title="shimming"></a>shimming</h3><p>看一个场景，假设library.js是一个比较老的第三方库。</p>
-<div class="tabs" id="6"><ul class="nav-tabs"><li class="tab active"><a href="#6-1">index.js</a></li><li class="tab"><a href="#6-2">library.js</a></li></ul><div class="tab-content"><div class="tab-pane active" id="6-1"><pre><code class="js"><span class="keyword">import</span> <span class="string">'./style.css'</span>;
-<span class="keyword">import</span> { createText } <span class="keyword">from</span> <span class="string">'./library'</span>;
-
-createText();</code></pre></div><div class="tab-pane" id="6-2"><pre><code class="js"><span class="comment">// 这个第三方库中使用到了loadsh，但是并没有引入lodash</span>
-<span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">createText</span>(<span class="params"></span>) </span>{
-  <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>).innerHTML = _.compact([<span class="number">0</span>, <span class="number">1</span>, <span class="literal">false</span>, <span class="number">2</span>, <span class="string">''</span>, <span class="number">3</span>]);
-}</code></pre></div></div></div>
-
-<p><code>npm run dev</code>打包后浏览器报错</p>
-<div class="note error"><p>Uncaught ReferenceError: _ is not defined</p></div>
-
-<p>如果<code>library.js</code>是我们自己写的库那还好说，直接自己手动引入lodash就可以了。但是由于是第三方库，源文件是在node_module中的，不利于修改，这个时候就可以用<strong>shimming</strong>来解决了。</p>
-<p><strong>配置webpack.common.js</strong></p>
-<pre><code class="js">// 记得引入const webpack =require(&#39;webpack&#39;);
-// 下面代码的意思：当遇到_时，会自动为我们添加下面代码
-// import _ from &#39;lodash&#39;
-plugins: [
-    new webpack.ProvidePlugin({
-        _: &#39;lodash&#39;
-    })
-],</code></pre>
-<p>更多配置参考<a href="https://www.webpackjs.com/guides/shimming/" target="_blank" rel="noopener">shimming</a></p>
-<p><strong>细粒度 shimming</strong></p>
-<p>试着在index.js中打印出<strong>this</strong>，发现<strong>this</strong>其实是指向模块本身。那如何把this指向<strong>window</strong>呢，这里要借助<code>imports-loader</code></p>
-<pre><code>npm i imports-loader -D</code></pre><p>配置好loader</p>
-<pre><code class="js">rules: [
-    {
-        test: /\.js$/,
-        exclude: /node_modules/, // 不对node_modules下的js文件处理
-        use: [
-            {
-                loader: &#39;babel-loader&#39;,
-            },
-            {
-                loader: &#39;imports-loader?this=&gt;window&#39;
-            }
-        ]
-    },
-]</code></pre>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
-<li>Tree Shaking可以实现对js文件的按需打包，只在production下生效。</li>
-<li>为生产和开发环境分别创建不同配置文件。</li>
-<li>利用代码分割实现懒加载（利用魔法注释）。</li>
-<li>利用status.json来分析打包过程。</li>
-<li>单独生成css文件，减少mian.js体积。</li>
-<li>为output文件设置hash值，防止浏览器使用缓存。</li>
+<h3 id="什么是TypeScript"><a href="#什么是TypeScript" class="headerlink" title="什么是TypeScript"></a>什么是TypeScript</h3><p>TypeScript是JavaScript的一个超集，在JavaScript的基础上增加了可选的<strong>静态类型</strong>和基于类的面向对象编程。它可以编译成纯JavaScript，未编译的ts代码无法在浏览器执行。我们可以把它和JavaScript的关系理解成css和less、sass的关系。</p>
+<h3 id="TypeScript好在哪里"><a href="#TypeScript好在哪里" class="headerlink" title="TypeScript好在哪里"></a>TypeScript好在哪里</h3><ul>
+<li>TS可以进行动态类型检测，可以检测出一些潜在的bug（例如拼写错误、参数缺失、undefined等），提升代码健壮性</li>
+<li>使用vscode进行开发可以很好得提示代码，提高开发效率</li>
+<li>代码可读性好</li>
 </ul>
+<h3 id="创建第一个TypeScript文件"><a href="#创建第一个TypeScript文件" class="headerlink" title="创建第一个TypeScript文件"></a>创建第一个TypeScript文件</h3><p>首先安装TypeScript</p>
+<pre><code>npm install -g typescript</code></pre><p>安装后看是否成功</p>
+<pre><code>tsc --version</code></pre><p>我安装后出现了以下问题：<br><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://gitee.com/alannum3/MyImages/raw/master/img/image-20200614175730166.png" alt="image-20200614175730166"><br>这种情况只需要以管理员的身份打开命令行运行以下命令：</p>
+<pre><code>set-ExecutionPolicy RemoteSigned</code></pre><p>创建第一个ts文件<code>Hello.ts</code></p>
+<pre><code class="tsx">function sayHello(name:String) {
+  console.log(`Hello ${name}`);
+}
+let person = &quot;Alan&quot;;
+sayHello(person);</code></pre>
+<p>我们发现ts代码和普通的js代码在<code>sayHello</code>函数的参数上有所不同。<br><code>sayHello(name: String)</code><br>大致的意思就是<code>sayHello</code>传入一个名为name的参数，该参数的类型必须是<code>String</code>。<br>代码写好后用tsc编译上面的<code>Hello.ts</code>文件</p>
+<pre><code>tsc Hello.ts</code></pre><p>编译成功后在同级目录下生成一个<code>Hello.js</code>文件</p>
+<pre><code class="js">function sayHello(name) {
+    console.log(&quot;Hello &quot; + name);
+}
+var person = &quot;Alan&quot;;
+sayHello(person);</code></pre>
+<p>如果把<code>Hello.ts</code>文件改写一下</p>
+<pre><code class="tsx">function sayHello(name:String) {
+  const text = 3 + name;
+  console.log(`Hello ${name}`);
+}
+let person = 123;
+sayHello(person);</code></pre>
+<p>再次编译发现会报错但是仍然能生成js文件：<br><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://gitee.com/alannum3/MyImages/raw/master/img/image-20200614180440953.png" alt="image-20200614180440953"></p>
+<p>上面错误的具体意思是</p>
+<ul>
+<li>由于声明了函数形参<code>name</code>为静态类型<code>string</code>，而在调用时传入得是number类型<code>123</code>，与前面的string不符。</li>
+<li>在<code>sayHello</code>函数中将<code>name(string)</code>和<code>3(number)</code>两种不同类型得值进行了相加。</li>
+</ul>
+<p>创建完了第一个ts文件后，我们发现每次都要通过tsc来编译ts文件能得到js文件后再去运行js文件，过于麻烦。可以使用插件<code>ts-node</code>来直接运行ts文件。</p>
+<pre><code>npm i ts-node -g</code></pre>{% note info, ts能够尝试分析变量类型（类型推断），ts无法分析出的变量最好显式声明变量类型（类型注解）%}
+
+
+
+<h3 id="基础类型"><a href="#基础类型" class="headerlink" title="基础类型"></a>基础类型</h3><p><code>变量的声明：let [变量名] : [类型] = 值</code><br>TypeScript支持与JavaScript几乎相同的数据类型</p>
+<ul>
+<li>boolean(布尔值)</li>
+<li>number(数值)</li>
+<li>string(字符串)</li>
+<li>[]/Array&lt;元素类型&gt;(数组)</li>
+<li>元组Tuple</li>
+<li>enum(枚举)</li>
+<li>any(任何值)</li>
+<li>void(空值)</li>
+<li>null</li>
+<li>undefined</li>
+<li>never</li>
+</ul>
+<h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><p>有2种方式定义数组</p>
+<pre><code class="tsx">let arr : number[] = [1,2,3] // 元素类型后接上`[]`
+let arr : Array&lt;number&gt; = [1,2,3] // 数组泛型
+let arr: (number | string)[] = [1, &#39;2&#39;, &#39;4&#39;] // 元素类型可以是number或string（类似元组）</code></pre>
+<h3 id="元组tuple"><a href="#元组tuple" class="headerlink" title="元组tuple"></a>元组tuple</h3><p>表示一个数组（各个元素的类型不必相同）</p>
+<pre><code class="tsx">let list : [string, number]; //第一个元素为string类型，第二个为number类型
+a = [&#39;abc&#39;, 123] //合格
+b = [123, &#39;abc&#39;] //不合格</code></pre>
+<h3 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h3><p>其实有点类似对象<br>看例子吧</p>
+<pre><code class="tsx">enum lan {js, ts, css};
+console.log(lan.js); // 0   js对应的下标
+
+
+enum lan {js = &#39;good&#39;, ts = &#39;nice&#39;, css = &#39;well&#39;};
+console.log(lan.js); // good</code></pre>
+<h3 id="any"><a href="#any" class="headerlink" title="any"></a>any</h3><p>顾名思义，任意值，当我们想为还不清楚类型的变量指定一个类型时，<code>any</code>就是最好的选择🤭</p>
+<pre><code class="tsx">let a:any =4;
+a = &#39;123&#39;; //合格
+
+
+let arr : any[] = [1, &#39;123&#39;, true]; // 和元组很像
+arr[1] = &#39;good&#39;;</code></pre>
+<h3 id="void"><a href="#void" class="headerlink" title="void"></a>void</h3><p>常用于无返回值的函数声明</p>
+<pre><code class="tsx">function func() : void {
+  console.log(&#39;learning typescript...&#39;);
+}
+func(); //合格
+
+
+function func() : void {
+  return 1;
+}
+func(); // 不合格：Type &#39;1&#39; is not assignable to type &#39;void&#39;</code></pre>
+<h3 id="null和undefined"><a href="#null和undefined" class="headerlink" title="null和undefined"></a>null和undefined</h3><p>用处不大，默认情况下是所有类型的子类型，例如下面代码是没有问题的：</p>
+<pre><code class="tsx">let a:string;
+a = undefined;
+a = null;</code></pre>
+<p><strong>但是</strong>，当指定<code>--strictNullChecks</code>标记时，null和undefined只能赋值给void和他们自己本身。</p>
+<h3 id="never"><a href="#never" class="headerlink" title="never"></a>never</h3><p>表示永不存在的值的类型<br>never类型是那些总是会抛出异常或根本就不会有返回值的函数表达式或箭头函数表达式的返回值类型；<br>变量也可能是never类型，当它们被永不为真的类型保护所约束时。</p>
+<p>never类型是任何类型的子类型，也可以赋值给任何类型；然而，没有类型是never的子类型或可以赋值给never类型（除了never本身之外）。 即使any也不可以赋值给never。</p>
+<pre><code class="tsx">function error(message:string) : never{
+  throw new Error(message);
+}
+
+// 返回never的函数必须存在无法达到的终点
+function infiniteLoop(): never {
+  while (true) {
+  }
+}</code></pre>
+<h3 id="结构赋值的写法"><a href="#结构赋值的写法" class="headerlink" title="结构赋值的写法"></a>结构赋值的写法</h3><pre><code class="tsx">function sayAge({name, age}: {name: string | number, age: number}): void {
+  console.log(`${name} is ${age} years old`);
+}
+sayAge({name: &#39;Alan&#39;, age: 22})
+sayAge({name: 2, age: 22})</code></pre>
+<h3 id="类型断言"><a href="#类型断言" class="headerlink" title="类型断言"></a>类型断言</h3><p>可以自己指定一个值得类型<br>格式如下<br><code>&lt;类型&gt;值</code><br><code>值 as 类型</code></p>
+<h3 id="接口interface"><a href="#接口interface" class="headerlink" title="接口interface"></a>接口interface</h3><p>先看一个接口的例子</p>
+<pre><code class="tsx">interface person {
+  name: string;
+}
+function work(personObj:person) {
+  console.log(personObj.name);
+}
+let person1 = {name: &#39;Alan&#39;, age: 21};
+work(person1);
+let person2 = {age: 21};
+work(person2);</code></pre>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://gitee.com/alannum3/MyImages/raw/master/img/image-20200615180720618.png" alt="image-20200615180720618"></p>
+<p>定义接口的关键字是<code>interface</code><br>这个例子需要传入work的参数必须是一个带有name(string)的对象，可以理解为我要招聘一个有名字的员工，没有名字的都不需要。当然我们的person1中还多了一个<code>age</code>属性，这并不会报错。可是当我们直接传递参数时是会出错的。</p>
+<pre><code class="js">work({name: &#39;Alan&#39;, age: 21});</code></pre>
+<p>那如果我不确定要招聘的员工除了有姓名外还需要其他什么属性时，可以像下面一样重新定义接口就可以解决上面的问题了。</p>
+<pre><code class="tsx">interface person {
+  name: string;
+  [propName: string]: any
+}</code></pre>
+<h4 id="可选属性"><a href="#可选属性" class="headerlink" title="可选属性"></a>可选属性</h4><p>那如果我的招聘条件是最好懂typescript的，这个时候typescript就是可有可无的（最好懂，嘿嘿😜），那我们就要用到<strong>可选属性</strong>了<br><code>可选属性</code>在可选属性名后面加上一个<code>?</code></p>
+<pre><code class="tsx">interface person {
+  name: string;
+  ts?: boolean;
+}
+function Recruit(personObj:person) : string{
+  if(personObj.ts) {
+    return `congratulations!${personObj.name}`;
+  } else {
+    return `sorry,${personObj.name}, we need a employee who know ts!`;
+  }
+}
+let person1 = {name: &#39;Alan&#39;, age: 21, ts: true};
+console.log(Recruit(person1));
+let person2 = {name: &#39;Bob&#39;, age: 21};
+console.log(Recruit(person2));
+</code></pre>
+<h4 id="只读属性"><a href="#只读属性" class="headerlink" title="只读属性"></a>只读属性</h4><p>我们都知道人的名字都是不可以改变的（一般情况下），这个时候我们对person接口里面的name属性稍作修改，在属性名name前加上<code>readonly</code>。</p>
+<div class="note info"><p>当然也可以使用setter/getter来实现</p></div>
+
+<pre><code class="tsx">interface person {
+  readonly name: string;
+  ts?: boolean;
+}
+let person1: person = {name: &#39;Alan&#39;};
+person1.name = &#39;Bob&#39;; // Cannot assign to &#39;name&#39; because it is a read-only property.</code></pre>
+<p><strong>我们发现readonly和const的作用好像有点相似，那我们什么时候使用readonly什么时候使用const呢？</strong><br>变量—-&gt;const<br>属性—-&gt;readonly</p>
+<h4 id="函数类型的接口"><a href="#函数类型的接口" class="headerlink" title="函数类型的接口"></a>函数类型的接口</h4><p>接口除了可以描述带有属性的对象外，还可以描述函数类型<br>这里创建一个函数来检查你有没有打卡😁</p>
+<pre><code class="tsx">interface attendanceFunc {
+  (name:string, startTime: number, endTime: number) : boolean;
+}
+let checkAttendance : attendanceFunc;
+checkAttendance = function (name:string, startTime: number, endTime: number) : boolean {
+  let result = startTime &lt; 9 &amp;&amp; endTime &gt;18;
+  return result;
+}
+console.log(checkAttendance(&#39;Alan&#39;, 10, 19)); // false</code></pre>
+<p>看一下接口的声明：</p>
+<pre><code class="tsx">interface attendanceFunc {
+  (name:string, startTime: number, endTime: number) : boolean;
+}</code></pre>
+<p><code>name,startTime,endTime</code>放在<code>()</code>中代表函数的参数<br><code>:boolean</code>表示函数的返回值类型<br>当然上面例子中的<code>checkAttendance</code>的形参以及函数的返回值来说可以不指定类型，因为<code>checkAttendance</code>复制给了<code>attendanceFunc</code>变量，类型检查器会自动(按照接口中参数的顺序)推断出参数以及返回值的类型，也就是说写成下面这样也是可以的。<strong>函数中的参数名可以不和接口中的相同</strong></p>
+<pre><code class="tsx">interface attendanceFunc {
+  (name:string, startTime: number, endTime: number) : boolean;
+}
+let checkAttendance : attendanceFunc;
+checkAttendance = function (n, startTime, endTime) {
+  let result = startTime &lt; 9 &amp;&amp; endTime &gt;18;
+  return result;
+}
+console.log(checkAttendance(&#39;Alan&#39;, 10, 19)); // false</code></pre>
+<h4 id="接口的继承"><a href="#接口的继承" class="headerlink" title="接口的继承"></a>接口的继承</h4><p>一个接口可以继承1个或者多个接口：<br>继承使用关键词<code>extends</code></p>
+<pre><code class="tsx">interface person {
+  name : string;
+}
+interface student {
+  studentId : number;
+}
+interface seniorStudent extends person, student {
+  grade: string;
+}
+let student1 : seniorStudent = {name: &#39;Alan&#39;, studentId: 1, grade: &#39;one&#39;};
+console.log(student1);</code></pre>
+<h3 id="类class"><a href="#类class" class="headerlink" title="类class"></a>类class</h3><p>TS中的类和ES6中的类很相似，这里只介绍不同的地方</p>
+<h4 id="变量修饰符"><a href="#变量修饰符" class="headerlink" title="变量修饰符"></a>变量修饰符</h4><ul>
+<li>public（默认）</li>
+<li>private（私有，不能在声明它的类的外部访问）</li>
+<li>protected（和private，不同的是可以在派生类（即子类）中访问）</li>
+</ul>
+<h4 id="静态属性static"><a href="#静态属性static" class="headerlink" title="静态属性static"></a>静态属性static</h4><pre><code class="tsx">class Person {
+  static fingerNum = 5;
+}
+
+// 只能通过类来访问
+console.log(Person.fingerNum);
+// 不能通过实例访问
+console.log(new Person().fingerNum);</code></pre>
+<pre><code class="tsx">// 单例模式创建唯一的实例
+class singleClass {
+  private static instance: singleClass;
+  private constructor(public name: string) {}
+
+  static getInstance() {
+    if (!this.instance) {
+      this.instance = new singleClass(&#39;Alan&#39;);
+    }
+    return this.instance;
+  }
+}
+
+const class1 = singleClass.getInstance();
+const class2 = singleClass.getInstance();
+console.log(class1.name); // Alan
+console.log(class1 === class2); // true</code></pre>
+<h4 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h4><pre><code class="tsx">class Person {
+  constructor(name, mobile, sex) {
+    this.name = name;
+    this.mobile = mobile;
+    this.sex = sex;
+  }
+  public name: string;
+  private mobile: string;
+  protected sex: string;
+}</code></pre>
+<p>上面的代码可以简写成下面这样</p>
+<pre><code class="tsx">class Person {
+  constructor(name: string, private mobile: string, protected sex: string) {
+  }
+}</code></pre>
+<h4 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h4><ul>
+<li>不能被实例化</li>
+<li>要使用的话要声明其派生类，并且重写其中的抽象方法</li>
+</ul>
+<pre><code class="tsx">abstract class Animal {
+  constructor(public name: string) {}
+  sayHello() {
+    console.log(&#39;hello&#39;);
+  }
+  // 声明抽象方法
+  abstract action(): void;
+}
+
+class Bird extends Animal{
+  constructor(name) {
+    super(name);
+  }
+  action() {
+    console.log(&#39;jijiji&#39;);
+  }
+}
+
+const bird = new Bird(&#39;qc&#39;);
+console.log(bird);
+// Bird { name: &#39;qc&#39; }</code></pre>
 
           
             <div class='article_footer'>
@@ -900,26 +834,26 @@ plugins: [
   <div class='content'>
     <ul class="list entry navigation">
       
-        <li><a class="flat-box" title="https://coding.imooc.com/class/chapter/316.html#Anchor" href="https://coding.imooc.com/class/chapter/316.html#Anchor"
+        <li><a class="flat-box" title="https://typescript.bootcss.com/basic-types.html" href="https://typescript.bootcss.com/basic-types.html"
           
           
-          id="https:codingimooccomclasschapter316html#Anchor"
+          id="https:typescriptbootcsscombasic-typeshtml"
           >
           <div class='name'>
             
-            从基础到实战 手把手带你掌握新版Webpack4.0
+            TypeScript 中文手册
           </div>
           
         </a></li>
       
-        <li><a class="flat-box" title="https://webpack.js.org/" href="https://webpack.js.org/"
+        <li><a class="flat-box" title="https://coding.imooc.com/class/412.html" href="https://coding.imooc.com/class/412.html"
           
           
-          id="https:webpackjsorg"
+          id="https:codingimooccomclass412html"
           >
           <div class='name'>
             
-            webpack官网
+            TypeScript－系统入门到项目实战
           </div>
           
         </a></li>
@@ -955,7 +889,7 @@ plugins: [
           
         
           
-            <p>本文永久链接是：<a href=https://alanwang.site/posts/84d16999/>https://alanwang.site/posts/84d16999/</a></p>
+            <p>本文永久链接是：<a href=https://alanwang.site/posts/fc7889ef/>https://alanwang.site/posts/fc7889ef/</a></p>
           
         
       </blockquote>
@@ -981,7 +915,7 @@ plugins: [
           <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：2020年5月25日 14:43</p>
+    <p>发布于：2020年7月1日 11:52</p>
   </a>
 </div>
 
@@ -990,7 +924,7 @@ plugins: [
         
           
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/webpack4-0/" rel="nofollow"><i class="fas fa-tags fa-fw" aria-hidden="true"></i><p>webpack4.0</p></a></div>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/TypeScript/" rel="nofollow"><i class="fas fa-tags fa-fw" aria-hidden="true"></i><p>TypeScript</p></a></div>
 
 
         
@@ -1008,7 +942,7 @@ plugins: [
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
           
-          href="http://connect.qq.com/widget/shareqq/index.html?url=https://alanwang.site/posts/84d16999/&title=webpack4.0进阶（一） - Alan|前端博客&summary=webpack4.0进阶学习"
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://alanwang.site/posts/fc7889ef/&title=TypeScript学习总结（一） - Alan|前端博客&summary=TypeScript常用知识点总结"
           
           >
           
@@ -1020,7 +954,7 @@ plugins: [
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer"
           
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://alanwang.site/posts/84d16999/&title=webpack4.0进阶（一） - Alan|前端博客&summary=webpack4.0进阶学习"
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://alanwang.site/posts/fc7889ef/&title=TypeScript学习总结（一） - Alan|前端博客&summary=TypeScript常用知识点总结"
           
           >
           
@@ -1032,7 +966,7 @@ plugins: [
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
           
-          href="http://service.weibo.com/share/share.php?url=https://alanwang.site/posts/84d16999/&title=webpack4.0进阶（一） - Alan|前端博客&summary=webpack4.0进阶学习"
+          href="http://service.weibo.com/share/share.php?url=https://alanwang.site/posts/fc7889ef/&title=TypeScript学习总结（一） - Alan|前端博客&summary=TypeScript常用知识点总结"
           
           >
           
@@ -1056,23 +990,16 @@ plugins: [
         
           <div class="prev-next">
             
-              <a class='prev' href='/posts/20802113/'>
-                <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>前端面试题</p>
-                <p class='content'>记录了自己疫情期间自学+复习总结的一些面试题，虽然期间只面试了一家。😥（拿到了offer（实习），个人原因没去）
-
-
-背景由于今年疫情的原因以及一些个人原因，辞去了之前的实习工作。在家待了也快...</p>
-              </a>
             
-            
-              <a class='next' href='/posts/66d3b164/'>
-                <p class='title'>记录生活2020/5<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-                <p class='content'>这是一篇记录5月生活的个人随记。📝
+              <a class='next' href='/posts/c05e5480/'>
+                <p class='title'>React入门学习总结<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+                <p class='content'>总结学习React以及相关插件时遇到的难点以及重点
 
 
-2020-05-22现在是22:53，我的论文初稿终于上传审核了🎈，查重率4.8%。记录一下，后天就要线上答辩了。
-
-</p>
+知识点
+单向数据流（子组件不能修改父组件数据）
+组件名首字母大写
+可以使用&lt;React.Fragment&gt;&lt;/ Reac...</p>
               </a>
             
           </div>
@@ -1117,7 +1044,7 @@ plugins: [
 
   <script>
     window.subData = {
-      title: 'webpack4.0进阶（一）',
+      title: 'TypeScript学习总结（一）',
       tools: true
     }
   </script>
@@ -1143,7 +1070,7 @@ plugins: [
 
 
     <div class="content">
-      <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\posts\829819a3\" title="webpack4.0学习总结（三）" rel="bookmark">webpack4.0学习总结（三）</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\posts\ff905629\" title="webpack4.0学习总结（一）" rel="bookmark">webpack4.0学习总结（一）</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\posts\cf86baf1\" title="webpack4.0学习总结（二）" rel="bookmark">webpack4.0学习总结（二）</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\posts\35b500c6\" title="webpack4.0学习总结（四）" rel="bookmark">webpack4.0学习总结（四）</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="\posts\f9d92613\" title="webpack4.0进阶（三）" rel="bookmark">webpack4.0进阶（三）</a></h3></div></li></ul>
+      
     </div>
   </section>
 
@@ -1165,7 +1092,7 @@ plugins: [
 
 
     <div class='content'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Tree-Shaking按需打包文件"><span class="toc-text">Tree Shaking按需打包文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#开发环境和生产环境配置文件"><span class="toc-text">开发环境和生产环境配置文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码分割"><span class="toc-text">代码分割</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#打包分析工具"><span class="toc-text">打包分析工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码优化"><span class="toc-text">代码优化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#css文件处理"><span class="toc-text">css文件处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置output解决浏览器cache问题"><span class="toc-text">配置output解决浏览器cache问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#shimming"><span class="toc-text">shimming</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是TypeScript"><span class="toc-text">什么是TypeScript</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TypeScript好在哪里"><span class="toc-text">TypeScript好在哪里</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建第一个TypeScript文件"><span class="toc-text">创建第一个TypeScript文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基础类型"><span class="toc-text">基础类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数组"><span class="toc-text">数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#元组tuple"><span class="toc-text">元组tuple</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#枚举"><span class="toc-text">枚举</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#any"><span class="toc-text">any</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#void"><span class="toc-text">void</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null和undefined"><span class="toc-text">null和undefined</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#never"><span class="toc-text">never</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#结构赋值的写法"><span class="toc-text">结构赋值的写法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类型断言"><span class="toc-text">类型断言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#接口interface"><span class="toc-text">接口interface</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#可选属性"><span class="toc-text">可选属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#只读属性"><span class="toc-text">只读属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#函数类型的接口"><span class="toc-text">函数类型的接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#接口的继承"><span class="toc-text">接口的继承</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类class"><span class="toc-text">类class</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#变量修饰符"><span class="toc-text">变量修饰符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#静态属性static"><span class="toc-text">静态属性static</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#构造函数"><span class="toc-text">构造函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#抽象类"><span class="toc-text">抽象类</span></a></li></ol></li></ol>
     </div>
   </section>
 
