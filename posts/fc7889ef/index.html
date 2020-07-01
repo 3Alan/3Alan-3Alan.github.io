@@ -551,7 +551,7 @@
 <h3 id="什么是TypeScript"><a href="#什么是TypeScript" class="headerlink" title="什么是TypeScript"></a>什么是TypeScript</h3><p>TypeScript是JavaScript的一个超集，在JavaScript的基础上增加了可选的<strong>静态类型</strong>和基于类的面向对象编程。它可以编译成纯JavaScript，未编译的ts代码无法在浏览器执行。我们可以把它和JavaScript的关系理解成css和less、sass的关系。</p>
 <h3 id="TypeScript好在哪里"><a href="#TypeScript好在哪里" class="headerlink" title="TypeScript好在哪里"></a>TypeScript好在哪里</h3><ul>
 <li>TS可以进行动态类型检测，可以检测出一些潜在的bug（例如拼写错误、参数缺失、undefined等），提升代码健壮性</li>
-<li>使用vscode进行开发可以很好得提示代码，提高开发效率</li>
+<li>使用vscode进行开发可以很好的提示代码，提高开发效率</li>
 <li>代码可读性好</li>
 </ul>
 <h3 id="创建第一个TypeScript文件"><a href="#创建第一个TypeScript文件" class="headerlink" title="创建第一个TypeScript文件"></a>创建第一个TypeScript文件</h3><p>首先安装TypeScript</p>
@@ -563,8 +563,8 @@
 }
 let person = &quot;Alan&quot;;
 sayHello(person);</code></pre>
-<p>我们发现ts代码和普通的js代码在<code>sayHello</code>函数的参数上有所不同。<br><code>sayHello(name: String)</code><br>大致的意思就是<code>sayHello</code>传入一个名为name的参数，该参数的类型必须是<code>String</code>。<br>代码写好后用tsc编译上面的<code>Hello.ts</code>文件</p>
-<pre><code>tsc Hello.ts</code></pre><p>编译成功后在同级目录下生成一个<code>Hello.js</code>文件</p>
+<p>我们发现ts代码和普通的js代码在<code>sayHello</code>函数的参数上有所不同。<br><code>sayHello(name: String)</code><br>大致的意思就是<code>sayHello</code>传入一个名为name的参数，该参数的类型必须是<code>String</code>，不然无法通过ts的编译。<br>代码写好后用tsc编译上面的<code>Hello.ts</code>文件</p>
+<pre><code>tsc Hello.ts</code></pre><p>编译成功后在同级目录下生成一个<code>Hello.js</code>文件，可以看到生成的js文件只是将es6语法转化成了es5语法，并没有改变其他代码。</p>
 <pre><code class="js">function sayHello(name) {
     console.log(&quot;Hello &quot; + name);
 }
@@ -583,12 +583,13 @@ sayHello(person);</code></pre>
 <li>由于声明了函数形参<code>name</code>为静态类型<code>string</code>，而在调用时传入得是number类型<code>123</code>，与前面的string不符。</li>
 <li>在<code>sayHello</code>函数中将<code>name(string)</code>和<code>3(number)</code>两种不同类型得值进行了相加。</li>
 </ul>
-<p>创建完了第一个ts文件后，我们发现每次都要通过tsc来编译ts文件能得到js文件后再去运行js文件，过于麻烦。可以使用插件<code>ts-node</code>来直接运行ts文件。</p>
-<pre><code>npm i ts-node -g</code></pre>{% note info, ts能够尝试分析变量类型（类型推断），ts无法分析出的变量最好显式声明变量类型（类型注解）%}
-
-
-
-<h3 id="基础类型"><a href="#基础类型" class="headerlink" title="基础类型"></a>基础类型</h3><p><code>变量的声明：let [变量名] : [类型] = 值</code><br>TypeScript支持与JavaScript几乎相同的数据类型</p>
+<p>我们发现每次都要通过tsc来编译ts文件能得到js文件后再去运行js文件，过于麻烦。可以使用插件<code>ts-node</code>来直接运行ts文件。</p>
+<pre><code>npm i ts-node -g</code></pre><pre><code>ts-node Hello.ts</code></pre><blockquote>
+<p>ts能够尝试分析变量类型（类型推断），ts无法分析出的变量最好显式声明变量类型（类型注解）</p>
+</blockquote>
+<h3 id="基础类型"><a href="#基础类型" class="headerlink" title="基础类型"></a>基础类型</h3><p>变量的声明：<code>let [变量名] : [类型] = 值</code></p>
+<p>例如： <code>let age: number =  21</code></p>
+<p>TypeScript支持与JavaScript几乎相同的数据类型</p>
 <ul>
 <li>boolean(布尔值)</li>
 <li>number(数值)</li>
@@ -656,7 +657,7 @@ function infiniteLoop(): never {
 }
 sayAge({name: &#39;Alan&#39;, age: 22})
 sayAge({name: 2, age: 22})</code></pre>
-<h3 id="类型断言"><a href="#类型断言" class="headerlink" title="类型断言"></a>类型断言</h3><p>可以自己指定一个值得类型<br>格式如下<br><code>&lt;类型&gt;值</code><br><code>值 as 类型</code></p>
+<h3 id="类型断言"><a href="#类型断言" class="headerlink" title="类型断言"></a>类型断言</h3><p>可以自己指定一个值的类型<br>格式如下<br><code>&lt;类型&gt;值</code><br><code>值 as 类型</code></p>
 <h3 id="接口interface"><a href="#接口interface" class="headerlink" title="接口interface"></a>接口interface</h3><p>先看一个接口的例子</p>
 <pre><code class="tsx">interface person {
   name: string;
@@ -743,7 +744,7 @@ console.log(student1);</code></pre>
 <h4 id="变量修饰符"><a href="#变量修饰符" class="headerlink" title="变量修饰符"></a>变量修饰符</h4><ul>
 <li>public（默认）</li>
 <li>private（私有，不能在声明它的类的外部访问）</li>
-<li>protected（和private，不同的是可以在派生类（即子类）中访问）</li>
+<li>protected（和private类似，不同的是protected声明的变量可以在派生类（即子类）中访问）</li>
 </ul>
 <h4 id="静态属性static"><a href="#静态属性static" class="headerlink" title="静态属性static"></a>静态属性static</h4><pre><code class="tsx">class Person {
   static fingerNum = 5;
