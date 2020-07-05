@@ -548,33 +548,34 @@
           <p>总结学习React以及相关插件时遇到的难点以及重点</p>
 <a id="more"></a>
 
-<h3 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h3><ul>
-<li>单向数据流（子组件不能修改父组件数据）</li>
-<li>组件名首字母大写</li>
-<li>可以使用&lt;React.Fragment&gt;&lt;/ React.Fragment&gt;和&lt;&gt;&lt;/&gt;包裹标签</li>
-<li>关键字<ul>
+<h3 id="基础知识点"><a href="#基础知识点" class="headerlink" title="基础知识点"></a>基础知识点</h3><ul>
+<li><p>单向数据流（子组件不能修改父组件数据）</p>
+</li>
+<li><p>组件名首字母大写</p>
+</li>
+<li><p>可以使用&lt;React.Fragment&gt;&lt;/ React.Fragment&gt;和&lt;&gt;&lt;/&gt;包裹标签</p>
+</li>
+<li><p>关键字</p>
+<ul>
 <li>class-&gt;className</li>
 <li><code>&lt;label for=&quot;id名&quot;&gt;&lt;/lable&gt;</code>-&gt;<code>&lt;label htmlFor=&quot;id名&quot;&gt;&lt;/lable&gt;</code>用来扩大点击范围</li>
 </ul>
 </li>
-<li>不要直接修改state要使用this.setState()</li>
-<li>this指向问题</li>
-</ul>
-<pre><code class="js">// 在constructor使用bind，无法传参数
+<li><p>不要直接修改state要使用this.setState()</p>
+</li>
+<li><p>this指向问题</p>
+<pre><code>// 在constructor使用bind，无法传参数
 this.handlerClick = this.handlerClick.bind(this);
 // 调用时使用bind，对性能优化不友好,因为每次render()时都要重新bind
-onChange={this.handlerClick.bind(this,num)}</code></pre>
-<pre><code class="jsx">// 使用箭头函数
-onChange={e =&gt; this.handlerClick(num)}</code></pre>
-<pre><code class="js">// 声明为箭头函数,无法传参
+onChange={this.handlerClick.bind(this,num)}</code></pre><pre><code>// 使用箭头函数
+onChange={e =&gt; this.handlerClick(num)}</code></pre><pre><code>// 声明为箭头函数,无法传参
 handlerClick = (num) =&gt; {
-};</code></pre>
-<ul>
+};</code></pre></li>
 <li><p>循环渲染加key，不要使用index作为key值。</p>
 </li>
 <li><p>注释写法{/**/}</p>
 </li>
-<li><pre><code>dangerouslySetInnerHTML={{__html: item(需要展示的数据)}}不转义html标签</code></pre></li>
+<li><pre><code>dangerouslySetInnerHTML={{__html: item(需要展示的数据)}} // 不转义html标签</code></pre></li>
 <li><p><a href="https://zh-hans.reactjs.org/docs/react-component.html#setstate" target="_blank" rel="noopener">setState()</a>第二个参数为回调函数</p>
 </li>
 <li><p>一旦state、props变化，render()就会执行。也就是说一旦父组件state变化时，render()会执行所以其父组件的中的子组件也会再render()一遍。</p>
@@ -727,14 +728,14 @@ export default (state = defaultState, action) =&gt; {
     value: &#39;&#39; // 要改变的值
 }</code></pre>
 <ol start="4">
-<li>通过store.dispatch(action)通知store，reducer将接收到修改之前的store和action</li>
-<li>reducer更新store的副本，将新store返回给store</li>
+<li>通过store.dispatch(action)通知store，reducer将接收到修改之前的state和action</li>
+<li>reducer更新state的副本，将新state返回给store</li>
 <li>使用store的组件中通过<code>store.subscribe(this.setState(store.getState()))</code>订阅store来同步最新的store</li>
 </ol>
 <p>为了提高代码健壮性和可维护性，把action单独声明为一个文件，并且把<code>action.type</code>声明为一个常量文件。</p>
 <pre><code>store
- ├── actionCreators.js
- ├── actionType.js
+ ├── actionCreators.js // 生成action
+ ├── actionType.js // action type对应的常量
  ├── index.js
  └── reducer.js</code></pre><div class="tabs" id="2"><ul class="nav-tabs"><li class="tab active"><a href="#2-1">index.js</a></li><li class="tab"><a href="#2-2">actionCreators.js</a></li><li class="tab"><a href="#2-3">reducer.js</a></li><li class="tab"><a href="#2-4">actionType.js</a></li></ul><div class="tab-content"><div class="tab-pane active" id="2-1"><pre><code class="js"><span class="keyword">import</span> { createStore } <span class="keyword">from</span> <span class="string">'redux'</span>;
 <span class="keyword">import</span> reducer <span class="keyword">from</span> <span class="string">'./reducer'</span>;
@@ -763,9 +764,9 @@ export default (state = defaultState, action) =&gt; {
   <span class="keyword">return</span> state;
 }</code></pre></div><div class="tab-pane" id="2-4"><pre><code class="js"><span class="keyword">export</span> <span class="keyword">const</span> INPUT_CHANGE = <span class="string">'inputChange'</span>;</code></pre></div></div></div>
 
-<div class="note info"><p>reducers函数的返回值要可预测，也就是说里面不能写类似new Date</p></div>
+<div class="note info"><p>reducers函数的返回值要是可预测，也就是说里面不能写类似new Date</p></div>
 
-<div class="note info"><p>reducers不能修改原来的state，只能返回一个新的state，为了防止被误改造成bug，可以使用immutable.js来解决</p></div>
+<div class="note info"><p>reducers不能修改原来的state，只能返回一个新的state，为了防止被误改造成bug，可以使用immutable.js来解决，它可以将state数据转化成一个特定的对象</p></div>
 
 <pre><code>npm i immutable redux-immutable -S</code></pre><ul>
 <li>immutable对象通过<code>get()</code>和<code>set()</code>等api来操作数据，当有多个<code>set()</code>连用时可以使用<code>merge({})</code>来实现</li>
@@ -879,9 +880,11 @@ const mapDispatchToProps = (dispatch) =&gt; {
 
 // Demo为需要使用store的组件
 connect(mapStateToProps, mapDispatchToProps)(Demo);</code></pre>
-<h3 id="css写法"><a href="#css写法" class="headerlink" title="css写法"></a>css写法</h3><ul>
+<h3 id="css写法"><a href="#css写法" class="headerlink" title="css写法"></a>css写法</h3><p>react不像vue那样可以优雅的在vue文件中写css代码，不过react也提供了几种css书写方式（待补充）</p>
+<ul>
+<li>css in js</li>
 <li>使用styled-components</li>
-<li>css-module</li>
+<li>css-module（依赖于webpack）</li>
 </ul>
 <p>styled-components(使用js编写css代码)</p>
 <div class="tabs" id="5"><ul class="nav-tabs"><li class="tab active"><a href="#5-1">style.js</a></li><li class="tab"><a href="#5-2">使用方式</a></li></ul><div class="tab-content"><div class="tab-pane active" id="5-1"><pre><code class="js"><span class="keyword">import</span> styled <span class="keyword">from</span> <span class="string">'styled-components'</span>;
@@ -892,11 +895,7 @@ connect(mapStateToProps, mapDispatchToProps)(Demo);</code></pre>
 <span class="string">  position: absolute;</span>
 <span class="string">  top: 0;</span>
 <span class="string">  left: 0;</span>
-<span class="string">  display: block;</span>
-<span class="string">  width: 100px;</span>
-<span class="string">  height: 56px;</span>
 <span class="string">  background: url(<span class="subst">${(props) =&gt; props.imgUrl}</span>);</span>
-<span class="string">  background-size: contain;</span>
 <span class="string">`</span>;</code></pre></div><div class="tab-pane" id="5-2"><pre><code class="jsx"><span class="keyword">import</span> React, { Component } <span class="keyword">from</span> <span class="string">'react'</span>;
 <span class="keyword">import</span> { Logo } <span class="keyword">from</span> <span class="string">'./style'</span>;
 
@@ -950,6 +949,7 @@ export default App;</code></pre>
 <pre><code class="jsx">&lt;Route path=&quot;/post/:id&quot; exact component={POST}&gt;&lt;/Route&gt;
 // POST组件通过this.props.match.params.id来获取id值</code></pre>
 <p><strong>可以使用withRouter包裹组件来获取history</strong></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>React对比Vue来说，学习成本比较高，但是比较灵活。所以我选择Vue。</p>
 
           
             <div class='article_footer'>
@@ -1198,7 +1198,7 @@ myLoader
 
 
     <div class='content'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#知识点"><span class="toc-text">知识点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#组件通信"><span class="toc-text">组件通信</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#父-gt-子"><span class="toc-text">父-&gt;子</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#子-gt-父亲"><span class="toc-text">子-&gt;父亲</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#props参数校验及默认值"><span class="toc-text">props参数校验及默认值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#异步组件加载插件react-loadable"><span class="toc-text">异步组件加载插件react-loadable</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#虚拟DOM"><span class="toc-text">虚拟DOM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#生命周期"><span class="toc-text">生命周期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redux"><span class="toc-text">Redux</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#redux-thunk"><span class="toc-text">redux-thunk</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#redux-saga"><span class="toc-text">redux-saga</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#react-redux"><span class="toc-text">react-redux</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#css写法"><span class="toc-text">css写法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#react-router"><span class="toc-text">react-router</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#基础知识点"><span class="toc-text">基础知识点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#组件通信"><span class="toc-text">组件通信</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#父-gt-子"><span class="toc-text">父-&gt;子</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#子-gt-父亲"><span class="toc-text">子-&gt;父亲</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#props参数校验及默认值"><span class="toc-text">props参数校验及默认值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#异步组件加载插件react-loadable"><span class="toc-text">异步组件加载插件react-loadable</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#虚拟DOM"><span class="toc-text">虚拟DOM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#生命周期"><span class="toc-text">生命周期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redux"><span class="toc-text">Redux</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#redux-thunk"><span class="toc-text">redux-thunk</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#redux-saga"><span class="toc-text">redux-saga</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#react-redux"><span class="toc-text">react-redux</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#css写法"><span class="toc-text">css写法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#react-router"><span class="toc-text">react-router</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol>
     </div>
   </section>
 
