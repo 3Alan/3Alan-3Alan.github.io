@@ -503,13 +503,13 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>2.3k字</p>
+      <p>2.5k字</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>时长：9分钟</p>
+      <p>时长：10分钟</p>
     </a>
   </div>
 
@@ -657,7 +657,57 @@ function infiniteLoop(): never {
 }
 sayAge({name: &#39;Alan&#39;, age: 22})
 sayAge({name: 2, age: 22})</code></pre>
+<h3 id="联合类型"><a href="#联合类型" class="headerlink" title="联合类型"></a>联合类型</h3><p>用<code>|</code>来表示取值存在多种可能</p>
+<pre><code class="tsx">let a: string | number;
+a = 1;
+a = &#39;A&#39;;</code></pre>
 <h3 id="类型断言"><a href="#类型断言" class="headerlink" title="类型断言"></a>类型断言</h3><p>可以自己指定一个值的类型<br>格式如下<br><code>&lt;类型&gt;值</code><br><code>值 as 类型</code></p>
+<pre><code class="tsx">interface student {
+  isStudent: boolean;
+  education: number;
+}
+interface worker {
+  isStudent: boolean;
+  seniority: number;
+}
+function Recruit(candidate: worker | student): void {
+  if (candidate.isStudent) {
+    console.log(`your education is ${(candidate as student).education}`);
+  } else {
+    console.log(`your seniority is ${(candidate as worker).seniority}`);
+  }
+}
+
+const a: student = { isStudent: true, education: 4 };
+const b: worker = { isStudent: false, seniority: 2 };
+Recruit(a);
+Recruit(b);
+</code></pre>
+<p>由于<code>candidate</code>使用了联合类型，所以ts无法判断<code>candidate</code>究竟是属于<code>student</code>还是<code>worker</code>，所以要使用类型断言来显式告诉ts。</p>
+<p>当然还有其他方式来实现</p>
+<pre><code class="tsx">interface student {
+  isStudent: boolean;
+  education: number;
+}
+interface worker {
+  isStudent: boolean;
+  seniority: number;
+}
+function Recruit(candidate: worker | student): void {
+  &#39;education&#39; in candidate &amp;&amp;
+    console.log(`your education is ${candidate.education}`);
+  &#39;seniority&#39; in candidate &amp;&amp;
+    console.log(`your seniority is ${candidate.seniority}`);
+}
+
+const a: student = { isStudent: true, education: 4 };
+const b: worker = { isStudent: false, seniority: 2 };
+Recruit(a);
+Recruit(b);</code></pre>
+<ul>
+<li>typeof</li>
+<li>instanceof</li>
+</ul>
 <h3 id="接口interface"><a href="#接口interface" class="headerlink" title="接口interface"></a>接口interface</h3><p>先看一个接口的例子</p>
 <pre><code class="tsx">interface person {
   name: string;
@@ -1093,7 +1143,7 @@ console.log(bird);
 
 
     <div class='content'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是TypeScript"><span class="toc-text">什么是TypeScript</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TypeScript好在哪里"><span class="toc-text">TypeScript好在哪里</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建第一个TypeScript文件"><span class="toc-text">创建第一个TypeScript文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基础类型"><span class="toc-text">基础类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数组"><span class="toc-text">数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#元组tuple"><span class="toc-text">元组tuple</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#枚举"><span class="toc-text">枚举</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#any"><span class="toc-text">any</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#void"><span class="toc-text">void</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null和undefined"><span class="toc-text">null和undefined</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#never"><span class="toc-text">never</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#结构赋值的写法"><span class="toc-text">结构赋值的写法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类型断言"><span class="toc-text">类型断言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#接口interface"><span class="toc-text">接口interface</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#可选属性"><span class="toc-text">可选属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#只读属性"><span class="toc-text">只读属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#函数类型的接口"><span class="toc-text">函数类型的接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#接口的继承"><span class="toc-text">接口的继承</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类class"><span class="toc-text">类class</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#变量修饰符"><span class="toc-text">变量修饰符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#静态属性static"><span class="toc-text">静态属性static</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#构造函数"><span class="toc-text">构造函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#抽象类"><span class="toc-text">抽象类</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是TypeScript"><span class="toc-text">什么是TypeScript</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TypeScript好在哪里"><span class="toc-text">TypeScript好在哪里</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建第一个TypeScript文件"><span class="toc-text">创建第一个TypeScript文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基础类型"><span class="toc-text">基础类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数组"><span class="toc-text">数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#元组tuple"><span class="toc-text">元组tuple</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#枚举"><span class="toc-text">枚举</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#any"><span class="toc-text">any</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#void"><span class="toc-text">void</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null和undefined"><span class="toc-text">null和undefined</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#never"><span class="toc-text">never</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#结构赋值的写法"><span class="toc-text">结构赋值的写法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#联合类型"><span class="toc-text">联合类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类型断言"><span class="toc-text">类型断言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#接口interface"><span class="toc-text">接口interface</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#可选属性"><span class="toc-text">可选属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#只读属性"><span class="toc-text">只读属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#函数类型的接口"><span class="toc-text">函数类型的接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#接口的继承"><span class="toc-text">接口的继承</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类class"><span class="toc-text">类class</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#变量修饰符"><span class="toc-text">变量修饰符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#静态属性static"><span class="toc-text">静态属性static</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#构造函数"><span class="toc-text">构造函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#抽象类"><span class="toc-text">抽象类</span></a></li></ol></li></ol>
     </div>
   </section>
 
