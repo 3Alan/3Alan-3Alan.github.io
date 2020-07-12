@@ -736,7 +736,7 @@ try {
     myDiv.style.left = myDiv.offsetLeft + step + &#39;px&#39;;
 }, 50);
 &lt;/script&gt;</code></pre>
-<h3 id="数组扁平化"><a href="#数组扁平化" class="headerlink" title="数组扁平化"></a>数组扁平化</h3><div class="tabs" id="5"><ul class="nav-tabs"><li class="tab active"><a href="#5-1">方法1</a></li><li class="tab"><a href="#5-2">方法2</a></li><li class="tab"><a href="#5-3">方法3</a></li><li class="tab"><a href="#5-4">方法3</a></li></ul><div class="tab-content"><div class="tab-pane active" id="5-1"><pre><code class="js"><span class="comment">// 笨方法：递归</span>
+<h3 id="数组扁平化"><a href="#数组扁平化" class="headerlink" title="数组扁平化"></a>数组扁平化</h3><div class="tabs" id="5"><ul class="nav-tabs"><li class="tab active"><a href="#5-1">方法1</a></li><li class="tab"><a href="#5-2">方法2</a></li><li class="tab"><a href="#5-3">方法3</a></li><li class="tab"><a href="#5-4">方法4</a></li></ul><div class="tab-content"><div class="tab-pane active" id="5-1"><pre><code class="js"><span class="comment">// 笨方法：遍历</span>
 <span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">7</span>,[<span class="number">2</span>,[<span class="number">2</span>,<span class="number">3</span>],<span class="number">6</span>]];
 <span class="function"><span class="keyword">function</span> <span class="title">flat</span>(<span class="params">arr</span>) </span>{
     <span class="keyword">let</span> result = [];

@@ -503,13 +503,13 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>2.5k字</p>
+      <p>2.8k字</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>时长：10分钟</p>
+      <p>时长：12分钟</p>
     </a>
   </div>
 
@@ -613,8 +613,28 @@ a = [&#39;abc&#39;, 123] //合格
 b = [123, &#39;abc&#39;] //不合格</code></pre>
 <h3 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h3><p>其实有点类似对象<br>看例子吧</p>
 <pre><code class="tsx">enum lan {js, ts, css};
-console.log(lan.js); // 0   js对应的下标
+console.log(lan.js); // 0   js对应的下标，第一个默认下标为0
 
+enum lan {
+  js = 3,
+  ts,
+  css,
+}
+console.log(lan.js); // 3
+console.log(lan.ts); // 4
+console.log(lan.css); // 5
+
+enum lan {
+  js,
+  ts = 3,
+  css,
+}
+console.log(lan.js); // 0
+console.log(lan.ts); // 3
+console.log(lan.css); // 4
+console.log(lan[4]); // css
+console.log(lan[1]); // undefined
+// 第一个默认下标为0，css接着ts的值+1
 
 enum lan {js = &#39;good&#39;, ts = &#39;nice&#39;, css = &#39;well&#39;};
 console.log(lan.js); // good</code></pre>
@@ -861,6 +881,29 @@ class Bird extends Animal{
 const bird = new Bird(&#39;qc&#39;);
 console.log(bird);
 // Bird { name: &#39;qc&#39; }</code></pre>
+<h3 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h3><blockquote>
+<p>泛型（Generics）是指在定义函数、接口或类的时候，<strong>不预先指定</strong>具体的类型，而在<strong>使用的时候</strong>再指定类型的一种特性。</p>
+</blockquote>
+<p>用法：&lt;泛型名&gt;</p>
+<pre><code class="tsx">function Recruit&lt;T&gt;(name: string, props: T) {
+  return name + props;
+}
+// 显式指定为T为number类型
+console.log(Recruit&lt;number&gt;(&#39;Alan&#39;, 123)); // Alan123
+// TS自动推断为number类型，和上面效果一样
+console.log(Recruit(&#39;Alan&#39;, 123)); // Alan123
+console.log(Recruit(&#39;Alan&#39;, [1, 2, 3])); // Alan1,2,3</code></pre>
+<h4 id="泛型约束"><a href="#泛型约束" class="headerlink" title="泛型约束"></a>泛型约束</h4><p>试用extends约束泛型</p>
+<pre><code class="tsx">interface info {
+  mobile: string;
+}
+
+// T泛型必须满足info
+function Recruit&lt;T extends info&gt;(name: string, props: T) {
+  return name + props.mobile;
+}
+
+console.log(Recruit(&#39;Alan&#39;, { mobile: &#39;1232910830&#39; })); // Alan1232910830</code></pre>
 
           
             <div class='article_footer'>
@@ -1146,7 +1189,7 @@ console.log(bird);
 
 
     <div class='content'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是TypeScript"><span class="toc-text">什么是TypeScript</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TypeScript好在哪里"><span class="toc-text">TypeScript好在哪里</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建第一个TypeScript文件"><span class="toc-text">创建第一个TypeScript文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基础类型"><span class="toc-text">基础类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数组"><span class="toc-text">数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#元组tuple"><span class="toc-text">元组tuple</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#枚举"><span class="toc-text">枚举</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#any"><span class="toc-text">any</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#void"><span class="toc-text">void</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null和undefined"><span class="toc-text">null和undefined</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#never"><span class="toc-text">never</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#结构赋值的写法"><span class="toc-text">结构赋值的写法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#联合类型"><span class="toc-text">联合类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类型断言"><span class="toc-text">类型断言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#接口interface"><span class="toc-text">接口interface</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#可选属性"><span class="toc-text">可选属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#只读属性"><span class="toc-text">只读属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#函数类型的接口"><span class="toc-text">函数类型的接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#接口的继承"><span class="toc-text">接口的继承</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类class"><span class="toc-text">类class</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#变量修饰符"><span class="toc-text">变量修饰符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#静态属性static"><span class="toc-text">静态属性static</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#构造函数"><span class="toc-text">构造函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#抽象类"><span class="toc-text">抽象类</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是TypeScript"><span class="toc-text">什么是TypeScript</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TypeScript好在哪里"><span class="toc-text">TypeScript好在哪里</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建第一个TypeScript文件"><span class="toc-text">创建第一个TypeScript文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基础类型"><span class="toc-text">基础类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数组"><span class="toc-text">数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#元组tuple"><span class="toc-text">元组tuple</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#枚举"><span class="toc-text">枚举</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#any"><span class="toc-text">any</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#void"><span class="toc-text">void</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null和undefined"><span class="toc-text">null和undefined</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#never"><span class="toc-text">never</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#结构赋值的写法"><span class="toc-text">结构赋值的写法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#联合类型"><span class="toc-text">联合类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类型断言"><span class="toc-text">类型断言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#接口interface"><span class="toc-text">接口interface</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#可选属性"><span class="toc-text">可选属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#只读属性"><span class="toc-text">只读属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#函数类型的接口"><span class="toc-text">函数类型的接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#接口的继承"><span class="toc-text">接口的继承</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类class"><span class="toc-text">类class</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#变量修饰符"><span class="toc-text">变量修饰符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#静态属性static"><span class="toc-text">静态属性static</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#构造函数"><span class="toc-text">构造函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#抽象类"><span class="toc-text">抽象类</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#泛型"><span class="toc-text">泛型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#泛型约束"><span class="toc-text">泛型约束</span></a></li></ol></li></ol>
     </div>
   </section>
 
