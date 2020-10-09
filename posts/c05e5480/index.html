@@ -687,6 +687,11 @@ shouldComponentUpdate(nextProps, nextState) {
     // 防止更新影响性能
 }</code></pre>
 <p>也可以使用组件去继承<code>React.PureComponent</code>以达到和上面一样的效果，但是应该减少使用，因为它存在一些问题。<a href="https://reactjs.org/docs/render-props.html#be-careful-when-using-render-props-with-reactpurecomponent" target="_blank" rel="noopener">问题</a></p>
+<p><strong>在hook中也有类似的API：useMemo和useCallback</strong></p>
+<blockquote>
+<p>useMemo参考资料：</p>
+<p><a href="https://www.robinwieruch.de/react-usememo-hook" target="_blank" rel="noopener">How to useMemo in React</a></p>
+</blockquote>
 <p>可以使用Charles实现接口mock。localhost-&gt;本地文件.json</p>
 <h3 id="Redux"><a href="#Redux" class="headerlink" title="Redux"></a>Redux</h3><p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://gitee.com/alannum3/MyImages/raw/master/img/image-20200622095821817.png" alt="image-20200622095821817"></p>
 <p><strong>思路：</strong></p>
@@ -1097,16 +1102,13 @@ export default App;</code></pre>
               </a>
             
             
-              <a class='next' href='/posts/f9d92613/'>
-                <p class='title'>webpack4.0进阶（三）<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-                <p class='content'>手写简单的loader、Plugin、简单的webpack
+              <a class='next' href='/posts/b050203a/'>
+                <p class='title'>Hexo博客定制<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+                <p class='content'>介绍了评论系统以及一些自定义配置
 
 
-手写简单的loader目录
-myLoader
- ├── loaders
- │   └── myLoader.js
- ├── pac...</p>
+
+评论系统注册一个LeanCloud国际版账号（国内的好像需要绑定域名和备案）注册地址👉https://console.leancloud.app/log...</p>
               </a>
             
           </div>
@@ -1177,7 +1179,7 @@ myLoader
 
 
     <div class="content">
-      <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/posts/3b0a6cbe/" title="react博客-egg-jwt实现登录系统" rel="bookmark">react博客-egg-jwt实现登录系统</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/posts/d4ddb122/" title="react博客-项目部署" rel="bookmark">react博客-项目部署</a></h3></div></li></ul>
+      <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/posts/d4ddb122/" title="react博客-项目部署" rel="bookmark">react博客-项目部署</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/posts/3b0a6cbe/" title="react博客-egg-jwt实现登录系统" rel="bookmark">react博客-egg-jwt实现登录系统</a></h3></div></li></ul>
     </div>
   </section>
 
