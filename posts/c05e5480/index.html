@@ -503,13 +503,13 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>2.4k字</p>
+      <p>2.5k字</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>时长：10分钟</p>
+      <p>时长：11分钟</p>
     </a>
   </div>
 
@@ -886,6 +886,17 @@ const mapDispatchToProps = (dispatch) =&gt; {
 
 // Demo为需要使用store的组件
 connect(mapStateToProps, mapDispatchToProps)(Demo);</code></pre>
+<hr>
+<h4 id="hook"><a href="#hook" class="headerlink" title="hook"></a>hook</h4><p>如果使用的是hook进行开发的话，可以使用<a href="https://react-redux.js.org/next/api/hooks" target="_blank" rel="noopener">react-redux</a>提供的<code>hook</code>api来简化书写,并且不需要使用<code>connect()</code>来包裹组件，<strong>但是仍然需要使用<code>Provider</code>包裹父组件</strong></p>
+<pre><code class="jsx">import { useSelector, useDispatch } from &#39;react-redux&#39;
+import { deleteTodoItemAction } from &#39;../../store/actionCreators&#39;;
+
+const counter = useSelector(state =&gt; state.counter)
+
+const dispatch = useDispatch()
+
+// 使用
+dispatch(deleteTodoItemAction)</code></pre>
 <h3 id="css写法"><a href="#css写法" class="headerlink" title="css写法"></a>css写法</h3><p>react不像vue那样可以优雅的在vue文件中写css代码，不过react也提供了几种css书写方式（待补充）</p>
 <ul>
 <li>css in js</li>
@@ -1201,7 +1212,7 @@ export default App;</code></pre>
 
 
     <div class='content'>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#基础知识点"><span class="toc-text">基础知识点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#组件通信"><span class="toc-text">组件通信</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#父-gt-子"><span class="toc-text">父-&gt;子</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#子-gt-父亲"><span class="toc-text">子-&gt;父亲</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#props参数校验及默认值"><span class="toc-text">props参数校验及默认值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#异步组件加载插件react-loadable"><span class="toc-text">异步组件加载插件react-loadable</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#虚拟DOM"><span class="toc-text">虚拟DOM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#生命周期"><span class="toc-text">生命周期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redux"><span class="toc-text">Redux</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#redux-thunk"><span class="toc-text">redux-thunk</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#redux-saga"><span class="toc-text">redux-saga</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#react-redux"><span class="toc-text">react-redux</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#css写法"><span class="toc-text">css写法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#react-router"><span class="toc-text">react-router</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#基础知识点"><span class="toc-text">基础知识点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#组件通信"><span class="toc-text">组件通信</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#父-gt-子"><span class="toc-text">父-&gt;子</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#子-gt-父亲"><span class="toc-text">子-&gt;父亲</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#props参数校验及默认值"><span class="toc-text">props参数校验及默认值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#异步组件加载插件react-loadable"><span class="toc-text">异步组件加载插件react-loadable</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#虚拟DOM"><span class="toc-text">虚拟DOM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#生命周期"><span class="toc-text">生命周期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redux"><span class="toc-text">Redux</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#redux-thunk"><span class="toc-text">redux-thunk</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#redux-saga"><span class="toc-text">redux-saga</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#react-redux"><span class="toc-text">react-redux</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#hook"><span class="toc-text">hook</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#css写法"><span class="toc-text">css写法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#react-router"><span class="toc-text">react-router</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol>
     </div>
   </section>
 
