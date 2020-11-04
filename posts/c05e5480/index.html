@@ -891,12 +891,16 @@ connect(mapStateToProps, mapDispatchToProps)(Demo);</code></pre>
 <pre><code class="jsx">import { useSelector, useDispatch } from &#39;react-redux&#39;
 import { deleteTodoItemAction } from &#39;../../store/actionCreators&#39;;
 
+// 等同于前面的mapStateToProps
 const counter = useSelector(state =&gt; state.counter)
 
 const dispatch = useDispatch()
 
 // 使用
 dispatch(deleteTodoItemAction)</code></pre>
+<ul>
+<li><code>useSelector</code>：返回state中的值，当一个<code>action</code>被<code>dispatch</code>时，<code>useSelector</code>会把之前的selector返回的结果和现在的结果进行<code>浅</code>比较（默认深比较<code>===</code>），如果不相同的话组件会被强制渲染，否则不会。</li>
+</ul>
 <h3 id="css写法"><a href="#css写法" class="headerlink" title="css写法"></a>css写法</h3><p>react不像vue那样可以优雅的在vue文件中写css代码，不过react也提供了几种css书写方式（待补充）</p>
 <ul>
 <li>css in js</li>
@@ -1190,7 +1194,7 @@ export default App;</code></pre>
 
 
     <div class="content">
-      <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/posts/d4ddb122/" title="react博客-项目部署" rel="bookmark">react博客-项目部署</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/posts/3b0a6cbe/" title="react博客-egg-jwt实现登录系统" rel="bookmark">react博客-egg-jwt实现登录系统</a></h3></div></li></ul>
+      <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/posts/3b0a6cbe/" title="react博客-egg-jwt实现登录系统" rel="bookmark">react博客-egg-jwt实现登录系统</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/posts/d4ddb122/" title="react博客-项目部署" rel="bookmark">react博客-项目部署</a></h3></div></li></ul>
     </div>
   </section>
 
