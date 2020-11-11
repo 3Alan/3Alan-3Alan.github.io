@@ -890,6 +890,9 @@ th {
   justify-content: space-between;
   align-items: center;
 }
+.l_header #wrapper .nav-main i.fa-basketball-ball {
+  color: #fbb01f;
+}
 .l_header #wrapper .nav-main {
   transition: all 0.28s ease;
   -moz-transition: all 0.28s ease;
