@@ -158,6 +158,16 @@
             
             
               <li>
+                <a class="menuitem flat-box header toggle-mode-btn">
+                  <i class='fas fa-moon fa-fw'></i>dark
+                </a>
+              <li>
+            
+          
+          
+            
+            
+              <li>
                 <a class="menuitem flat-box faa-parent animated-hover" 
                   
                   
@@ -270,6 +280,16 @@
                 </a>
                 
               </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box header toggle-mode-btn">
+                  <i class='fas fa-moon fa-fw'></i>dark
+                </a>
+              <li>
             
           
             
@@ -390,10 +410,10 @@
           
         
           
-            <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-06-13T13:51:44+08:00">
+            <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-05-16T16:02:54+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2020年6月13日 13:51</p>
+    <p>更新于：2020年5月16日 16:02</p>
   </a>
 </div>
 
@@ -566,10 +586,10 @@ abbrlink:
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-06-13T13:51:44+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-05-16T16:02:54+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2020年6月13日 13:51</p>
+    <p>更新于：2020年5月16日 16:02</p>
   </a>
 </div>
 
@@ -645,25 +665,21 @@ abbrlink:
   
     <div class="prev-next">
       
-        <a class='prev' href='/posts/fc7889ef/'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>TypeScript学习总结（一）</p>
-          <p class='content'>TypeScript常用知识点总结
+        <a class='prev' href='/posts/829819a3/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>webpack4.0学习总结（三）</p>
+          <p class='content'>这节介绍了webpack一些常用的plugins的使用
 
 
-什么是TypeScriptTypeScript是JavaScript的一个超集，在JavaScript的基础上增加了可选的静态类型和基于类的面向对象编程。...</p>
+我的总结篇的第一节中提到了index.html是需要我们手动移动到打包后的dist目录下的，那我比较懒能不能让webpack来帮我完成...</p>
         </a>
       
       
-        <a class='next' href='/posts/f9d92613/'>
-          <p class='title'>webpack4.0进阶（三）<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>手写简单的loader、Plugin、简单的webpack
+        <a class='next' href='/posts/cf86baf1/'>
+          <p class='title'>webpack4.0学习总结（二）<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>这节主要讲一讲一些常见的Loder的使用。包括file-loader、url-loader以及css-loader和style-loader。
 
 
-手写简单的loader目录
-myLoader
- ├── loaders
- │   └── myLoader.js
- ├── pac...</p>
+Loaderfile-loader上一节简单介...</p>
         </a>
       
     </div>
@@ -1652,6 +1668,104 @@ document.addEventListener("DOMContentLoaded", listenSearch);
 </script>
 
 
+
+
+  <script>
+const rootElement = document.documentElement;
+const darkModeStorageKey = "user-color-scheme";
+const rootElementDarkModeAttributeName = "data-user-color-scheme";
+
+const setLS = (k, v) => {
+  try {
+    localStorage.setItem(k, v);
+  } catch (e) {
+    console.log(e.message);
+  }
+};
+
+const removeLS = (k) => {
+  try {
+    localStorage.removeItem(k);
+  } catch (e) {
+    console.log(e.message);
+  }
+};
+
+const getLS = (k) => {
+  try {
+    return localStorage.getItem(k);
+  } catch (e) {
+    console.log(e.message);
+    return null;
+  }
+};
+
+const getModeFromCSSMediaQuery = () => {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+};
+
+const resetRootDarkModeAttributeAndLS = () => {
+  rootElement.removeAttribute(rootElementDarkModeAttributeName);
+  removeLS(darkModeStorageKey);
+};
+
+const validColorModeKeys = {
+  dark: true,
+  light: true,
+};
+
+const applyCustomDarkModeSettings = (mode) => {
+  const currentSetting = mode || getLS(darkModeStorageKey);
+
+  if (currentSetting === getModeFromCSSMediaQuery()) {
+    resetRootDarkModeAttributeAndLS();
+  } else if (validColorModeKeys[currentSetting]) {
+    rootElement.setAttribute(rootElementDarkModeAttributeName, currentSetting);
+  } else {
+    resetRootDarkModeAttributeAndLS();
+  }
+};
+
+const invertDarkModeObj = {
+  dark: "light",
+  light: "dark",
+};
+
+/**
+ * get target mode
+ */
+const toggleCustomDarkMode = () => {
+  let currentSetting = getLS(darkModeStorageKey);
+
+  if (validColorModeKeys[currentSetting]) {
+    currentSetting = invertDarkModeObj[currentSetting];
+  } else if (currentSetting === null) {
+    currentSetting = invertDarkModeObj[getModeFromCSSMediaQuery()];
+  } else {
+    return;
+  }
+  setLS(darkModeStorageKey, currentSetting);
+  return currentSetting;
+};
+
+/**
+ * bind click event for toggle button
+ */
+function bindToggleButton() {
+	var btn=$("#wrapper .toggle-mode-btn");
+    btn.on('click',(e) => {
+      const mode = toggleCustomDarkMode();
+      applyCustomDarkModeSettings(mode);
+    });
+}
+
+applyCustomDarkModeSettings();
+document.addEventListener("DOMContentLoaded", bindToggleButton);
+document.addEventListener("pjax:success", bindToggleButton);
+
+</script>
 
 
 
