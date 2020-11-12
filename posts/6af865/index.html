@@ -19,13 +19,13 @@
 
   <!-- 页面元数据 -->
   
-  <title>react博客-egg-jwt实现登录系统 - Alan|前端博客</title>
+  <title>记一次Next.js搭建之旅 - Alan|前端博客</title>
   
-    <meta name="keywords" content="React,博客,ReactHook,jwt">
+    <meta name="keywords" content="React,Next.js">
   
 
   
-    <meta name="description" content="react博客系列文章">
+    <meta name="description" content="这段时间工作要求将之前的vue的H5活动页面转移到Next.js下面，经过一段时间的研究，总结出了下面的内容。">
   
 
   <!-- feed -->
@@ -393,7 +393,7 @@
     
     
       <h1 class="title">
-        react博客-egg-jwt实现登录系统
+        记一次Next.js搭建之旅
       </h1>
       <div class='new-meta-box'>
         
@@ -410,10 +410,10 @@
           
         
           
-            <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-05-13T16:11:11+08:00">
+            <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-11-12T17:04:58+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2020年5月13日 16:11</p>
+    <p>更新于：2020年11月12日 17:04</p>
   </a>
 </div>
 
@@ -424,13 +424,13 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>字数：780字</p>
+      <p>字数：1.6k字</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>时长：3分钟</p>
+      <p>时长：7分钟</p>
     </a>
   </div>
 
@@ -442,7 +442,7 @@
   <div class="new-meta-item browse leancloud">
     <a class='notlink'>
       
-      <div id="lc-pv" data-title="react博客-egg-jwt实现登录系统" data-path="/posts/3b0a6cbe/">
+      <div id="lc-pv" data-title="记一次Next.js搭建之旅" data-path="/posts/6af865/">
         <i class="fas fa-fire fa-fw" aria-hidden="true"></i>
         <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
         次浏览
@@ -459,134 +459,281 @@
 
 
   
-  <p>react博客系列文章</p>
+  <p>这段时间工作要求将之前的vue的H5活动页面转移到Next.js下面，经过一段时间的研究，总结出了下面的内容。</p>
 <a id="more"></a>
 
-<h2 id="何为jwt"><a href="#何为jwt" class="headerlink" title="何为jwt"></a>何为jwt</h2><h2 id="egg-jwt"><a href="#egg-jwt" class="headerlink" title="egg-jwt"></a>egg-jwt</h2><h3 id="安装egg-jwt"><a href="#安装egg-jwt" class="headerlink" title="安装egg-jwt"></a>安装egg-jwt</h3><p><code>yarn add egg-jwt</code></p>
-<h3 id="配置egg-jwt"><a href="#配置egg-jwt" class="headerlink" title="配置egg-jwt"></a>配置egg-jwt</h3><ol>
-<li>配置<code>config/plugin.js</code>文件</li>
-</ol>
-<pre><code class="js">exports.jwt = {
-  enable: true,
-  package: &#39;egg-jwt&#39;,
-};</code></pre>
-<ol start="2">
-<li>配置<code>config/config.default.js</code>文件</li>
-</ol>
-<pre><code class="js">// 自己设定的密钥，用于对信息进行签名
-config.jwt = {
-  secret: &#39;xxxxxx&#39;,
-};</code></pre>
-<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><h3 id="后台实现登录操作返回token"><a href="#后台实现登录操作返回token" class="headerlink" title="后台实现登录操作返回token"></a>后台实现登录操作返回token</h3><ol>
-<li>路由层</li>
-</ol>
-<p>在第二个参数上加上jwt即可实现对该路由的鉴权 </p>
-<p>下面的jwt是自定义的中间件<code>auth.js</code>，该文件在下一部分介绍</p>
-<pre><code class="js">&#39;use strict&#39;;
+<h3 id="什么Next-js"><a href="#什么Next-js" class="headerlink" title="什么Next.js"></a>什么Next.js</h3><p>基于<code>React</code>的SSR（服务端渲染框架）</p>
+<h3 id="SSR-amp-CSR"><a href="#SSR-amp-CSR" class="headerlink" title="SSR &amp; CSR"></a>SSR &amp; CSR</h3><blockquote>
+<p>参考链接：<a href="https://medium.com/walmartglobaltech/the-benefits-of-server-side-rendering-over-client-side-rendering-5d07ff2cefe8" target="_blank" rel="noopener">https://medium.com/walmartglobaltech/the-benefits-of-server-side-rendering-over-client-side-rendering-5d07ff2cefe8</a></p>
+</blockquote>
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://i2.wp.com/blog.logrocket.com/wp-content/uploads/2019/06/ssr-explanation.png?w=800&ssl=1"  />
 
-/**
- * @param {Egg.Application} app - egg application
- */
-module.exports = app =&gt; {
-  const { router, controller, middleware, config } = app;
-  const { admin } = controller.admin;
-  const jwt = middleware.auth(config.jwt);
-  router.post(&#39;/admin/login&#39;, admin.login);
-  // 需要鉴权的路由再第二个参数上加上jwt
-  router.get(&#39;/admin/get_type_list&#39;, jwt, admin.getTypeList);
-};</code></pre>
-<ol start="2">
-<li>controller层</li>
-</ol>
-<p>使用<code>jwt.sign(加密数据, 密钥, [options, callback])</code> 来生成token</p>
-<p>相关配置可以查看<a href="https://www.npmjs.com/package/jsonwebtoken" target="_blank" rel="noopener">jsonwebtoken</a></p>
-<pre><code class="js">async login() {
-    const { app, ctx } = this;
-    const { username, password } = ctx.request.body;
-    const checkValidate = await ctx.service.admin.admin.checkUserValidate(username, password);
-    if (checkValidate) {
-        // 将信息使用jwt进行签名加密生成token，expiresIn（token有效时间）
-        const token = app.jwt.sign({ username, password }, app.config.jwt.secret, { expiresIn: &#39;2h&#39; });
-        ctx.body = {
-            code: &#39;0001&#39;,
-            msg: &#39;登录成功&#39;,
-            token,
-        };
-    } else {
-        ctx.body = {
-            code: &#39;0002&#39;,
-            msg: &#39;用户名或者密码错误，请重试！&#39;,
-        };
-    }
-}</code></pre>
-<ol start="3">
-<li>service层</li>
-</ol>
-<pre><code class="js">async checkUserValidate(username, password) {
-  const isValidate = await this.app.mysql.get(&#39;admin&#39;, { username, password });
-  return !!isValidate;
-}</code></pre>
-<ol start="4">
-<li>使用postman进行测试</li>
-</ol>
-<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://gitee.com/alannum3/MyImages/raw/master/img/image-20200502125430201.png" alt="image-20200502125430201"></p>
-<p>将生成的token返回给前台后使用<code>localStorage.setItem</code>把<code>token</code>保存到本地</p>
-<h3 id="前台传递token进行鉴权"><a href="#前台传递token进行鉴权" class="headerlink" title="前台传递token进行鉴权"></a>前台传递token进行鉴权</h3><h4 id="封装axios"><a href="#封装axios" class="headerlink" title="封装axios"></a>封装axios</h4><p>新建axios文件对axio进行封装，通过axios的拦截器来实现每次请求时自动在headers上携带token数据到后台，后台使用<code>jwt.verify</code>来检验token的正确性</p>
-<p><em>axios.js</em></p>
-<pre><code class="js">import axios from &#39;axios&#39;;
+<blockquote>
+<p>The main difference is that for SSR your server’s response to the browser is the HTML of your page that is ready to be rendered, while for CSR the browser gets a pretty empty document with links to your javascript. That means your browser will start rendering the HTML from your server without having to wait for all the JavaScript to be downloaded and executed. In both cases, React will need to be downloaded and go through the same process of building a virtual dom and attaching events to make the page interactive — but for SSR, the user can start viewing the page while all of that is happening. For the CSR world, you need to wait for all of the above to happen and then have the virtual dom moved to the browser dom for the page to be viewable.</p>
+</blockquote>
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://i2.wp.com/blog.logrocket.com/wp-content/uploads/2019/06/csr-explanation.png?w=800&ssl=1"  />
 
-axios.interceptors.request.use(config =&gt; {
-  // 登录成功后保存在本地的token
-  const token = localStorage.getItem(&#39;token&#39;);
-  config.headers.Authorization = `Bearer ${token}`;
-  return config;
+<h3 id="Next-js的优点"><a href="#Next-js的优点" class="headerlink" title="Next.js的优点"></a>Next.js的优点</h3><ul>
+<li>更好的SEO</li>
+<li>更快的首屏渲染速度</li>
+</ul>
+<h3 id="Next-js-基础-与Rect开发的不同之处"><a href="#Next-js-基础-与Rect开发的不同之处" class="headerlink" title="Next.js 基础(与Rect开发的不同之处)"></a>Next.js 基础(与Rect开发的不同之处)</h3><blockquote>
+<p><a href="https://www.nextjs.cn/learn/basics/create-nextjs-app?utm_source=next-site&amp;utm_medium=nav-cta&amp;utm_campaign=next-website" target="_blank" rel="noopener">https://www.nextjs.cn/learn/basics/create-nextjs-app?utm_source=next-site&amp;utm_medium=nav-cta&amp;utm_campaign=next-website</a></p>
+</blockquote>
+<h4 id="路由映射"><a href="#路由映射" class="headerlink" title="路由映射"></a>路由映射</h4><blockquote>
+<p>在 Next.js 中，一个 <strong>page（页面）</strong> 就是一个从 <code>.js</code>、<code>jsx</code>、<code>.ts</code> 或 <code>.tsx</code> 文件导出（export）的 <a href="https://reactjs.org/docs/components-and-props.html" target="_blank" rel="noopener">React 组件</a> ，这些文件存放在 <code>pages</code> 目录下。每个 page（页面）都使用其文件名作为路由（route）。</p>
+</blockquote>
+<pre><code class="js">pages/about.js/jsx/ts/tsx → /about
+
+pages/dashboard/settings/username.js → /dashboard/settings/username</code></pre>
+<h4 id="自带路由：next-router-next-link"><a href="#自带路由：next-router-next-link" class="headerlink" title="自带路由：next/router next/link"></a>自带路由：<code>next/router</code> <code>next/link</code></h4><p>使用与<code>react-router</code>类似，包括编程式跳转<code>router.push</code>以及组件式跳转<code>&lt;Link href=&quot;/about&quot;&gt;&lt;a&gt;click me&lt;/a&gt;&lt;/Link&gt;</code></p>
+<pre><code class="js">import { useRouter } from &#39;next/router&#39;;
+
+const router = useRouter();
+router.push({
+  pathname: &#39;/activities/experience-lesson/course-info&#39;,
+  query: { ...queryData, isFree: 0 }
+});
+router.push(&#39;/about&#39;)</code></pre>
+<h4 id="渲染方式"><a href="#渲染方式" class="headerlink" title="渲染方式"></a>渲染方式</h4><p>预渲染</p>
+<ul>
+<li><strong>静态生成（Static Generation）</strong>（HTML重用、build生成）</li>
+<li><strong>服务器端渲染（Server-side Rendering）</strong>（每次请求生成的HTML不同、用户请求时生成）</li>
+</ul>
+<p>相关API</p>
+<ul>
+<li><p>静态生成</p>
+<ul>
+<li><code>getStaticProps(context)</code></li>
+<li><code>getStaticPaths(context)</code></li>
+</ul>
+</li>
+<li><p>服务器渲染</p>
+<ul>
+<li><code>getServerSideProps(context)</code></li>
+</ul>
+</li>
+<li><p>客户端获取数据</p>
+<ul>
+<li>SWR（官方推荐）</li>
+</ul>
+</li>
+</ul>
+<p><strong>注意：</strong>在开发环境中<code>getStaticProps</code>和<code>getStaticPaths</code>每次请求都会被调用</p>
+<p>使用，在<strong>页面</strong>文件中导出</p>
+<pre><code class="js">function Page({ data }) {
+  // Render data...
+}
+
+// This gets called on every request
+export async function getServerSideProps() {
+  // Fetch data from external API
+  const res = await fetch(`https://.../data`)
+  const data = await res.json()
+
+  // Pass data to the page via props
+  return { props: { data } }
+}
+
+export default Page</code></pre>
+<h3 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h3><h4 id="封装axios在每次请求时显示spin组件"><a href="#封装axios在每次请求时显示spin组件" class="headerlink" title="封装axios在每次请求时显示spin组件"></a>封装axios在每次请求时显示<code>spin</code>组件</h4><p>这里要注意一点，由于服务端不存在<code>document</code>，所以要判断一下当前所处的环境再去执行操作。</p>
+<pre><code class="jsx">import axios from &#39;axios&#39;;
+import ReactDOM from &#39;react-dom&#39;;
+import Spin from &#39;../components/Spin/Spin&#39;;
+
+const Axios = axios.create({
+  timeout: 20000
 });
 
-axios.interceptors.response.use(response =&gt; {
-  // code是后台接口设置的
-  const { code } = response.data;
-  if (code === &#39;0003&#39; || code === &#39;0004&#39;) {
-    window.location.href = &#39;/login&#39;;
+const csr = process.browser;
+
+// 当前正在请求的数量
+let requestCount = 0;
+
+function showLoading() {
+  if (requestCount === 0) {
+    var dom = document.createElement(&#39;div&#39;);
+    dom.setAttribute(&#39;id&#39;, &#39;loading&#39;);
+    document.body.appendChild(dom);
+    ReactDOM.render(&lt;Spin /&gt;, dom);
   }
-  return response;
-});
+  requestCount++;
+  console.log(&#39;showLoading&#39;, requestCount);
+}
 
-export default axios;</code></pre>
-<p>封装好后，之后都使用该封装好后的axios进行请求。</p>
-<h4 id="后台校验处理"><a href="#后台校验处理" class="headerlink" title="后台校验处理"></a>后台校验处理</h4><p><em>auth.js</em></p>
-<pre><code class="js">&#39;use strict&#39;;
+function hideLoading() {
+  requestCount--;
+  if (requestCount === 0) {
+    document.body.removeChild(document.getElementById(&#39;loading&#39;));
+  }
+  console.log(&#39;hideLoading&#39;, requestCount);
+}
 
-module.exports = options =&gt; {
-  return async function auth(ctx, next) {
-    // 获取前台通过axios封装后穿过来的token
-    const token = ctx.header.authorization;
-    if (token) {
-      try {
-        // 验证并对token进行解码
-        const decode = ctx.app.jwt.verify(token.split(&#39; &#39;)[1], options.secret);
-        console.log(decode);
-        await next();
-      } catch (error) {
-        console.log(error.name);
-        if (error.name === &#39;JsonWebTokenError&#39; || error.name === &#39;TokenExpiredError&#39;) {
-          // 这里的错误有许多种情况：1.token错误，2.token过期... 这里统一处理为鉴权失败
-          ctx.body = {
-            code: &#39;0003&#39;,
-            msg: &#39;用户鉴权失败，请重新登录&#39;,
-          };
-        } else {
-          throw error;
-        }
+Axios.interceptors.request.use(
+  (config) =&gt; {
+    csr &amp;&amp; showLoading();
+    return config;
+  },
+  (err) =&gt; {
+    csr &amp;&amp; hideLoading();
+    return Promise.reject(err);
+  }
+);
+
+Axios.interceptors.response.use(
+  (res) =&gt; {
+    csr &amp;&amp; hideLoading();
+    return res;
+  },
+  (err) =&gt; {
+    csr &amp;&amp; hideLoading();
+    return Promise.reject(err);
+  }
+);
+
+export default Axios;
+</code></pre>
+<h4 id="自定义input-hook"><a href="#自定义input-hook" class="headerlink" title="自定义input hook"></a>自定义input hook</h4><p>使用后可以免去给每个表单组件设置<code>onChange</code></p>
+<pre><code class="jsx">import { useState } from &#39;react&#39;;
+
+// 自定义input hook
+// 参考资料：https://rangle.io/blog/simplifying-controlled-inputs-with-hooks/
+export function useInput(initialValue) {
+  const [value, setValue] = useState(initialValue);
+
+  return {
+    value,
+    setValue,
+    reset: () =&gt; setValue(&#39;&#39;),
+    bind: {
+      value,
+      onChange: (e) =&gt; {
+        setValue(e.target.value);
       }
-    } else {
-      ctx.body = {
-        code: &#39;0004&#39;,
-        msg: &#39;您没有登录，请先登录&#39;,
-      };
     }
   };
-};</code></pre>
-<p>后台通过<code>/middleware/auth.js</code>中间件来实现给需要鉴权的接口进行鉴权，通过对前台传过来的token数据进行验证<code>jwt.verify</code>来识别登录状态。对<code>JsonWebTokenError</code>错误统一处理，应为<code>auth.js</code>作为中间件，所以接口中出现的其他错误也会在这里被catch到，对于不是<code>JsonWebTokenError</code>的错误，直接把错误抛出去。</p>
+}
+</code></pre>
+<p>使用：</p>
+<pre><code class="jsx">// 没使用前
+const [phone, setPhone] = useState(&#39;&#39;);
+
+&lt;input
+  name=&quot;phone&quot;
+  type=&quot;number&quot;
+  placeholder=&quot;请输入您的手机号码(必填)&quot;
+  className={`${styles[&#39;cell-content&#39;]} ${styles[&#39;cell-content-right&#39;]}`}
+  value={phone}
+  onChange={() =&gt; setPhone(e.target.value)}
+/&gt;
+
+
+// 使用后
+const { value: phone, bind: bindPhone } = useInput(&#39;&#39;);
+
+&lt;input
+  name=&quot;phone&quot;
+  type=&quot;number&quot;
+  placeholder=&quot;请输入您的手机号码(必填)&quot;
+  className={`${styles[&#39;cell-content&#39;]} ${styles[&#39;cell-content-right&#39;]}`}
+  {...bindPhone}
+/&gt;</code></pre>
+<h4 id="封装Dialog"><a href="#封装Dialog" class="headerlink" title="封装Dialog"></a>封装Dialog</h4><pre><code class="jsx">import { createPortal } from &#39;react-dom&#39;;
+import styles from &#39;./Modal.module.css&#39;;
+
+export default function Modal({ content, show, onOk }) {
+  const modal = show &amp;&amp; (
+    &lt;div className={styles[&#39;overlay&#39;]}&gt;
+      &lt;div className={styles[&#39;modal&#39;]}&gt;
+        {/* 防止冒泡关闭窗口 */}
+        &lt;div className={styles[&#39;wrapper&#39;]} onClick={(e) =&gt; e.stopPropagation()}&gt;
+          &lt;div className={styles[&#39;content&#39;]}&gt;{content}&lt;/div&gt;
+          &lt;div className={styles[&#39;readed_btn&#39;]} onClick={() =&gt; onOk()}&gt;
+            好 的
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+
+  const ProtalContent = () =&gt; {
+    // 用来处理服务端不存在document的问题
+    try {
+      // 将modal挂在到body上
+      return document &amp;&amp; createPortal(modal, document.body);
+    } catch (error) {
+      return null;
+    }
+  };
+
+  // 动态引入组件
+  // import dynamic from &#39;next/dynamic&#39;;
+  // const Modal = dynamic(() =&gt; import(&#39;./components/Modal/Modal&#39;), { ssr: false });
+
+  return (
+    &lt;&gt;
+      &lt;ProtalContent /&gt;
+    &lt;/&gt;
+  );
+}
+</code></pre>
+<h4 id="移动端适配"><a href="#移动端适配" class="headerlink" title="移动端适配"></a>移动端适配</h4><p>使用插件<code>postcss-px-to-viewport</code></p>
+<p>在根目录下新建文件<code>postcss.config.js</code></p>
+<pre><code class="js">module.exports = {
+  plugins: {
+    &#39;postcss-px-to-viewport&#39;: {
+      // 视窗的宽度，对应的是我们设计稿的宽度，我们公司用的是375
+      viewportWidth: 375,
+      // 视窗的高度，根据750设备的宽度来指定，一般指定1334，也可以不配置
+      // viewportHeight: 1334,
+      // 指定`px`转换为视窗单位值的小数位数
+      unitPrecision: 3,
+      // 指定需要转换成的视窗单位，建议使用vw
+      viewportUnit: &#39;vw&#39;,
+      // 指定不转换为视窗单位的类，可以自定义，可以无限添加,建议定义一至两个通用的类名
+      selectorBlackList: [&#39;.ignore&#39;],
+      // 小于或等于`1px`不转换为视窗单位，你也可以设置为你想要的值
+      minPixelValue: 1,
+      // 允许在媒体查询中转换`px`
+      mediaQuery: false
+      // exclude: undefined
+    }
+  }
+};
+</code></pre>
+<h4 id="使用Docker-coding实现自动化部署"><a href="#使用Docker-coding实现自动化部署" class="headerlink" title="使用Docker+coding实现自动化部署"></a>使用Docker+coding实现自动化部署</h4><p>dockerfile</p>
+<pre><code class="dockerfile"># node版本号
+FROM node:12-alpine
+
+# docker build时传进来的值 docker image build -t &lt;name&gt; --build-arg API_ENV=development .
+ARG API_ENV
+
+RUN echo ${API_ENV}
+
+ENV NEXT_PUBLIC_API_ENV=${API_ENV}
+
+# Create app directory
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+
+# Install app dependencies
+COPY package*.json /usr/src/app/
+RUN npm install
+
+# Bundle app source
+COPY . /usr/src/app
+
+RUN npm run build
+EXPOSE 3000
+
+CMD [ &quot;npm&quot;, &quot;run&quot;, &quot;start&quot; ]</code></pre>
+<p>在coding上设置代码push触发规则，触发生成制品库。</p>
+<h4 id="使用redux"><a href="#使用redux" class="headerlink" title="使用redux"></a>使用redux</h4><blockquote>
+<p><a href="https://github.com/vercel/next.js/tree/canary/examples/with-redux" target="_blank" rel="noopener">https://github.com/vercel/next.js/tree/canary/examples/with-redux</a></p>
+<p><a href="https://github.com/vercel/next.js/tree/canary/examples/with-redux-thunk" target="_blank" rel="noopener">https://github.com/vercel/next.js/tree/canary/examples/with-redux-thunk</a></p>
+</blockquote>
+<h3 id="Next-js-踩坑"><a href="#Next-js-踩坑" class="headerlink" title="Next.js 踩坑"></a>Next.js 踩坑</h3><h4 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h4><p>环境变量在客户端无法获取，背景：由于我在项目中需要根据环境变量来使用不同环境的API域名。</p>
+<p>解决方案：官方提供了以<code>NEXT_PUBLIC_</code>开头的环境变量名，这样就可以在客户端和服务端都访问得到环境变量了。</p>
 
   
   
@@ -600,7 +747,7 @@ module.exports = options =&gt; {
       <i class="fas fa-bookmark fa-fw" aria-hidden="true"></i><span>相关文章</span>
     </section>
     <section class='body'>
-      <div class="vlts-rps"><a class="item" href="/posts/d4ddb122/" title="react博客-项目部署" rel="bookmark "><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" /><span class="title">react博客-项目部署</span><span class="excerpt">阿里云最近推出了一个“在家实践活动”，免费领取半年的服务器，真香。领取地址</span></a><a class="item" href="/posts/c05e5480/" title="React入门学习总结" rel="bookmark "><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" /><span class="title">React入门学习总结</span><span class="excerpt">总结学习React以及相关插件时遇到的难点以及重点</span></a><a class="item" href="/posts/6af865/" title="记一次Next.js搭建之旅" rel="bookmark "><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" /><span class="title">记一次Next.js搭建之旅</span><span class="excerpt">这段时间工作要求将之前的vue的H5活动页面转移到Next.js下面，经过一段时间的研究，总结出了下面的内容。</span></a></div></section></div>
+      <div class="vlts-rps"><a class="item" href="/posts/c05e5480/" title="React入门学习总结" rel="bookmark "><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" /><span class="title">React入门学习总结</span><span class="excerpt">总结学习React以及相关插件时遇到的难点以及重点</span></a><a class="item" href="/posts/3b0a6cbe/" title="react博客-egg-jwt实现登录系统" rel="bookmark "><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" /><span class="title">react博客-egg-jwt实现登录系统</span><span class="excerpt">react博客系列文章</span></a><a class="item" href="/posts/d4ddb122/" title="react博客-项目部署" rel="bookmark "><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" /><span class="title">react博客-项目部署</span><span class="excerpt">阿里云最近推出了一个“在家实践活动”，免费领取半年的服务器，真香。领取地址</span></a></div></section></div>
       
       
         <div class='copyright'>
@@ -612,7 +759,7 @@ module.exports = options =&gt; {
               
             
               
-                <p>本文永久链接是：<a href=https://alanwang.site/posts/3b0a6cbe/>https://alanwang.site/posts/3b0a6cbe/</a></p>
+                <p>本文永久链接是：<a href=https://alanwang.site/posts/6af865/>https://alanwang.site/posts/6af865/</a></p>
               
             
           </blockquote>
@@ -629,10 +776,10 @@ module.exports = options =&gt; {
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-05-13T16:11:11+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-11-12T17:04:58+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2020年5月13日 16:11</p>
+    <p>更新于：2020年11月12日 17:04</p>
   </a>
 </div>
 
@@ -641,7 +788,7 @@ module.exports = options =&gt; {
         
           
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/React/" rel="nofollow"><i class="fas fa-tags fa-fw" aria-hidden="true"></i><p>React</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E5%8D%9A%E5%AE%A2/" rel="nofollow"><i class="fas fa-tags fa-fw" aria-hidden="true"></i><p>博客</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/ReactHook/" rel="nofollow"><i class="fas fa-tags fa-fw" aria-hidden="true"></i><p>ReactHook</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/jwt/" rel="nofollow"><i class="fas fa-tags fa-fw" aria-hidden="true"></i><p>jwt</p></a></div>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/React/" rel="nofollow"><i class="fas fa-tags fa-fw" aria-hidden="true"></i><p>React</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Next-js/" rel="nofollow"><i class="fas fa-tags fa-fw" aria-hidden="true"></i><p>Next.js</p></a></div>
 
 
         
@@ -654,7 +801,7 @@ module.exports = options =&gt; {
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
           
-          href="http://connect.qq.com/widget/shareqq/index.html?url=https://alanwang.site/posts/3b0a6cbe/&title=react博客-egg-jwt实现登录系统 - Alan|前端博客&summary=react博客系列文章"
+          href="http://connect.qq.com/widget/shareqq/index.html?url=https://alanwang.site/posts/6af865/&title=记一次Next.js搭建之旅 - Alan|前端博客&summary=这段时间工作要求将之前的vue的H5活动页面转移到Next.js下面，经过一段时间的研究，总结出了下面的内容。"
           
           >
           
@@ -666,7 +813,7 @@ module.exports = options =&gt; {
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer"
           
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://alanwang.site/posts/3b0a6cbe/&title=react博客-egg-jwt实现登录系统 - Alan|前端博客&summary=react博客系列文章"
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://alanwang.site/posts/6af865/&title=记一次Next.js搭建之旅 - Alan|前端博客&summary=这段时间工作要求将之前的vue的H5活动页面转移到Next.js下面，经过一段时间的研究，总结出了下面的内容。"
           
           >
           
@@ -678,7 +825,7 @@ module.exports = options =&gt; {
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
           
-          href="http://service.weibo.com/share/share.php?url=https://alanwang.site/posts/3b0a6cbe/&title=react博客-egg-jwt实现登录系统 - Alan|前端博客&summary=react博客系列文章"
+          href="http://service.weibo.com/share/share.php?url=https://alanwang.site/posts/6af865/&title=记一次Next.js搭建之旅 - Alan|前端博客&summary=这段时间工作要求将之前的vue的H5活动页面转移到Next.js下面，经过一段时间的研究，总结出了下面的内容。"
           
           >
           
@@ -708,23 +855,19 @@ module.exports = options =&gt; {
   
     <div class="prev-next">
       
-        <a class='prev' href='/posts/ff905629/'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>webpack4.0学习总结（一）</p>
-          <p class='content'>这一篇文章主要简单介绍了webpack是什么以及webpack的一些简单配置，你只要跟着我敲完这些代码后一定会对webpack有一个基本的了解的。😎
-
-
-webpack是一个模块打包器
-本质上...</p>
-        </a>
       
-      
-        <a class='next' href='/posts/d4ddb122/'>
-          <p class='title'>react博客-项目部署<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>阿里云最近推出了一个“在家实践活动”，免费领取半年的服务器，真香。领取地址
+        <a class='next' href='/posts/c05e5480/'>
+          <p class='title'>React入门学习总结<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>总结学习React以及相关插件时遇到的难点以及重点
 
 
-购买阿里云服务器购买完成后会得到一个公网ip
-下载软件putty来连接我们刚才购买的服务器，只需输入公网ip点击o...</p>
+
+基础知识点
+单向数据流（子组件不能修改父组件数据）
+
+组件名首字母大写
+
+可以使用&lt;React.Fragment&gt;&lt;/...</p>
         </a>
       
     </div>
@@ -767,7 +910,7 @@ webpack是一个模块打包器
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#何为jwt"><span class="toc-text">何为jwt</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#egg-jwt"><span class="toc-text">egg-jwt</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装egg-jwt"><span class="toc-text">安装egg-jwt</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置egg-jwt"><span class="toc-text">配置egg-jwt</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实例"><span class="toc-text">实例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#后台实现登录操作返回token"><span class="toc-text">后台实现登录操作返回token</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#前台传递token进行鉴权"><span class="toc-text">前台传递token进行鉴权</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#封装axios"><span class="toc-text">封装axios</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#后台校验处理"><span class="toc-text">后台校验处理</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么Next-js"><span class="toc-text">什么Next.js</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SSR-amp-CSR"><span class="toc-text">SSR &amp; CSR</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Next-js的优点"><span class="toc-text">Next.js的优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Next-js-基础-与Rect开发的不同之处"><span class="toc-text">Next.js 基础(与Rect开发的不同之处)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#路由映射"><span class="toc-text">路由映射</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#自带路由：next-router-next-link"><span class="toc-text">自带路由：next&#x2F;router next&#x2F;link</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#渲染方式"><span class="toc-text">渲染方式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#项目结构"><span class="toc-text">项目结构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#封装axios在每次请求时显示spin组件"><span class="toc-text">封装axios在每次请求时显示spin组件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#自定义input-hook"><span class="toc-text">自定义input hook</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#封装Dialog"><span class="toc-text">封装Dialog</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#移动端适配"><span class="toc-text">移动端适配</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用Docker-coding实现自动化部署"><span class="toc-text">使用Docker+coding实现自动化部署</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用redux"><span class="toc-text">使用redux</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Next-js-踩坑"><span class="toc-text">Next.js 踩坑</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#环境变量"><span class="toc-text">环境变量</span></a></li></ol></li></ol>
     </div>
   </section>
 
@@ -787,7 +930,7 @@ webpack是一个模块打包器
 <script>
   window.pdata={}
   pdata.ispage=true;
-  pdata.postTitle="react博客-egg-jwt实现登录系统";
+  pdata.postTitle="记一次Next.js搭建之旅";
   pdata.commentPath="";
   pdata.commentPlaceholder="";
 
