@@ -424,13 +424,13 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>字数：1.6k字</p>
+      <p>字数：2k字</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>时长：7分钟</p>
+      <p>时长：10分钟</p>
     </a>
   </div>
 
@@ -536,7 +536,114 @@ export async function getServerSideProps() {
 }
 
 export default Page</code></pre>
-<h3 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h3><h4 id="封装axios在每次请求时显示spin组件"><a href="#封装axios在每次请求时显示spin组件" class="headerlink" title="封装axios在每次请求时显示spin组件"></a>封装axios在每次请求时显示<code>spin</code>组件</h4><p>这里要注意一点，由于服务端不存在<code>document</code>，所以要判断一下当前所处的环境再去执行操作。</p>
+<h3 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h3><h4 id="配置Eslint-Prettier"><a href="#配置Eslint-Prettier" class="headerlink" title="配置Eslint+Prettier"></a>配置Eslint+Prettier</h4><blockquote>
+<p><a href="https://github.com/paulolramos/eslint-prettier-airbnb-react" target="_blank" rel="noopener">https://github.com/paulolramos/eslint-prettier-airbnb-react</a></p>
+<p><a href="https://dev.to/karlhadwen/setup-eslint-prettier-airbnb-style-guide-in-under-2-minutes-a27" target="_blank" rel="noopener">https://dev.to/karlhadwen/setup-eslint-prettier-airbnb-style-guide-in-under-2-minutes-a27</a></p>
+<p><a href="https://dev.to/bybruno/configuring-absolute-paths-in-react-for-web-without-ejecting-en-us-52h6" target="_blank" rel="noopener">https://dev.to/bybruno/configuring-absolute-paths-in-react-for-web-without-ejecting-en-us-52h6</a></p>
+</blockquote>
+<p>解决<code>eslint</code>无法识别动态引入语法<code>import()</code>:</p>
+<p><a href="https://github.com/eslint/eslint/issues/11486" target="_blank" rel="noopener">相关issue</a></p>
+<pre><code class="js">// eslint 配置
+parserOptions: {
+  ecmaVersion: 2020, // Use the latest ecmascript standard
+  sourceType: &#39;module&#39;, // Allows using import/export statements
+  ecmaFeatures: {
+  jsx: true // Enable JSX since we&#39;re using React
+  }
+},</code></pre>
+<h4 id="配置alias"><a href="#配置alias" class="headerlink" title="配置alias"></a>配置alias</h4><p><code>next.config.js</code>配置</p>
+<pre><code class="js">/* eslint-disable no-param-reassign */
+const path = require(&#39;path&#39;);
+
+module.exports = {
+  webpack: (config) =&gt; {
+    // Note: we provide webpack above so you should not `require` it
+    // Perform customizations to webpack config
+    config.resolve.alias[&#39;@&#39;] = path.resolve(__dirname, &#39;./src&#39;);
+    // Important: return the modified config
+    return config;
+  }
+};
+</code></pre>
+<p>eslint无法识别alias，需要在根目录下创建文件<code>jsconfig.json</code>并在<code>.eslintrc.js</code>    配置<code>settings</code></p>
+<pre><code class="js">// .eslintrc.js
+module.exports = {
+  root: true, // Make sure eslint picks up the config at the root of the directory
+  extends: [&#39;airbnb&#39;, &#39;airbnb/hooks&#39;, &#39;plugin:prettier/recommended&#39;, &#39;prettier/react&#39;],
+  env: {
+    browser: true,
+    commonjs: true,
+    es6: true,
+    jest: true,
+    node: true
+  },
+  globals: {
+    wx: true
+  },
+  parserOptions: {
+    ecmaVersion: 2020, // Use the latest ecmascript standard
+    sourceType: &#39;module&#39;, // Allows using import/export statements
+    ecmaFeatures: {
+      jsx: true // Enable JSX since we&#39;re using React
+    }
+  },
+  rules: {
+    &#39;react/react-in-jsx-scope&#39;: 0,
+    &#39;jsx-a11y/alt-text&#39;: 0, // img alt
+    &#39;react/prop-types&#39;: 0,
+    &#39;jsx-a11y/click-events-have-key-events&#39;: 0,
+    &#39;jsx-a11y/no-static-element-interactions&#39;: 0,
+    &#39;dot-notation&#39;: 0,
+    &#39;import/prefer-default-export&#39;: 0,
+    &#39;react/jsx-props-no-spreading&#39;: 0,
+    &#39;jsx-a11y/href-no-hash&#39;: [&#39;off&#39;],
+    &#39;react/no-array-index-key&#39;: 0,
+    &#39;no-console&#39;: 0,
+    &#39;no-alert&#39;: 0,
+    &#39;consistent-return&#39;: 0,
+    // eslint-disable-next-line prettier/prettier
+    eqeqeq: 1,
+    &#39;react/self-closing-comp&#39;: 0,
+    &#39;react-hooks/exhaustive-deps&#39;: 0,
+    &#39;react/no-danger&#39;: 0,
+    &#39;no-shadow&#39;: 0,
+    &#39;jsx-a11y/label-has-associated-control&#39;: 0,
+    &#39;react/jsx-filename-extension&#39;: [&#39;warn&#39;, { extensions: [&#39;.js&#39;, &#39;.jsx&#39;] }],
+    &#39;max-len&#39;: [
+      &#39;warn&#39;,
+      {
+        code: 120,
+        tabWidth: 2,
+        comments: 120,
+        ignoreComments: false,
+        ignoreTrailingComments: true,
+        ignoreUrls: true,
+        ignoreStrings: true,
+        ignoreTemplateLiterals: true,
+        ignoreRegExpLiterals: true
+      }
+    ]
+  },
+  settings: {
+    &#39;import/resolver&#39;: {
+      alias: {
+        map: [[&#39;@&#39;, &#39;./src&#39;]],
+        extensions: [&#39;.ts&#39;, &#39;.js&#39;, &#39;.jsx&#39;, &#39;.json&#39;]
+      }
+    }
+  }
+};
+</code></pre>
+<pre><code class="json">{
+  &quot;compilerOptions&quot;: {
+    &quot;baseUrl&quot;: &quot;src&quot;,
+    &quot;paths&quot;: {
+      &quot;@/*&quot;: [&quot;./*&quot;]
+    }
+  },
+  &quot;exclude&quot;: [&quot;node_modules&quot;, &quot;**/node_modules/*&quot;]
+}</code></pre>
+<h4 id="封装axios在每次请求时显示spin组件"><a href="#封装axios在每次请求时显示spin组件" class="headerlink" title="封装axios在每次请求时显示spin组件"></a>封装axios在每次请求时显示<code>spin</code>组件</h4><p>这里要注意一点，由于服务端不存在<code>document</code>，所以要判断一下当前所处的环境再去执行操作。</p>
 <pre><code class="jsx">import axios from &#39;axios&#39;;
 import ReactDOM from &#39;react-dom&#39;;
 import Spin from &#39;../components/Spin/Spin&#39;;
@@ -910,7 +1017,7 @@ CMD [ &quot;npm&quot;, &quot;run&quot;, &quot;start&quot; ]</code></pre>
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么Next-js"><span class="toc-text">什么Next.js</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SSR-amp-CSR"><span class="toc-text">SSR &amp; CSR</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Next-js的优点"><span class="toc-text">Next.js的优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Next-js-基础-与Rect开发的不同之处"><span class="toc-text">Next.js 基础(与Rect开发的不同之处)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#路由映射"><span class="toc-text">路由映射</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#自带路由：next-router-next-link"><span class="toc-text">自带路由：next&#x2F;router next&#x2F;link</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#渲染方式"><span class="toc-text">渲染方式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#项目结构"><span class="toc-text">项目结构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#封装axios在每次请求时显示spin组件"><span class="toc-text">封装axios在每次请求时显示spin组件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#自定义input-hook"><span class="toc-text">自定义input hook</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#封装Dialog"><span class="toc-text">封装Dialog</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#移动端适配"><span class="toc-text">移动端适配</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用Docker-coding实现自动化部署"><span class="toc-text">使用Docker+coding实现自动化部署</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用redux"><span class="toc-text">使用redux</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Next-js-踩坑"><span class="toc-text">Next.js 踩坑</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#环境变量"><span class="toc-text">环境变量</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么Next-js"><span class="toc-text">什么Next.js</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SSR-amp-CSR"><span class="toc-text">SSR &amp; CSR</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Next-js的优点"><span class="toc-text">Next.js的优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Next-js-基础-与Rect开发的不同之处"><span class="toc-text">Next.js 基础(与Rect开发的不同之处)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#路由映射"><span class="toc-text">路由映射</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#自带路由：next-router-next-link"><span class="toc-text">自带路由：next&#x2F;router next&#x2F;link</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#渲染方式"><span class="toc-text">渲染方式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#项目结构"><span class="toc-text">项目结构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#配置Eslint-Prettier"><span class="toc-text">配置Eslint+Prettier</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#配置alias"><span class="toc-text">配置alias</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#封装axios在每次请求时显示spin组件"><span class="toc-text">封装axios在每次请求时显示spin组件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#自定义input-hook"><span class="toc-text">自定义input hook</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#封装Dialog"><span class="toc-text">封装Dialog</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#移动端适配"><span class="toc-text">移动端适配</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用Docker-coding实现自动化部署"><span class="toc-text">使用Docker+coding实现自动化部署</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用redux"><span class="toc-text">使用redux</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Next-js-踩坑"><span class="toc-text">Next.js 踩坑</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#环境变量"><span class="toc-text">环境变量</span></a></li></ol></li></ol>
     </div>
   </section>
 
