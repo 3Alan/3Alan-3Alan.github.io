@@ -94,22 +94,6 @@
             
             
               <li>
-                <a class="menuitem flat-box faa-parent animated-hover" href=/
-                  
-                  
-                  
-                    id="home"
-                  >
-                  <i class='fas fa-home fa-fw'></i>首页
-                </a>
-                
-              </li>
-            
-          
-          
-            
-            
-              <li>
                 <a class="menuitem flat-box faa-parent animated-hover" href=/categories/
                   
                   
@@ -218,22 +202,6 @@
 				<li>
           <a class="s-menu fas fa-bars fa-fw" target="_self" href='javascript:void(0)'></a>
           <ul class="menu-phone list-v navigation white-box">
-            
-              
-            
-              <li>
-                <a class="menuitem flat-box faa-parent animated-hover" href=/
-                  
-                  
-                  
-                    id="home"
-                  >
-                  <i class='fas fa-home fa-fw'></i>首页
-                </a>
-                
-              </li>
-            
-          
             
               
             
@@ -410,10 +378,10 @@
           
         
           
-            <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-06-13T13:51:44+08:00">
+            <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-05-16T16:02:54+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2020年6月13日 13:51</p>
+    <p>更新于：2020年5月16日 16:02</p>
   </a>
 </div>
 
@@ -586,10 +554,10 @@ abbrlink:
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-06-13T13:51:44+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-05-16T16:02:54+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2020年6月13日 13:51</p>
+    <p>更新于：2020年5月16日 16:02</p>
   </a>
 </div>
 
@@ -665,25 +633,21 @@ abbrlink:
   
     <div class="prev-next">
       
-        <a class='prev' href='/posts/fc7889ef/'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>TypeScript学习总结（一）</p>
-          <p class='content'>TypeScript常用知识点总结
+        <a class='prev' href='/posts/829819a3/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>webpack4.0学习总结（三）</p>
+          <p class='content'>这节介绍了webpack一些常用的plugins的使用
 
 
-什么是TypeScriptTypeScript是JavaScript的一个超集，在JavaScript的基础上增加了可选的静态类型和基于类的面向对象编程。...</p>
+我的总结篇的第一节中提到了index.html是需要我们手动移动到打包后的dist目录下的，那我比较懒能不能让webpack来帮我完成...</p>
         </a>
       
       
-        <a class='next' href='/posts/f9d92613/'>
-          <p class='title'>webpack4.0进阶（三）<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>手写简单的loader、Plugin、简单的webpack
+        <a class='next' href='/posts/cf86baf1/'>
+          <p class='title'>webpack4.0学习总结（二）<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>这节主要讲一讲一些常见的Loder的使用。包括file-loader、url-loader以及css-loader和style-loader。
 
 
-手写简单的loader目录
-myLoader
- ├── loaders
- │   └── myLoader.js
- ├── pac...</p>
+Loaderfile-loader上一节简单介...</p>
         </a>
       
     </div>
@@ -766,22 +730,6 @@ myLoader
       
         <div class="aplayer-container">
           
-
-  
-    <meting-js
-      theme='#1BCDFC'
-      autoplay='false'
-      volume='0.7'
-      loop='all'
-      order='list'
-      fixed='false'
-      list-max-height='320px'
-      server='netease'
-      type='playlist'
-      id='1980666520'
-      list-folded='true'>
-    </meting-js>
-  
 
 
         </div>
@@ -1048,26 +996,6 @@ var loadCSS = function( href, before, media, attributes ){
         
       
         
-          <li class='music name'>
-            <p class='nav music-title fix-cursor-default'></p>
-          </li>
-          <li class='music ctrl'>
-            <a class='nav icon-only backward fix-cursor-default' onclick='aplayerBackward()'><i class='fa fa-step-backward fa-fw'></i></a>
-            <a class='nav icon-only toggle fix-cursor-default' onclick='aplayerToggle()'><i class='fa fa-play fa-fw'></i></a>
-            <a class='nav icon-only forward fix-cursor-default' onclick='aplayerForward()'><i class='fa fa-step-forward fa-fw'></i></a>
-          </li>
-          <li class='music volume'>
-            <a class='nav volume'>
-              <div class="aplayer-volume-bar-wrap">
-                <div class="aplayer-volume-bar fix-cursor-pointer">
-                  <div class="aplayer-volume"></div>
-                  <i class='left fa fa-volume-off fa-fw'></i>
-                  <i class='right fa fa-volume-up fa-fw'></i>
-                </div>
-              </div>
-            </a>
-          </li>
-        
       
     </ul>
   </div>
@@ -1172,7 +1100,7 @@ var loadCSS = function( href, before, media, attributes ){
       }
 
       // 有音乐播放器
-      if ('true' == true && ('home,music'||[]).includes('music')) {
+      if ('false' == true && ('home,music'||[]).includes('music')) {
         // 如果有aplayer，初始化一下
       	try {
       		checkAPlayer();
@@ -1307,26 +1235,6 @@ var loadCSS = function( href, before, media, attributes ){
 
 
 
-
-
-  <script>
-  let APlayerController = new Object();
-  APlayerController.id = '1980666520';  // 设定全局音乐播放ID
-  APlayerController.volume = '0.7';
-setTimeout(function() {
-  loadCSS("https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.css", window.volantis.loadcss);
-
-  loadScript("https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.js")
-
-  loadScript("https://cdn.jsdelivr.net/npm/meting@2.0/dist/Meting.min.js")
-
-
-	
-	  loadScript('https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.1.5/source/js/aplayer.min.js');
-	
-
-}, 10000);
-</script>
 
 
 

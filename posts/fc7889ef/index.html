@@ -94,22 +94,6 @@
             
             
               <li>
-                <a class="menuitem flat-box faa-parent animated-hover" href=/
-                  
-                  
-                  
-                    id="home"
-                  >
-                  <i class='fas fa-home fa-fw'></i>首页
-                </a>
-                
-              </li>
-            
-          
-          
-            
-            
-              <li>
                 <a class="menuitem flat-box faa-parent animated-hover" href=/categories/
                   
                   
@@ -218,22 +202,6 @@
 				<li>
           <a class="s-menu fas fa-bars fa-fw" target="_self" href='javascript:void(0)'></a>
           <ul class="menu-phone list-v navigation white-box">
-            
-              
-            
-              <li>
-                <a class="menuitem flat-box faa-parent animated-hover" href=/
-                  
-                  
-                  
-                    id="home"
-                  >
-                  <i class='fas fa-home fa-fw'></i>首页
-                </a>
-                
-              </li>
-            
-          
             
               
             
@@ -974,13 +942,16 @@ console.log(Recruit(&#39;Alan&#39;, { mobile: &#39;1232910830&#39; })); // Alan1
         </a>
       
       
-        <a class='next' href='/posts/b050203a/'>
-          <p class='title'>Hexo博客定制<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>介绍了评论系统以及一些自定义配置
+        <a class='next' href='/posts/f9d92613/'>
+          <p class='title'>webpack4.0进阶（三）<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>手写简单的loader、Plugin、简单的webpack
 
 
-
-评论系统注册一个LeanCloud国际版账号（国内的好像需要绑定域名和备案）注册地址👉https://console.leancloud.app/log...</p>
+手写简单的loader目录
+myLoader
+ ├── loaders
+ │   └── myLoader.js
+ ├── pac...</p>
         </a>
       
     </div>
@@ -1063,22 +1034,6 @@ console.log(Recruit(&#39;Alan&#39;, { mobile: &#39;1232910830&#39; })); // Alan1
       
         <div class="aplayer-container">
           
-
-  
-    <meting-js
-      theme='#1BCDFC'
-      autoplay='false'
-      volume='0.7'
-      loop='all'
-      order='list'
-      fixed='false'
-      list-max-height='320px'
-      server='netease'
-      type='playlist'
-      id='1980666520'
-      list-folded='true'>
-    </meting-js>
-  
 
 
         </div>
@@ -1345,26 +1300,6 @@ var loadCSS = function( href, before, media, attributes ){
         
       
         
-          <li class='music name'>
-            <p class='nav music-title fix-cursor-default'></p>
-          </li>
-          <li class='music ctrl'>
-            <a class='nav icon-only backward fix-cursor-default' onclick='aplayerBackward()'><i class='fa fa-step-backward fa-fw'></i></a>
-            <a class='nav icon-only toggle fix-cursor-default' onclick='aplayerToggle()'><i class='fa fa-play fa-fw'></i></a>
-            <a class='nav icon-only forward fix-cursor-default' onclick='aplayerForward()'><i class='fa fa-step-forward fa-fw'></i></a>
-          </li>
-          <li class='music volume'>
-            <a class='nav volume'>
-              <div class="aplayer-volume-bar-wrap">
-                <div class="aplayer-volume-bar fix-cursor-pointer">
-                  <div class="aplayer-volume"></div>
-                  <i class='left fa fa-volume-off fa-fw'></i>
-                  <i class='right fa fa-volume-up fa-fw'></i>
-                </div>
-              </div>
-            </a>
-          </li>
-        
       
     </ul>
   </div>
@@ -1469,7 +1404,7 @@ var loadCSS = function( href, before, media, attributes ){
       }
 
       // 有音乐播放器
-      if ('true' == true && ('home,music'||[]).includes('music')) {
+      if ('false' == true && ('home,music'||[]).includes('music')) {
         // 如果有aplayer，初始化一下
       	try {
       		checkAPlayer();
@@ -1604,26 +1539,6 @@ var loadCSS = function( href, before, media, attributes ){
 
 
 
-
-
-  <script>
-  let APlayerController = new Object();
-  APlayerController.id = '1980666520';  // 设定全局音乐播放ID
-  APlayerController.volume = '0.7';
-setTimeout(function() {
-  loadCSS("https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.css", window.volantis.loadcss);
-
-  loadScript("https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.js")
-
-  loadScript("https://cdn.jsdelivr.net/npm/meting@2.0/dist/Meting.min.js")
-
-
-	
-	  loadScript('https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.1.5/source/js/aplayer.min.js');
-	
-
-}, 10000);
-</script>
 
 
 

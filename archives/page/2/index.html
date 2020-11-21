@@ -92,22 +92,6 @@
             
             
               <li>
-                <a class="menuitem flat-box faa-parent animated-hover" href=/
-                  
-                  
-                  
-                    id="home"
-                  >
-                  <i class='fas fa-home fa-fw'></i>首页
-                </a>
-                
-              </li>
-            
-          
-          
-            
-            
-              <li>
                 <a class="menuitem flat-box faa-parent animated-hover" href=/categories/
                   
                   
@@ -216,22 +200,6 @@
 				<li>
           <a class="s-menu fas fa-bars fa-fw" target="_self" href='javascript:void(0)'></a>
           <ul class="menu-phone list-v navigation white-box">
-            
-              
-            
-              <li>
-                <a class="menuitem flat-box faa-parent animated-hover" href=/
-                  
-                  
-                  
-                    id="home"
-                  >
-                  <i class='fas fa-home fa-fw'></i>首页
-                </a>
-                
-              </li>
-            
-          
             
               
             
@@ -440,22 +408,6 @@
 				
 					
 						<div class='timenode'>
-								<a class="meta" href="/posts/b050203a/">
-									<time>06-13</time>
-									
-										Hexo博客定制
-									
-									
-									
-									
-								</a>
-						</div>
-				
-			
-				
-				
-					
-						<div class='timenode'>
 								<a class="meta" href="/posts/f9d92613/">
 									<time>06-05</time>
 									
@@ -568,6 +520,22 @@
 				
 					
 						<div class='timenode'>
+								<a class="meta" href="/posts/b050203a/">
+									<time>05-16</time>
+									
+										Hexo博客定制
+									
+									
+									
+									
+								</a>
+						</div>
+				
+			
+				
+				
+					
+						<div class='timenode'>
 								<a class="meta" href="/posts/cf86baf1/">
 									<time>05-15</time>
 									
@@ -637,8 +605,6 @@
 									
 										测试主题
 									
-									
-										&nbsp;<i class="fas fa-headphones-alt music" aria-hidden="true"></i>
 									
 									
 									
@@ -799,8 +765,8 @@
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Fri Nov 13 2020 16:44:00 GMT+0800 (GMT+08:00)</div>
-            <div id="last-update-show">2020-11-13 日</div>
+            <div id="last-update" style="display: none;">Sat Nov 21 2020 15:36:42 GMT+0800 (GMT+08:00)</div>
+            <div id="last-update-show">2020-11-21 日</div>
           
         </div>
         
@@ -850,7 +816,7 @@
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2020-11-13 日';
+            document.getElementById('last-update-show').innerHTML = '2020-11-21 日';
           }
         </script>
         
@@ -967,22 +933,6 @@
       
         <div class="aplayer-container">
           
-
-  
-    <meting-js
-      theme='#1BCDFC'
-      autoplay='false'
-      volume='0.7'
-      loop='all'
-      order='list'
-      fixed='false'
-      list-max-height='320px'
-      server='netease'
-      type='playlist'
-      id='1980666520'
-      list-folded='true'>
-    </meting-js>
-  
 
 
         </div>
@@ -1249,26 +1199,6 @@ var loadCSS = function( href, before, media, attributes ){
         
       
         
-          <li class='music name'>
-            <p class='nav music-title fix-cursor-default'></p>
-          </li>
-          <li class='music ctrl'>
-            <a class='nav icon-only backward fix-cursor-default' onclick='aplayerBackward()'><i class='fa fa-step-backward fa-fw'></i></a>
-            <a class='nav icon-only toggle fix-cursor-default' onclick='aplayerToggle()'><i class='fa fa-play fa-fw'></i></a>
-            <a class='nav icon-only forward fix-cursor-default' onclick='aplayerForward()'><i class='fa fa-step-forward fa-fw'></i></a>
-          </li>
-          <li class='music volume'>
-            <a class='nav volume'>
-              <div class="aplayer-volume-bar-wrap">
-                <div class="aplayer-volume-bar fix-cursor-pointer">
-                  <div class="aplayer-volume"></div>
-                  <i class='left fa fa-volume-off fa-fw'></i>
-                  <i class='right fa fa-volume-up fa-fw'></i>
-                </div>
-              </div>
-            </a>
-          </li>
-        
       
     </ul>
   </div>
@@ -1373,7 +1303,7 @@ var loadCSS = function( href, before, media, attributes ){
       }
 
       // 有音乐播放器
-      if ('true' == true && ('home,music'||[]).includes('music')) {
+      if ('false' == true && ('home,music'||[]).includes('music')) {
         // 如果有aplayer，初始化一下
       	try {
       		checkAPlayer();
@@ -1508,26 +1438,6 @@ var loadCSS = function( href, before, media, attributes ){
 
 
 
-
-
-  <script>
-  let APlayerController = new Object();
-  APlayerController.id = '1980666520';  // 设定全局音乐播放ID
-  APlayerController.volume = '0.7';
-setTimeout(function() {
-  loadCSS("https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.css", window.volantis.loadcss);
-
-  loadScript("https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.js")
-
-  loadScript("https://cdn.jsdelivr.net/npm/meting@2.0/dist/Meting.min.js")
-
-
-	
-	  loadScript('https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.1.5/source/js/aplayer.min.js');
-	
-
-}, 10000);
-</script>
 
 
 
