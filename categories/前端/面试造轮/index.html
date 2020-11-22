@@ -307,7 +307,7 @@
     <div id="l_cover">
   
     
-        <div id="half" class='cover-wrapper  search' style="display: ;">
+        <div id="half" class='cover-wrapper  focus' style="display: ;">
           
             <div id='cover-backstretch'></div>
           
@@ -322,16 +322,52 @@
     
   </div>
   <div class='bottom'>
-    
-      <div class="m_search">
-        <form name="searchform" class="form u-search-form">
-          <input type="text" class="input u-search-input" placeholder="" />
-          <i class="icon fas fa-search fa-fw"></i>
-        </form>
-      </div>
-    
     <div class='menu navigation'>
       <div class='list-h'>
+        
+          
+            <a href="/v4/getting-started/"
+              
+              
+              id="v4getting-started">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f5c3.svg'><p>文档</p>
+            </a>
+          
+            <a href="/faqs/"
+              
+              
+              id="faqs">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f516.svg'><p>帮助</p>
+            </a>
+          
+            <a href="/examples/"
+              
+              
+              id="examples">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f396.svg'><p>示例</p>
+            </a>
+          
+            <a href="/contributors/"
+              
+              
+              id="contributors">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f389.svg'><p>社区</p>
+            </a>
+          
+            <a href="/archives/"
+              
+              
+              id="archives">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f4f0.svg'><p>博客</p>
+            </a>
+          
+            <a href="https://github.com/volantis-x/hexo-theme-volantis/"
+              
+              
+              id="https:githubcomvolantis-xhexo-theme-volantis">
+              <img src='https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f9ec.svg'><p>源码</p>
+            </a>
+          
         
       </div>
     </div>
@@ -499,7 +535,7 @@
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>17 篇</div>
+          <div>18 篇</div>
         </div>
       
 
@@ -521,7 +557,7 @@
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>27k 字</div>
+          <div>27.7k 字</div>
         </div>
       
 
@@ -547,8 +583,8 @@
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Sat Nov 21 2020 15:36:43 GMT+0800 (GMT+08:00)</div>
-            <div id="last-update-show">2020-11-21 日</div>
+            <div id="last-update" style="display: none;">Sun Nov 22 2020 12:33:38 GMT+0800 (GMT+08:00)</div>
+            <div id="last-update-show">2020-11-22 日</div>
           
         </div>
         
@@ -598,7 +634,7 @@
           try {
             document.getElementById('last-update-show').innerHTML = timeago(new Date(lastUpDate));
           } catch (error) {
-            document.getElementById('last-update-show').innerHTML = '2020-11-21 日';
+            document.getElementById('last-update-show').innerHTML = '2020-11-22 日';
           }
         </script>
         
@@ -634,12 +670,12 @@
           <li><a class="flat-box"
             title="/categories/%E5%89%8D%E7%AB%AF/" href="/categories/%E5%89%8D%E7%AB%AF/"
             id="categoriesE5898DE7ABAF"
-            ><div class='name'>前端</div><div class='badge'>(13)</div></a></li>
+            ><div class='name'>前端</div><div class='badge'>(14)</div></a></li>
         
           <li><a class="flat-box child"
             title="/categories/%E5%89%8D%E7%AB%AF/React/" href="/categories/%E5%89%8D%E7%AB%AF/React/"
             id="categoriesE5898DE7ABAFReact"
-            ><div class='name'>React</div><div class='badge'>(4)</div></a></li>
+            ><div class='name'>React</div><div class='badge'>(5)</div></a></li>
         
           <li><a class="flat-box child"
             title="/categories/%E5%89%8D%E7%AB%AF/TypeScript/" href="/categories/%E5%89%8D%E7%AB%AF/TypeScript/"
@@ -1330,8 +1366,6 @@ function listenSearch(){
   
 }
 document.addEventListener("DOMContentLoaded", listenSearch);
-
- document.addEventListener("pjax:success", listenSearch);
 
 </script>
 

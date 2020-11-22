@@ -1443,7 +1443,6 @@ div.tabs {
   margin-top: $gap-row;
   margin-bottom: $gap-row;
   border-radius: 4px;
-  background: #fff;
   font-size: 0.9375rem;
 }
 div.tabs .highlight,
