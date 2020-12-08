@@ -1,0 +1,50 @@
+{
+  "name": "blog-starter",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "export": "next export",
+    "serve": "serve out",
+    "test": "jest --watch"
+  },
+  "dependencies": {
+    "autoprefixer": "^10.0.2",
+    "classnames": "2.2.6",
+    "date-fns": "2.10.0",
+    "gray-matter": "4.0.2",
+    "leancloud-storage": "^4.8.0",
+    "next": "latest",
+    "postcss": "^8.1.10",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0",
+    "remark": "11.0.2",
+    "remark-highlight.js": "^6.0.0",
+    "remark-html": "10.0.0",
+    "serve": "11.3.2",
+    "valine": "^1.4.14"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^10.1.0",
+    "babel-jest": "^26.6.3",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.5",
+    "eslint": "^7.14.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.21.5",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^26.6.3",
+    "postcss-preset-env": "^6.7.0",
+    "prettier": "^2.2.0",
+    "tailwindcss": "^2.0.1"
+  },
+  "license": "MIT"
+}
