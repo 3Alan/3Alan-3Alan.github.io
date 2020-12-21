@@ -5,9 +5,7 @@ coverImage: '/assets/blog/preview/cover.jpg'
 date: '2020-03-16T05:35:07.322Z'
 ogImage:
   url: '/assets/blog/preview/cover.jpg'
-author:
-  name: JJ Kasper
-  picture: '/assets/blog/authors/jj.jpeg'
+layout: 'cover'
 ---
 
 这段时间工作要求将之前的vue的H5活动页面转移到Next.js下面，经过一段时间的研究，总结出了下面的内容。

@@ -21,6 +21,7 @@ module.exports = {
     'dot-notation': 0,
     'react/no-danger': 0,
     'react/jsx-filename-extension': ['warn', { extensions: ['.js', '.jsx'] }],
+    'jsx-a11y/alt-text': 0,
     'max-len': [
       'warn',
       {

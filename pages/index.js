@@ -1,6 +1,5 @@
 import Container from '../components/container';
 import MoreStories from '../components/more-stories';
-import HeroPost from '../components/hero-post';
 import Intro from '../components/intro';
 import Layout from '../components/layout';
 import { getAllPosts } from '../lib/api';
@@ -10,8 +9,7 @@ import { useEffect } from 'react';
 import AV from 'leancloud-storage';
 
 export default function Index({ allPosts }) {
-  const heroPost = allPosts[0];
-  const morePosts = allPosts.slice(1);
+  const morePosts = allPosts;
   useEffect(() => {
     if (window) {
       AV.init({
@@ -45,16 +43,6 @@ export default function Index({ allPosts }) {
         <Container>
           <Intro />
           <div id="vcomments"></div>
-          {heroPost && (
-            <HeroPost
-              title={heroPost.title}
-              coverImage={heroPost.coverImage}
-              date={heroPost.date}
-              author={heroPost.author}
-              slug={heroPost.slug}
-              excerpt={heroPost.excerpt}
-            />
-          )}
           {morePosts.length > 0 && <MoreStories posts={morePosts} />}
         </Container>
       </Layout>
@@ -63,7 +51,7 @@ export default function Index({ allPosts }) {
 }
 
 export async function getStaticProps() {
-  const allPosts = getAllPosts(['title', 'date', 'slug', 'author', 'coverImage', 'excerpt']);
+  const allPosts = getAllPosts(['title', 'date', 'slug', 'coverImage', 'excerpt', 'layout']);
 
   return {
     props: { allPosts }

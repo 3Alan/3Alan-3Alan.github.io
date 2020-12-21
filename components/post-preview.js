@@ -1,24 +1,62 @@
-import Avatar from './avatar';
 import DateFormatter from './date-formatter';
 import CoverImage from './cover-image';
 import Link from 'next/link';
 
-export default function PostPreview({ title, coverImage, date, excerpt, author, slug }) {
+function Card({ children }) {
+  return <div className="shadow-md rounded-xl overflow-hidden max-w-screen-md mb-10">{children}</div>;
+}
+
+function CoverLayout({ title, coverImage, date, excerpt, slug }) {
   return (
-    <div>
-      <div className="mb-5">
-        <CoverImage slug={slug} title={title} src={coverImage} />
-      </div>
-      <h3 className="text-3xl mb-3 leading-snug">
-        <Link as={`/posts/${slug}`} href="/posts/[slug]">
-          <a className="hover:underline">{title}</a>
-        </Link>
-      </h3>
-      <div className="text-lg mb-4">
-        <DateFormatter dateString={date} />
-      </div>
-      <p className="text-lg leading-relaxed mb-4">{excerpt}</p>
-      {author && <Avatar name={author.name} picture={author.picture} />}
-    </div>
+    <Card>
+      <Link as={`/posts/${slug}`} href="/posts/[slug]">
+        <a>
+          <div className="relative w-full h-56 overflow-hidden md:h-80 text-white">
+            <div className="absolute inset-0 w-full h-full">
+              <img
+                className="object-cover w-full h-full"
+                src="https://cdn.jsdelivr.net/gh/ihewro/blog@master/usr/uploads/2019/01/762065921.jpg"
+              />
+              {/* <img className="object-cover w-full" src={coverImage} /> */}
+            </div>
+
+            <div className="absolute bottom-0 px-10 pb-5 w-full">
+              <h3 className="text-2xl mb-2 leading-snug truncate">{title}</h3>
+              <p className="text-base leading-relaxed mb-2 hidden md:block ellipsis-2">{excerpt}</p>
+              <div className="text-sm hidden md:block">
+                <DateFormatter dateString={date} />
+              </div>
+            </div>
+          </div>
+        </a>
+      </Link>
+    </Card>
   );
+}
+
+function HeadImgLayout({ title, coverImage, date, excerpt, slug }) {
+  return (
+    <Card>
+      <div className="md:flex">
+        <div className="md:flex-shrink-0">
+          <img className="h-48 w-full object-cover md:w-48" src={coverImage} />
+        </div>
+        <div className="p-8">
+          <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">Case study</div>
+          <a href="#" className="block mt-1 text-lg leading-tight font-medium text-black hover:underline">
+            Finding customers for your new business
+          </a>
+          <p className="mt-2 text-gray-500">
+            Getting a new business off the ground is a lot of hard work. Here are five ideas you can use to find your
+            first customers.
+          </p>
+        </div>
+      </div>
+    </Card>
+  );
+}
+
+export default function PostPreview(props) {
+  const { layout } = props;
+  return <>{layout === 'cover' ? <CoverLayout {...props} /> : <HeadImgLayout {...props} />}</>;
 }
