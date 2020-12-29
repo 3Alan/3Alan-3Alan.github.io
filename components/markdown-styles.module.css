@@ -1,18 +1,114 @@
 .markdown {
-  @apply text-lg leading-relaxed;
+  @apply text-base leading-relaxed font-sans text-gray-700;
 }
 
 .markdown p,
 .markdown ul,
-.markdown ol,
+.markdown ol {
+  @apply my-2 leading-relaxed;
+}
+
+.markdown a {
+  @apply italic text-blue-500 hover:underline;
+}
+
+.markdown strong {
+  @apply font-semibold;
+}
+
+.markdown ul
+{
+  @apply list-disc list-inside;
+}
+
+.markdown li ul
+{
+  @apply ml-6
+}
+
+.markdown li li
+{
+  list-style-type: circle;
+}
+
+.markdown ul p
+{
+  @apply inline-block;
+}
+
+.markdown p code,
+.markdown li code
+{
+  @apply text-xs bg-gray-100 text-gray-600 font-thin p-1 rounded m-1;
+}
+
+.markdown pre {
+  position: relative;
+  overflow-x: auto;
+}
+.markdown pre code {
+  position: relative;
+  padding: 40px 14px 15px;
+  @apply rounded-lg text-sm mb-3;
+}
+.markdown pre::after{
+  background: #1f2329;
+  content: ' ';
+  height: 30px;
+  left: 0;
+  top: 0;
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+  @apply rounded-lg;
+}
+.markdown pre::before{
+  background: #fc625d;
+  border-radius: 50%;
+  box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;
+  content: ' ';
+  height: 12px;
+  left: 12px;
+  top: 8px;
+  position: absolute;
+  width: 12px;
+  z-index: 9;
+}
+
 .markdown blockquote {
-  @apply my-6;
+  border-left-width: 6px;
+  border-radius: 6px;
+  @apply bg-gray-100 py-4 px-8 border-blue-500 mb-6 text-gray-500 font-light;
+}
+
+.markdown blockquote code {
+  @apply bg-gray-200;
+}
+
+.markdown blockquote a {
+  @apply text-blue-400;
+}
+
+.markdown blockquote strong {
+  @apply italic;
+}
+
+.markdown h2,
+.markdown h3,
+.markdown h4 {
+  @apply font-medium;
 }
 
 .markdown h2 {
-  @apply text-3xl mt-12 mb-4 leading-snug;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #eaecef;
+  @apply text-2xl mt-12 mb-4 leading-snug divide-y divide-gray-400;
 }
 
 .markdown h3 {
-  @apply text-2xl mt-8 mb-4 leading-snug;
+  @apply text-xl mt-8 mb-4 leading-snug;
+}
+
+.markdown h4 {
+  @apply text-lg my-4 leading-snug;
 }

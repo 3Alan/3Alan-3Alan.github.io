@@ -12,13 +12,13 @@ layout: 'cover'
 
 <!-- more -->
 
-# 什么是Next.js
+## 什么是Next.js
 
 基于`React`的SSR（服务端渲染框架）
 
 
 
-# SSR & CSR
+## SSR & CSR
 
 > 参考链接：https://medium.com/walmartglobaltech/the-benefits-of-server-side-rendering-over-client-side-rendering-5d07ff2cefe8
 
@@ -28,20 +28,20 @@ layout: 'cover'
 
 <img src="https://i2.wp.com/blog.logrocket.com/wp-content/uploads/2019/06/csr-explanation.png?w=800&ssl=1"  />
 
-# Next.js的优点
+## Next.js的优点
 
 - 更好的SEO
 - 更快的首屏渲染速度
 
 
 
-# Next.js 基础(与Rect开发的不同之处)
+## Next.js 基础(与Rect开发的不同之处)
 
 > https://www.nextjs.cn/learn/basics/create-nextjs-app?utm_source=next-site&utm_medium=nav-cta&utm_campaign=next-website
 
 
 
-## 路由映射
+### 路由映射
 
 > 在 Next.js 中，一个 **page（页面）** 就是一个从 `.js`、`jsx`、`.ts` 或 `.tsx` 文件导出（export）的 [React 组件](https://reactjs.org/docs/components-and-props.html) ，这些文件存放在 `pages` 目录下。每个 page（页面）都使用其文件名作为路由（route）。
 
@@ -51,7 +51,7 @@ pages/about.js/jsx/ts/tsx → /about
 pages/dashboard/settings/username.js → /dashboard/settings/username
 ```
 
-## 自带路由：`next/router` `next/link`
+### 自带路由：`next/router` `next/link`
 
 使用与`react-router`类似，包括编程式跳转`router.push`以及组件式跳转`<Link href="/about"><a>click me</a></Link>`
 
@@ -66,16 +66,16 @@ router.push({
 router.push('/about')
 ```
 
-## 渲染方式
+### 渲染方式
 
-### 预渲染
+#### 预渲染
 
 - **静态生成（Static Generation）**（HTML重用、build生成）
 - **服务器端渲染（Server-side Rendering）**（每次请求生成的HTML不同、用户请求时生成）
 
 
 
-### 相关API
+#### 相关API
 
 - 静态生成
   - `getStaticProps(context)`
@@ -110,9 +110,9 @@ export default Page
 
 
 
-# 项目结构
+## 项目结构
 
-## 配置Eslint+Prettier
+### 配置Eslint+Prettier
 
 > https://github.com/paulolramos/eslint-prettier-airbnb-react
 >
@@ -139,7 +139,7 @@ parserOptions: {
 
 
 
-## 配置alias
+### 配置alias
 
 `next.config.js`配置
 
@@ -252,7 +252,7 @@ module.exports = {
 
 
 
-## 封装axios在每次请求时显示`spin`组件
+### 封装axios在每次请求时显示`spin`组件
 
 这里要注意一点，由于服务端不存在`document`，所以要判断一下当前所处的环境再去执行操作。
 
@@ -317,7 +317,7 @@ export default Axios;
 
 
 
-## 自定义input hook
+### 自定义input hook
 
 使用后可以免去给每个表单组件设置`onChange`
 
@@ -374,7 +374,7 @@ const { value: phone, bind: bindPhone } = useInput('');
 
 
 
-## 封装Dialog
+### 封装Dialog
 
 ```jsx
 import { createPortal } from 'react-dom';
@@ -420,7 +420,7 @@ export default function Modal({ content, show, onOk }) {
 
 
 
-##  移动端适配
+###  移动端适配
 
 使用插件`postcss-px-to-viewport`
 
@@ -453,9 +453,9 @@ module.exports = {
 
 
 
-## 使用Docker+coding实现自动化部署
+### 使用Docker+coding实现自动化部署
 
-### dockerfile
+#### dockerfile
 
 ```dockerfile
 # node版本号
@@ -489,7 +489,7 @@ CMD [ "npm", "run", "start" ]
 
 
 
-## 使用redux
+### 使用redux
 
 >https://github.com/vercel/next.js/tree/canary/examples/with-redux
 >
@@ -499,9 +499,9 @@ CMD [ "npm", "run", "start" ]
 
 
 
-# Next.js 踩坑
+## Next.js 踩坑
 
-## 环境变量配置
+### 环境变量配置
 
 环境变量在客户端无法获取，背景：由于我在项目中需要根据环境变量来使用不同环境的API域名。
 
