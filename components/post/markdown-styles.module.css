@@ -78,7 +78,7 @@
 .markdown blockquote {
   border-left-width: 6px;
   border-radius: 6px;
-  @apply bg-gray-100 py-4 px-8 border-blue-500 mb-6 text-gray-500 font-light;
+  @apply bg-gray-100 py-4 px-8 border-blue-500 mb-6 text-gray-500 font-light break-all;
 }
 
 .markdown blockquote code {

@@ -10,6 +10,7 @@
     "test": "jest --watch"
   },
   "dependencies": {
+    "ahooks": "^2.9.3",
     "autoprefixer": "^10.0.2",
     "classnames": "2.2.6",
     "date-fns": "2.10.0",

@@ -1,9 +1,10 @@
 import { useRouter } from 'next/router';
 import ErrorPage from 'next/error';
-import Container from '../../components/container';
-import PostBody from '../../components/post-body';
-import Header from '../../components/header';
-import PostHeader from '../../components/post-header';
+import Container from '../../components/Container';
+import Comment from '../../components/Comment';
+import PostBody from '../../components/post/PostBody';
+import Header from '../../components/post/Header';
+import PostHeader from '../../components/post/PostHeader';
 import Layout from '../../components/layout';
 import { getPostBySlug, getAllPosts } from '../../lib/api';
 import PostTitle from '../../components/post-title';
@@ -19,12 +20,12 @@ export default function Post({ post, morePosts, preview }) {
   return (
     <Layout preview={preview}>
       <Container>
-        <Header />
+        {/* <Header /> */}
         {router.isFallback ? (
           <PostTitle>Loading…</PostTitle>
         ) : (
           <>
-            <article className="mb-32">
+            <article className="mb-32 bg-gray-50">
               <Head>
                 <title>
                   {post.title} | Next.js Blog Example with {CMS_NAME}
@@ -34,6 +35,7 @@ export default function Post({ post, morePosts, preview }) {
               <PostHeader title={post.title} coverImage={post.coverImage} date={post.date} author={post.author} />
               <PostBody content={post.content} />
             </article>
+            <Comment />
           </>
         )}
       </Container>
