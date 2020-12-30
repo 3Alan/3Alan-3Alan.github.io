@@ -24,8 +24,8 @@ export default function Post({ post, morePosts, preview }) {
         {router.isFallback ? (
           <PostTitle>Loading…</PostTitle>
         ) : (
-          <>
-            <article className="mb-32 bg-gray-50">
+          <div className="mt-20 mb-32">
+            <article className="py-10 rounded-lg bg-gray-50 px-6 shadow-sm">
               <Head>
                 <title>
                   {post.title} | Next.js Blog Example with {CMS_NAME}
@@ -36,7 +36,7 @@ export default function Post({ post, morePosts, preview }) {
               <PostBody content={post.content} />
             </article>
             <Comment />
-          </>
+          </div>
         )}
       </Container>
     </Layout>

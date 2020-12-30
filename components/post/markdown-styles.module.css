@@ -16,6 +16,10 @@
   @apply font-semibold;
 }
 
+.markdown img {
+  @apply mb-6 rounded-lg;
+}
+
 .markdown ul
 {
   @apply list-disc list-inside;
