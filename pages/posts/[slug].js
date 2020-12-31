@@ -7,10 +7,11 @@ import Header from '../../components/post/Header';
 import PostHeader from '../../components/post/PostHeader';
 import Layout from '../../components/layout';
 import { getPostBySlug, getAllPosts } from '../../lib/api';
-import PostTitle from '../../components/post-title';
+import PostTitle from '../../components/PostTitle';
 import Head from 'next/head';
 import { CMS_NAME } from '../../lib/constants';
 import markdownToHtml from '../../lib/markdownToHtml';
+import CoverImage from '../../components/CoverImage';
 
 export default function Post({ post, morePosts, preview }) {
   const router = useRouter();
@@ -19,13 +20,13 @@ export default function Post({ post, morePosts, preview }) {
   }
   return (
     <Layout preview={preview}>
+      <CoverImage title='123' src='https://cdn.jsdelivr.net/gh/ihewro/blog@master/usr/uploads/2019/01/762065921.jpg' />
       <Container>
-        {/* <Header /> */}
         {router.isFallback ? (
           <PostTitle>Loading…</PostTitle>
         ) : (
-          <div className="mt-20 mb-32">
-            <article className="py-10 rounded-lg bg-gray-50 px-6 shadow-sm">
+          <div>
+            <article className="py-10 rounded-lg px-6 shadow-md mb-10 bg-white relative sm:-top-10 z-20">
               <Head>
                 <title>
                   {post.title} | Next.js Blog Example with {CMS_NAME}

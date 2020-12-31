@@ -1,5 +1,5 @@
 import DateFormatter from './date-formatter';
-import CoverImage from './cover-image';
+import CoverImage from './CoverImage';
 import Link from 'next/link';
 
 function Card({ children }) {
