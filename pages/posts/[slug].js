@@ -26,7 +26,8 @@ export default function Post({ post, morePosts, preview }) {
           <PostTitle>Loading…</PostTitle>
         ) : (
           <div>
-            <article className="py-10 rounded-lg px-6 shadow-md mb-10 bg-white relative sm:-top-10 z-20">
+            {/* <article className="py-10 rounded-lg px-6 shadow-md mb-10 bg-white relative sm:-top-10 z-20"> */}
+            <article className="py-10 rounded-lg px-6 mb-10 bg-white">
               <Head>
                 <title>
                   {post.title} | Next.js Blog Example with {CMS_NAME}

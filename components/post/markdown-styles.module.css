@@ -43,7 +43,7 @@
 .markdown p code,
 .markdown li code
 {
-  @apply text-xs bg-gray-100 text-gray-600 font-thin p-1 rounded m-1;
+  @apply text-xs bg-gray-100 text-blue-400 font-thin p-1 rounded m-1;
 }
 
 .markdown pre {

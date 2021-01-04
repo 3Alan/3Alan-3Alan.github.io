@@ -3,7 +3,7 @@ import CoverImage from './CoverImage';
 import Link from 'next/link';
 
 function Card({ children }) {
-  return <div className="shadow-md rounded-xl overflow-hidden max-w-screen-md mb-10">{children}</div>;
+  return <div className="shadow-md rounded-xl overflow-hidden max-w-screen-lg mb-10">{children}</div>;
 }
 
 function CoverLayout({ title, coverImage, date, excerpt, slug }) {
