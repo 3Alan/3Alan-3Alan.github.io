@@ -19,7 +19,11 @@ export default function Comment() {
       const comment = new Valine({
         el: '#vcomments',
         appId: 'aowgxqHE7wB4I8HLWqC4c4Ut-MdYXbMMI',
-        appKey: '37wkY4T3cM7nV2UWV7EIEHPy'
+        appKey: '37wkY4T3cM7nV2UWV7EIEHPy',
+        visitor: true, // 阅读量统计
+        recordIP: true,
+        enableQQ: true,
+        requiredFields: ['nick']
         // other config
       });
       console.log(comment);

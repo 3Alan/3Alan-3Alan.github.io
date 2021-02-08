@@ -11,35 +11,43 @@ import PostTitle from '../../components/PostTitle';
 import Head from 'next/head';
 import markdownToHtml from '../../lib/markdownToHtml';
 import CoverImage from '../../components/CoverImage';
+import Navigator from '../../components/Navigator';
 
-export default function Post({ post, morePosts, preview }) {
+export default function Post({ post, morePosts }) {
   const router = useRouter();
   if (!router.isFallback && !post?.slug) {
     return <ErrorPage statusCode={404} />;
   }
   return (
-    <Layout preview={preview}>
-      <CoverImage title='123' src='https://cdn.jsdelivr.net/gh/ihewro/blog@master/usr/uploads/2019/01/762065921.jpg' />
-      <Container>
-        {router.isFallback ? (
-          <PostTitle>Loading…</PostTitle>
-        ) : (
-          <div>
-            <article className="py-10 rounded-lg px-4 mb-10 bg-white">
-              <Head>
-                <title>
-                  Alan Blog | {post.title}
-                </title>
-                <meta property="og:image" content={post.ogImage.url} />
-              </Head>
-              <PostHeader title={post.title} coverImage={post.coverImage} date={post.date} author={post.author} />
-              <PostBody content={post.content} />
-            </article>
-            <Comment />
-          </div>
-        )}
-      </Container>
-    </Layout>
+    <>
+      <Navigator dynamicShow={false} />
+      <Layout>
+        <CoverImage
+          title="123"
+          src="https://cdn.jsdelivr.net/gh/ihewro/blog@master/usr/uploads/2019/01/762065921.jpg"
+        />
+        <Container bgColor={'bg-white'}>
+          {router.isFallback ? (
+            <PostTitle>Loading…</PostTitle>
+          ) : (
+            <div className="flex flex-row">
+              <div className="py-10 px-4 mb-10 bg-white">
+                <article>
+                  <Head>
+                    <title>Alan Blog | {post.title}</title>
+                    <meta property="og:image" content={post.ogImage.url} />
+                  </Head>
+                  <PostHeader title={post.title} coverImage={post.coverImage} date={post.date} author={post.author} />
+                  <PostBody content={post.content} />
+                </article>
+                <Comment />
+              </div>
+              <div className="py-10 mb-10 bg-white border-2 flex-1">右边的内容</div>
+            </div>
+          )}
+        </Container>
+      </Layout>
+    </>
   );
 }
 
