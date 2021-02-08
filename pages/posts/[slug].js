@@ -5,11 +5,10 @@ import Comment from '../../components/Comment';
 import PostBody from '../../components/post/PostBody';
 import Header from '../../components/post/Header';
 import PostHeader from '../../components/post/PostHeader';
-import Layout from '../../components/layout';
+import Layout from '../../components/Layout';
 import { getPostBySlug, getAllPosts } from '../../lib/api';
 import PostTitle from '../../components/PostTitle';
 import Head from 'next/head';
-import { CMS_NAME } from '../../lib/constants';
 import markdownToHtml from '../../lib/markdownToHtml';
 import CoverImage from '../../components/CoverImage';
 
@@ -26,11 +25,10 @@ export default function Post({ post, morePosts, preview }) {
           <PostTitle>Loading…</PostTitle>
         ) : (
           <div>
-            {/* <article className="py-10 rounded-lg px-6 shadow-md mb-10 bg-white relative sm:-top-10 z-20"> */}
-            <article className="py-10 rounded-lg px-6 mb-10 bg-white">
+            <article className="py-10 rounded-lg px-4 mb-10 bg-white">
               <Head>
                 <title>
-                  {post.title} | Next.js Blog Example with {CMS_NAME}
+                  Alan Blog | {post.title}
                 </title>
                 <meta property="og:image" content={post.ogImage.url} />
               </Head>
