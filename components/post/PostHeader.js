@@ -1,5 +1,4 @@
 import DateFormatter from '../date-formatter';
-import CoverImage from '../CoverImage';
 import PostTitle from '../PostTitle';
 
 export default function PostHeader({ title, coverImage, date }) {

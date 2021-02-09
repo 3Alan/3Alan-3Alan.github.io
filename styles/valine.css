@@ -1,0 +1,10 @@
+#vcomments a {
+    @apply text-blue-400 !important;
+}
+#vcomments pre {
+    background: #142939;
+    @apply rounded-md;
+}
+#vcomments .vat {
+    @apply text-blue-400 !important;
+}

@@ -23,7 +23,8 @@ export default function Comment() {
         visitor: true, // 阅读量统计
         recordIP: true,
         enableQQ: true,
-        requiredFields: ['nick']
+        requiredFields: ['nick'],
+        avatarForce: true
         // other config
       });
       console.log(comment);

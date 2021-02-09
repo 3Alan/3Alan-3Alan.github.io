@@ -1,6 +1,8 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+@import './hljs.css';
+@import './valine.css';
 
 @media screen and (min-width: 768px) {
   .ellipsis-2 {

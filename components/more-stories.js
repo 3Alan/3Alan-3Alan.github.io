@@ -8,7 +8,9 @@ export default function MoreStories({ posts }) {
           <PostPreview
             key={post.slug}
             title={post.title}
-            coverImage={post.coverImage}
+            coverImage={
+              post.coverImage || 'https://cdn.jsdelivr.net/gh/ihewro/blog@master/usr/uploads/2019/01/762065921.jpg'
+            }
             date={post.date}
             slug={post.slug}
             excerpt={post.excerpt}
