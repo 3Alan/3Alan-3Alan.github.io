@@ -32,7 +32,7 @@ export default function MenuBar() {
     }, []);
 
     return (
-        <div className="fixed right-3 bottom-2 sm:right-6 sm:bottom-8 flex flex-col">
+        <div className="fixed right-3 bottom-2 sm:right-6 sm:bottom-8 flex flex-col z-50">
             <div
                 className="w-8 h-8 mb-2 sm:w-12 sm:h-12 flex bg-blue-500 justify-center items-center rounded-full cursor-pointer dark:bg-gray-600"
                 onClick={scrollToTop}
