@@ -20,29 +20,24 @@
   @apply mb-6 rounded-lg;
 }
 
-.markdown ul
-{
+.markdown ul {
   @apply list-disc list-inside;
 }
 
-.markdown li ul
-{
-  @apply ml-6
+.markdown li ul {
+  @apply ml-6;
 }
 
-.markdown li li
-{
+.markdown li li {
   list-style-type: circle;
 }
 
-.markdown ul p
-{
+.markdown ul p {
   @apply inline-block;
 }
 
 .markdown p code,
-.markdown li code
-{
+.markdown li code {
   @apply text-xs bg-gray-100 text-blue-400 font-thin p-1 rounded m-1;
 }
 
@@ -50,12 +45,15 @@
   position: relative;
   overflow-x: auto;
 }
+
 .markdown pre code {
   position: relative;
   padding: 40px 14px 15px;
+
   @apply rounded-lg sm:rounded-xl text-sm mb-3;
 }
-.markdown pre::after{
+
+.markdown pre::after {
   background: #142939;
   content: ' ';
   height: 32px;
@@ -64,9 +62,11 @@
   position: absolute;
   width: 100%;
   z-index: 2;
+
   @apply rounded-t-xl border-b border-white border-opacity-10;
 }
-.markdown pre::before{
+
+.markdown pre::before {
   background: #fc625d;
   border-radius: 50%;
   box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;
@@ -82,6 +82,7 @@
 .markdown blockquote {
   border-left-width: 6px;
   border-radius: 6px;
+
   @apply bg-gray-100 py-4 px-8 border-blue-500 mb-6 text-gray-500 font-light break-all;
 }
 
@@ -106,6 +107,7 @@
 .markdown h2 {
   padding-bottom: 4px;
   border-bottom: 1px solid #eaecef;
+
   @apply text-2xl mt-12 mb-4 leading-snug divide-y divide-gray-400;
 }
 

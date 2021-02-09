@@ -12,6 +12,7 @@ import Head from 'next/head';
 import markdownToHtml from '../../lib/markdownToHtml';
 import CoverImage from '../../components/CoverImage';
 import Navigator from '../../components/Navigator';
+import MenuBar from '../../components/MeunBar';
 
 export default function Post({ post, morePosts }) {
   const router = useRouter();
@@ -20,7 +21,8 @@ export default function Post({ post, morePosts }) {
   }
   return (
     <>
-      {/* <Navigator dynamicShow={false} /> */}
+      <MenuBar />
+      <Navigator dynamicShow={false} />
       <Layout>
         <CoverImage
           title="123"
@@ -35,7 +37,7 @@ export default function Post({ post, morePosts }) {
             <PostTitle>Loading…</PostTitle>
           ) : (
             <div className="flex flex-row">
-              <div className="py-10 px-4 mb-10 bg-white w-full lg:max-w-screen-md">
+              <div className="py-10 px-4 mb-10 dark:bg-gray-900 bg-white w-full lg:max-w-screen-md">
                 <article>
                   <Head>
                     <title>Alan Blog | {post.title}</title>
@@ -46,7 +48,7 @@ export default function Post({ post, morePosts }) {
                 </article>
                 <Comment />
               </div>
-              <div className=" hidden py-10 mb-10 bg-white border-2 lg:flex lg:flex-1">右边的内容</div>
+              <div className=" hidden py-10 mb-10 bg-white lg:flex lg:flex-1 dark:bg-gray-900 dark:text-gray-300">右边的内容</div>
             </div>
           )}
         </Container>
