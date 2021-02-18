@@ -5,7 +5,7 @@ import { MdEmail } from 'react-icons/md';
 
 export default function Footer() {
     return (
-        <div className="bg-gray-800 w-full">
+        <div style={{ boxShadow: '0 10px 15px -3px black' }} className="bg-white w-full dark:bg-dark-content">
             <footer className="text-gray-600 body-font max-w-screen-lg mx-auto">
                 <div className="px-5 py-8 flex items-center sm:flex-row flex-col">
                     <a className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
@@ -14,7 +14,7 @@ export default function Footer() {
                                 <FaBasketballBall />
                             </div>
                         </IconContext.Provider>
-                        <span className="ml-3 text-xl text-gray-300">Alan</span>
+                        <span className="ml-3 text-xl text-gray-500 dark:text-gray-300">Alan</span>
                     </a>
                     <p className="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-300 sm:py-2 sm:mt-0 mt-4">
                         © 2021 Alan —

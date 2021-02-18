@@ -1,23 +1,22 @@
 import Container from '../components/Container';
-import MoreStories from '../components/more-stories';
+import PostList from '../components/PostList';
 import Intro from '../components/intro';
 import Layout from '../components/Layout';
 import { getAllPosts } from '../lib/api';
 import Head from 'next/head';
-import Navigator from '../components/Navigator';
+import MenuBar from '../components/MeunBar';
 
 export default function Index({ allPosts }) {
     const morePosts = allPosts;
     return (
         <>
-            <Navigator />
             <Layout>
                 <Head>
                     <title>Alan | 前端博客</title>
                 </Head>
                 <Container>
                     <Intro />
-                    {morePosts.length > 0 && <MoreStories posts={morePosts} />}
+                    {morePosts.length > 0 && <PostList posts={morePosts} />}
                 </Container>
             </Layout>
         </>

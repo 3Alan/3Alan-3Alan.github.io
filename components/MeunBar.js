@@ -34,33 +34,35 @@ export default function MenuBar() {
     return (
         <div className="fixed right-3 bottom-2 sm:right-6 sm:bottom-8 flex flex-col z-50">
             <div
-                className="w-8 h-8 mb-2 sm:w-12 sm:h-12 flex bg-blue-500 justify-center items-center rounded-full cursor-pointer dark:bg-gray-600"
+                className="w-8 h-8 mb-2 sm:w-11 sm:h-11 flex bg-blue-500 justify-center items-center rounded-full cursor-pointer dark:bg-gray-800"
                 onClick={scrollToTop}
             >
                 <IconContext.Provider value={{ color: '#fff' }}>
-                    <div className="sm:text-lg dark:text-gray-900">
+                    <div className="text-xs sm:text-base dark:text-gray-900">
                         <FaArrowUp />
                     </div>
                 </IconContext.Provider>
             </div>
             <div
-                className="w-8 h-8 mb-2 sm:w-12 sm:h-12 flex bg-blue-500 justify-center items-center rounded-full cursor-pointer dark:bg-gray-600"
+                className="w-8 h-8 mb-2 sm:w-11 sm:h-11 flex bg-blue-500 justify-center items-center rounded-full cursor-pointer dark:bg-gray-800"
                 onClick={scrollToComment}
             >
                 <IconContext.Provider value={{ color: '#fff' }}>
-                    <div className="sm:text-lg dark:text-gray-900">
+                    <div className="text-xs sm:text-base dark:text-gray-900">
                         <FaComments />
                     </div>
                 </IconContext.Provider>
             </div>
-            <div
-                className="w-8 h-8 sm:w-12 sm:h-12 flex bg-blue-500 justify-center items-center rounded-full cursor-pointer dark:bg-gray-600"
+            {/* <div
+                className="w-8 h-8 sm:w-11 sm:h-11 flex bg-blue-500 justify-center items-center rounded-full cursor-pointer dark:bg-gray-800"
                 onClick={toggleMode}
             >
                 <IconContext.Provider value={{ color: '#fff' }}>
-                    <div className="sm:text-lg dark:text-gray-900">{darkValue === 'dark' ? <FaMoon /> : <FaSun />}</div>
+                    <div className="text-xs sm:text-base dark:text-gray-900">
+                        {darkValue === 'light' ? <FaMoon /> : <FaSun />}
+                    </div>
                 </IconContext.Provider>
-            </div>
+            </div> */}
         </div>
     );
 }

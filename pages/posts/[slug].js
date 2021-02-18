@@ -13,6 +13,7 @@ import markdownToHtml from '../../lib/markdownToHtml';
 import CoverImage from '../../components/CoverImage';
 import Navigator from '../../components/Navigator';
 import MenuBar from '../../components/MeunBar';
+import Toc from '../../components/post/Toc';
 
 export default function Post({ post, morePosts }) {
     const router = useRouter();
@@ -50,9 +51,7 @@ export default function Post({ post, morePosts }) {
                                     <Comment />
                                 </div>
                             </div>
-                            <div className=" hidden py-4 shadow px-2 h-96 sticky top-0 mt-2 mb-10 rounded-xl bg-white lg:flex lg:flex-1 dark:bg-dark-content dark:text-gray-300">
-                                Toc组件
-                            </div>
+                            <Toc />
                         </div>
                     )}
                 </Container>
