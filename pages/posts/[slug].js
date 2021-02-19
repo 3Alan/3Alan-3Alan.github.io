@@ -28,7 +28,7 @@ export default function Post({ post, morePosts }) {
                 <title>Alan Blog | {post.title}</title>
                 <meta property="og:image" content={post.ogImage.url} />
             </Head>
-            <Layout>
+            <Layout hasNav={false}>
                 <CoverImage
                     title="123"
                     src="https://cdn.jsdelivr.net/gh/ihewro/blog@master/usr/uploads/2019/01/762065921.jpg"

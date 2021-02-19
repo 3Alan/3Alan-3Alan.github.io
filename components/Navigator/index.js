@@ -1,8 +1,10 @@
 import { IconContext } from 'react-icons';
 import { FaBasketballBall } from 'react-icons/fa';
 import Link from 'next/link';
-import cn from 'classnames';
+import { useRouter } from 'next/router';
 import Tools from './Tools';
+import { useEffect, useState } from 'react';
+import { FULL_PAGE_LIST } from '../../lib/constants';
 
 function HomeIcon() {
     return (
@@ -21,16 +23,25 @@ function HomeIcon() {
     );
 }
 
-export default function Navigator({ dynamicShow = true }) {
+export default function Navigator() {
+    const [opacityvalue, setOpacityvalue] = useState(1);
+    const [isFullPage, setIsFullPage] = useState(false);
+    const router = useRouter();
+
+    useEffect(() => {
+        if (FULL_PAGE_LIST.includes(router.pathname)) {
+            console.log('hahah yes');
+            setOpacityvalue(0);
+            setIsFullPage(true);
+        }
+    }, [router]);
+
     return (
         <div
-            className={cn(
-                'bg-white hidden h-16 inset-0 overflow-hidden z-50 shadow-navigator transition-colors dark:bg-dark-content',
-                {
-                    fixed: dynamicShow,
-                    'sm:flex': dynamicShow
-                }
-            )}
+            style={{
+                opacity: opacityvalue
+            }}
+            className="fixed sm:flex bg-white hidden h-16 inset-0 overflow-hidden z-50 shadow-navigator transition-colors dark:bg-dark-content"
         >
             <div className="max-w-screen-lg mx-auto flex w-full justify-between items-center py-2">
                 <HomeIcon />
