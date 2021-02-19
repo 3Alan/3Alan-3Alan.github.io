@@ -11,7 +11,6 @@ import PostTitle from '../../components/PostTitle';
 import Head from 'next/head';
 import markdownToHtml from '../../lib/markdownToHtml';
 import CoverImage from '../../components/CoverImage';
-import Navigator from '../../components/Navigator';
 import MenuBar from '../../components/MeunBar';
 import Toc from '../../components/post/Toc';
 
@@ -23,7 +22,6 @@ export default function Post({ post, morePosts }) {
     return (
         <>
             <MenuBar />
-            <Navigator dynamicShow={false} />
             <Head>
                 <title>Alan Blog | {post.title}</title>
                 <meta property="og:image" content={post.ogImage.url} />
@@ -37,17 +35,17 @@ export default function Post({ post, morePosts }) {
                     date={post.date}
                     author={post.author}
                 />
-                <Container bgColor={'bg-white'}>
+                <Container>
                     {router.isFallback ? (
                         <PostTitle>Loading…</PostTitle>
                     ) : (
                         <div className="flex flex-row">
                             <div className="w-full lg:max-w-screen-md">
-                                <article className="py-8 px-4 mt-2 mr-2 my-6 rounded-xl dark:bg-dark-content bg-white">
+                                <article className="py-2 px-4 mt-2 mr-2 my-6 rounded-xl dark:bg-dark-content bg-gray-50">
                                     {/* <PostHeader /> */}
                                     <PostBody content={post.content} />
                                 </article>
-                                <div className="py-8 px-4 my-2 mr-2 rounded-xl dark:bg-dark-content bg-white">
+                                <div className="py-8 px-4 my-2 mr-2 shadow rounded-xl dark:bg-dark-content bg-white">
                                     <Comment />
                                 </div>
                             </div>

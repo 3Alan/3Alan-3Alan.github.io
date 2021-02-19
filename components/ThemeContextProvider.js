@@ -13,7 +13,7 @@ const reducer = (state, action) => {
     }
 };
 
-export const ThemeProvider = ({ children }) => {
+export const ThemeContextProvider = ({ children }) => {
     const [theme, dispatch] = useReducer(reducer, 'light');
     return <ThemeContext.Provider value={{ theme, dispatch }}>{children}</ThemeContext.Provider>;
 };

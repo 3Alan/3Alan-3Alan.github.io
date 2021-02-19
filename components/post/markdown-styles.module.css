@@ -44,13 +44,15 @@
 .markdown pre {
     position: relative;
     overflow-x: auto;
+
+    @apply mb-3 rounded-lg sm:rounded-xl shadow-xl !important;
 }
 
 .markdown pre code {
     position: relative;
     padding: 40px 14px 15px;
 
-    @apply rounded-lg sm:rounded-xl text-sm mb-3;
+    @apply text-sm;
 }
 
 .markdown pre::after {

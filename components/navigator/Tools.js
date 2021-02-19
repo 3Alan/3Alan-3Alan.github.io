@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { IconContext } from 'react-icons';
 import { FaMoon, FaSun, FaGithub } from 'react-icons/fa';
-import { ThemeContext, UPDATE_THEME } from '../ThemeProvider';
+import { ThemeContext, UPDATE_THEME } from '../ThemeContextProvider';
 
 export default function Tools() {
     const { theme, dispatch } = useContext(ThemeContext);
