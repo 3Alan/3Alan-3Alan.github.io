@@ -17,7 +17,7 @@ export default function Tools() {
     };
 
     return (
-        <div className="flex items-center">
+        <div className="flex items-center pr-5">
             <a className="text-gray-800 mr-1" href="https://github.com/3Alan" rel="noreferrer" target="_blank">
                 <IconContext.Provider value={{}}>
                     <div className="sm:text-lg cursor-pointer hover:bg-gray-100 p-2 rounded-full dark:text-gray-50 dark:hover:bg-gray-700">

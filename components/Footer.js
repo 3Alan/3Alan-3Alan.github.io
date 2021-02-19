@@ -5,7 +5,10 @@ import { MdEmail } from 'react-icons/md';
 
 export default function Footer() {
     return (
-        <div style={{ boxShadow: '0 10px 15px -3px black' }} className="bg-white w-full dark:bg-dark-content">
+        <div
+            style={{ boxShadow: '0 10px 15px -3px black' }}
+            className="bg-white w-full transition-colors dark:bg-dark-content"
+        >
             <footer className="text-gray-600 body-font max-w-screen-lg mx-auto">
                 <div className="px-5 py-8 flex items-center sm:flex-row flex-col">
                     <a className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
