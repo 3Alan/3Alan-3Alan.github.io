@@ -3,7 +3,9 @@ import Link from 'next/link';
 
 function Card({ children }) {
     return (
-        <div className="bg-white shadow rounded-xl overflow-hidden max-w-screen-md mx-1 mb-10 sm:mx-2">{children}</div>
+        <div className="bg-white shadow-card rounded-xl overflow-hidden max-w-screen-md mx-1 mb-10 sm:mx-2">
+            {children}
+        </div>
     );
 }
 
@@ -44,9 +46,11 @@ function HeadImgLayout({ title, coverImage, date, excerpt, slug }) {
                 </div>
                 <div className="p-8">
                     <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">Case study</div>
-                    <a href="#" className="block mt-1 text-lg leading-tight font-medium text-black hover:underline">
-                        {title}
-                    </a>
+                    <Link as={`/posts/${slug}`} href="/posts/[slug]">
+                        <a className="block mt-1 text-lg leading-tight font-medium text-black hover:underline">
+                            {title}
+                        </a>
+                    </Link>
                     <p className="mt-2 text-gray-500">
                         Getting a new business off the ground is a lot of hard work. Here are five ideas you can use to
                         find your first customers.

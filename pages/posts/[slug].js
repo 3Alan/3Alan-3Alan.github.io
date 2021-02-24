@@ -45,7 +45,7 @@ export default function Post({ post, morePosts }) {
                                     {/* <PostHeader /> */}
                                     <PostBody content={post.content} />
                                 </article>
-                                <div className="py-8 px-4 my-2 mr-2 shadow rounded-xl dark:bg-dark-content bg-white">
+                                <div className="py-8 px-4 my-2 mr-2 shadow-card rounded-xl dark:bg-dark-content bg-white">
                                     <Comment />
                                 </div>
                             </div>
