@@ -40,6 +40,6 @@
 
 # 代码、工程方面
 ## 自动化部署
-后面单独新建一个仓库，建立`github actions`实现`build&export`，把生产的内容`push`到`github pages`仓库中，然后在`github pages`仓库下创建同步`gitee`仓库的`actions`。
+使用vercel进行部署
 
 ## 自动化测试
