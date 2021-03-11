@@ -42,7 +42,7 @@ function NavList() {
             <NavItem name="归档" />
             <NavItem name="友链" />
             <NavItem name="留言" />
-            <NavItem name="关于" />
+            <NavItem name="关于" link="/resume" />
         </div>
     );
 }
