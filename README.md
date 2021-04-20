@@ -48,3 +48,7 @@
 ## 个人收藏网站模块
 
 ## 个人介绍网站
+
+## 一些点子✨
+- 搜索功能 https://github.com/krisk/fuse
+- https://github.com/vivek9patel/vivek9patel.github.io
