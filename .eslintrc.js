@@ -1,12 +1,32 @@
 module.exports = {
-  extends: ['airbnb', 'plugin:prettier/recommended', 'prettier/react'],
   env: {
     browser: true,
     commonjs: true,
-    es6: true,
+    es2020: true,
     jest: true,
     node: true
   },
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaVersion: 2020,
+    sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true
+    }
+  },
+  plugins: ['@typescript-eslint', 'react', 'prettier'],
+  extends: [
+    'airbnb',
+    'airbnb/hooks',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:react/recommended',
+    'plugin:import/errors',
+    'plugin:import/warnings',
+    'plugin:import/typescript',
+    'prettier',
+    'prettier/@typescript-eslint',
+    'prettier/react'
+  ],
   rules: {
     'jsx-a11y/href-no-hash': ['off'],
     'react/react-in-jsx-scope': 0,
