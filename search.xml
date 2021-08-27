@@ -8,7 +8,7 @@
       <link href="/posts/d8051f67/"/>
       <url>/posts/d8051f67/</url>
       
-        <content type="html"><![CDATA[<p>一直都想搭建一套属于自己的组件库、脚手架，这次总算是开始动手了。</p><a id="more"></a><h2 id="技术选型"><a href="#技术选型" class="headerlink" title="技术选型"></a>技术选型</h2><ul><li>cra脚手架</li><li>storybook生成文档</li><li><input disabled="" type="checkbox"> lerna</li><li>jest</li></ul><h2 id="积累的知识点"><a href="#积累的知识点" class="headerlink" title="积累的知识点"></a>积累的知识点</h2><ul><li><code>package.json</code> 中的 <code>peerDependencies</code> 三方库版本依赖于宿主环境，三方库不提供。</li></ul>]]></content>
+        <content type="html"><![CDATA[<p>一直都想搭建一套属于自己的组件库、脚手架，这次总算是开始动手了。</p><a id="more"></a><h2 id="技术选型"><a href="#技术选型" class="headerlink" title="技术选型"></a>技术选型</h2><ul><li>cra脚手架</li><li>storybook生成文档</li><li><input disabled="" type="checkbox"> lerna</li><li>jest</li></ul><h2 id="积累的知识点"><a href="#积累的知识点" class="headerlink" title="积累的知识点"></a>积累的知识点</h2><ul><li><code>package.json</code> 中的 <code>peerDependencies</code> 三方库版本依赖于宿主环境，三方库不提供。</li><li>node-sass已经弃用，现在使用sass(dart-sass) <a href="https://stackoverflow.com/questions/63943756/replace-node-sass-with-dart-sass-in-create-react-app-v3-x" target="_blank" rel="noopener">issue</a></li><li><a href="https://www.codefeetime.com/post/rollup-config-for-react-component-library-with-typescript-scss/" target="_blank" rel="noopener"><code>rollup</code> 打包</a> </li></ul><h2 id="待了解"><a href="#待了解" class="headerlink" title="待了解"></a>待了解</h2><p>package.json 的 module和types</p>]]></content>
       
       
       <categories>
