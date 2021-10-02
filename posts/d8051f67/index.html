@@ -399,13 +399,13 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>字数：98字</p>
+      <p>字数：842字</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>时长：1分钟</p>
+      <p>时长：4分钟</p>
     </a>
   </div>
 
@@ -438,10 +438,13 @@
 <a id="more"></a>
 
 <h2 id="技术选型"><a href="#技术选型" class="headerlink" title="技术选型"></a>技术选型</h2><ul>
-<li>cra脚手架</li>
-<li>storybook生成文档</li>
-<li><input disabled="" type="checkbox"> lerna</li>
+<li>react</li>
+<li>sass</li>
+<li>typescript</li>
+<li>create-react-app</li>
+<li>storybook</li>
 <li>jest</li>
+<li>lerna</li>
 </ul>
 <h2 id="积累的知识点"><a href="#积累的知识点" class="headerlink" title="积累的知识点"></a>积累的知识点</h2><ul>
 <li><code>package.json</code> 中的 <code>peerDependencies</code> 三方库版本依赖于宿主环境，三方库不提供。</li>
@@ -449,6 +452,124 @@
 <li><a href="https://www.codefeetime.com/post/rollup-config-for-react-component-library-with-typescript-scss/" target="_blank" rel="noopener"><code>rollup</code> 打包</a> </li>
 </ul>
 <h2 id="待了解"><a href="#待了解" class="headerlink" title="待了解"></a>待了解</h2><p>package.json 的 module和types</p>
+<h2 id="代码质量相关"><a href="#代码质量相关" class="headerlink" title="代码质量相关"></a>代码质量相关</h2><p>配置eslint<br>npx eslint –init</p>
+<p>配置prettier<br><code>eslint-plugin-prettier</code> <code>eslint-config-prettier</code></p>
+<p>配置husky + lint-staged</p>
+<pre><code>npx mrm@2 lint-staged</code></pre><p>配置commitlint<br>使用<code>commitizen</code>简化流程</p>
+<h2 id="奇怪的问题"><a href="#奇怪的问题" class="headerlink" title="奇怪的问题"></a>奇怪的问题</h2><p>rollup打包后进程没有关闭： <a href="https://github.com/rollup/rollup/issues/4213" target="_blank" rel="noopener">https://github.com/rollup/rollup/issues/4213</a></p>
+<h2 id="npm发布"><a href="#npm发布" class="headerlink" title="npm发布"></a>npm发布</h2><h3 id="先置条件"><a href="#先置条件" class="headerlink" title="先置条件"></a>先置条件</h3><ul>
+<li>npm账号</li>
+<li>打包后的组件文件</li>
+<li><strong>npm已经绑定账号</strong></li>
+</ul>
+<h3 id="先置知识"><a href="#先置知识" class="headerlink" title="先置知识"></a>先置知识</h3><h4 id="package-json"><a href="#package-json" class="headerlink" title="package.json"></a>package.json</h4><pre><code class="json">  &quot;name&quot;: &quot;@3alan/ui&quot;, // 包名，@后跟的是组织名
+  &quot;version&quot;: &quot;0.2.10&quot;, // 包版本号，每次发版需要自行变更版本号
+  &quot;private&quot;: false, // 是否为私有包
+  &quot;main&quot;: &quot;dist/index.cjs.js&quot;, // 包入口文件
+  &quot;module&quot;: &quot;dist/index.esm.js&quot;,
+  &quot;types&quot;: &quot;dist/types/index.d.ts&quot;, // typescript声明文件
+  &quot;license&quot;: &quot;MIT&quot;, // 开源协议
+  &quot;description&quot;: &quot;hand drawn react components&quot;, // 包描述
+  &quot;author&quot;: &quot;3Alan&quot;, // 作者
+  &quot;homepage&quot;: &quot;https://alan-ui.vercel.app/&quot;, // 网站
+  &quot;repository&quot;: {
+    &quot;type&quot;: &quot;git&quot;,
+    &quot;url&quot;: &quot;https://github.com/3Alan/alan-ui&quot;
+  },
+  &quot;files&quot;: [
+    &quot;dist&quot;
+  ], // 需要上传到npm上的文件
+  &quot;keywords&quot;: [
+    &quot;react&quot;,
+    &quot;components&quot;,
+    &quot;ui&quot;,
+    &quot;hand drawn&quot;
+  ], // 关键字：用来描述你的包
+  &quot;dependencies&quot;: {
+  },
+  &quot;peerDependencies&quot;: {
+    &quot;react&quot;: &quot;&gt;=16.8.0&quot;,
+    &quot;react-dom&quot;: &quot;&gt;=16.8.0&quot;
+  }, // 宿主（即需要使用改包的项目）需要具备的依赖</code></pre>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://gitee.com/alannum3/MyImages/raw/master/img/image-20210910105028280.png" alt="image-20210910105028280"></p>
+<h3 id="打包组件库"><a href="#打包组件库" class="headerlink" title="打包组件库"></a>打包组件库</h3><h4 id="使用rollup打包"><a href="#使用rollup打包" class="headerlink" title="使用rollup打包"></a>使用rollup打包</h4><p>在根目录下创建<code>rollup.config.js</code>文件</p>
+<p>文件中使用的插件自行安装</p>
+<pre><code class="js">import typescript from &#39;@rollup/plugin-typescript&#39;;
+// 用来处理import &#39;xxx.scss&#39;问题
+import postcss from &#39;rollup-plugin-postcss&#39;;
+// 压缩代码
+import { terser } from &#39;rollup-plugin-terser&#39;;
+// 类似webpack-bundle-analyzer
+import { visualizer } from &#39;rollup-plugin-visualizer&#39;;
+// 拷贝静态资源
+import copy from &#39;rollup-plugin-copy&#39;;
+
+// 将package.json中的依赖打包
+import resolve from &#39;@rollup/plugin-node-resolve&#39;;
+import commonjs from &#39;@rollup/plugin-commonjs&#39;;
+import pkg from &#39;./package.json&#39;;
+
+const copyRight = `/*!
+Copyright (c) 2021 3Alan.
+Licensed under the MIT License (MIT)
+*/`;
+
+// eslint-disable-next-line import/no-anonymous-default-export
+export default {
+  input: &#39;./src/index.ts&#39;,
+  output: [
+    {
+      file: pkg.main,
+      format: &#39;cjs&#39;,
+      footer: copyRight
+    },
+    {
+      file: pkg.module,
+      format: &#39;esm&#39;,
+      footer: copyRight
+    }
+  ],
+  plugins: [
+    // roughjs将会被一同打包进dist中
+    resolve({ resolveOnly: [&#39;roughjs&#39;] }),
+    commonjs(),
+    // 将ts转化成es5语法并生成类型文件
+    typescript({
+      tsconfig: &#39;./tsconfig.build.json&#39;,
+      // 生成d.ts文件以及生成路径
+      declaration: true,
+      declarationDir: &#39;types&#39;
+    }),
+    copy({
+      targets: [{ src: &#39;src/components/style/*.ttf&#39;, dest: &#39;dist&#39; }]
+    }),
+    postcss(),
+    terser(),
+    visualizer()
+  ]
+};</code></pre>
+<h4 id="打包脚本"><a href="#打包脚本" class="headerlink" title="打包脚本"></a>打包脚本</h4><p>安装删除工具（用来每次打包前清除dist目录）</p>
+<pre><code class="shell">yarn add rimraf -D </code></pre>
+<pre><code class="json">&quot;build:sass&quot;: &quot;sass ./src/components/style/index.scss ./dist/index.css
+&quot;clean&quot;: &quot;rimraf ./dist&quot;,
+&quot;build&quot;: &quot;yarn clean &amp;&amp; rollup -c &amp;&amp; yarn build:sass&quot;,</code></pre>
+<p>打包后的目录：</p>
+<p>dist<br> ├── index.cjs.js<br> ├── index.css<br> ├── index.css.map<br> ├── index.esm.js<br> ├── Stanberry.ttf<br> └── types</p>
+<h3 id="发布npm"><a href="#发布npm" class="headerlink" title="发布npm"></a>发布npm</h3><h4 id="先置条件-1"><a href="#先置条件-1" class="headerlink" title="先置条件"></a>先置条件</h4><ul>
+<li><p>npm已登录</p>
+</li>
+<li><p>npm镜像源没有切换过，可以使用<code>npm whoami</code>验证，如果能正确返回npm用户名即可</p>
+</li>
+<li><p><code>package.json</code>中<code>version</code>高于上次发布的版本号</p>
+</li>
+</ul>
+<h4 id="发布脚本"><a href="#发布脚本" class="headerlink" title="发布脚本"></a>发布脚本</h4><ul>
+<li><p>npm publish</p>
+</li>
+<li><p>可在package.json中配置钩子发布前自动打包</p>
+<pre><code class="json">&quot;prepublishOnly&quot;: &quot;yarn build&quot;,</code></pre>
+</li>
+</ul>
 
   
   
@@ -562,6 +683,18 @@
   
     <div class="prev-next">
       
+        <a class='prev' href='/posts/52a641e4/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>算法题解-树</p>
+          <p class='content'>算法题解-树
+
+
+二叉树镜像输出对应树的镜像题目
+解题思路：
+抛开实现方式，很容易想到其实就是将左右节点交换一下。
+先想到左右节点交换，添加一个中间变量来实现。
+const temp = nod...</p>
+        </a>
+      
       
         <a class='next' href='/posts/b050203a/'>
           <p class='title'>Hexo博客定制<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
@@ -612,7 +745,7 @@
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#技术选型"><span class="toc-text">技术选型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#积累的知识点"><span class="toc-text">积累的知识点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#待了解"><span class="toc-text">待了解</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#技术选型"><span class="toc-text">技术选型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#积累的知识点"><span class="toc-text">积累的知识点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#待了解"><span class="toc-text">待了解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码质量相关"><span class="toc-text">代码质量相关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#奇怪的问题"><span class="toc-text">奇怪的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#npm发布"><span class="toc-text">npm发布</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#先置条件"><span class="toc-text">先置条件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#先置知识"><span class="toc-text">先置知识</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#package-json"><span class="toc-text">package.json</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#打包组件库"><span class="toc-text">打包组件库</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#使用rollup打包"><span class="toc-text">使用rollup打包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#打包脚本"><span class="toc-text">打包脚本</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#发布npm"><span class="toc-text">发布npm</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#先置条件-1"><span class="toc-text">先置条件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#发布脚本"><span class="toc-text">发布脚本</span></a></li></ol></li></ol></li></ol>
     </div>
   </section>
 
